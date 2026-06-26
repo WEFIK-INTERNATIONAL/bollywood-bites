@@ -1,0 +1,59 @@
+.slide-button {
+  position: relative;
+  z-index: 3;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1.25rem 2.75rem;
+  text-decoration: none;
+  color: var(--base-100); /* Off-white text */
+  cursor: pointer;
+  pointer-events: auto;
+  clip-path: polygon(8px 0%, calc(100% - 8px) 0%, 100% 8px, 100% calc(100% - 8px), calc(100% - 8px) 100%, 8px 100%, 0% calc(100% - 8px), 0% 8px);
+  background-color: var(--base-300); /* Gold outer border background */
+  transition: color 0.35s ease;
+}
+
+.slide-button-bg {
+  position: absolute;
+  inset: 1px; /* 1px border */
+  background-color: var(--base-600); /* Dark green inside */
+  clip-path: polygon(7.5px 0%, calc(100% - 7.5px) 0%, 100% 7.5px, 100% calc(100% - 7.5px), calc(100% - 7.5px) 100%, 7.5px 100%, 0% calc(100% - 7.5px), 0% 7.5px);
+  transition: background-color 0.35s ease;
+}
+
+.slide-button:hover {
+  color: var(--base-600); /* Dark text on hover */
+}
+
+.slide-button:hover .slide-button-bg {
+  background-color: var(--base-300); /* turns gold on hover */
+}
+
+.slide-button-text {
+  position: relative;
+  display: inline-flex;
+  font-family: var(--font-dm-mono), monospace;
+  font-size: 0.85rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+}
+
+.slide-char {
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+}
+
+.char-default,
+.char-hover {
+  display: inline-block;
+  will-change: transform;
+}
+
+.char-hover {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
