@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Image from "next/image";
 import { HiOutlineArrowUp, HiOutlineArrowDown } from "react-icons/hi";
 
 import { diningMenu } from "./diningMenu-data";
@@ -73,11 +74,11 @@ const DiningMenu = () => {
 
     return () => scrollTrigger.kill();
   }, []);
-
   return (
     <section className="dining-menu" ref={sectionRef}>
+      <Image src="/mandana/rounded_mandala/Group 9.svg" className="bg-mandala-centered" style={{ opacity: 0.05 }} width={1000} height={1000} alt="" />
       <div className="dining-menu-bg">
-        <img src="/dining-menu/dining-menu.jpg" alt="" />
+        <Image src="/dining-menu/dining-menu.jpg" alt="" fill priority sizes="100vw" style={{ objectFit: "cover" }} />
       </div>
 
       <div className="container">
@@ -109,14 +110,8 @@ const DiningMenu = () => {
               </button>
             </div>
           </div>
-
           <div className="dining-preview">
             <div className="dining-preview-card">
-              <div className="corner-mandala corner-mandala-tl" />
-              <div className="corner-mandala corner-mandala-tr" />
-              <div className="corner-mandala corner-mandala-bl" />
-              <div className="corner-mandala corner-mandala-br" />
-
               <h6>{activeMenu.category}</h6>
 
               {activeMenu.items &&
@@ -170,11 +165,14 @@ const DiningMenu = () => {
                 onClick={() => setActiveIndex(index)}
               >
                 <div className="dining-minimap-img">
-                  <img
+                  <Image
                     src={`/dining-menu/dining-menu-${menu.category
                       .toLowerCase()
                       .replaceAll(" ", "-")}.jpg`}
                     alt={menu.category}
+                    fill
+                    sizes="4rem"
+                    style={{ objectFit: "cover" }}
                   />
                 </div>
                 <p>{menu.category}</p>

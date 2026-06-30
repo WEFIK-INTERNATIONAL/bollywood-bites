@@ -4,6 +4,7 @@ import { useRef, useEffect, useCallback } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { HiOutlineArrowLeft, HiOutlineArrowRight } from "react-icons/hi";
+import Image from "next/image";
 
 import { testimonials } from "./testimonials-data";
 import Copy from "@/components/Copy/Copy";
@@ -239,10 +240,13 @@ const Testimonials = () => {
               </div>
 
               <div className="testimonial-author">
-                <div className="testimonial-author-img">
-                  <img
+                <div className="testimonial-author-img" style={{ position: "relative" }}>
+                  <Image
                     src={testimonial.profilePicture}
                     alt={testimonial.name}
+                    fill
+                    sizes="48px"
+                    style={{ objectFit: "cover", filter: "grayscale(100%)" }}
                   />
                 </div>
                 <div className="testimonial-author-info">

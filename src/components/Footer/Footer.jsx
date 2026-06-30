@@ -3,6 +3,7 @@
 import { useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
 import gsap from "gsap";
+import Image from "next/image";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 import Button from "@/components/Button/Button";
@@ -119,6 +120,8 @@ const Footer = () => {
 
   return (
     <footer className="footer" ref={sectionRef}>
+      <Image src="/mandana/rounded_mandala/Group 9.svg" className="bg-mandala-centered" style={{ opacity: 0.05 }} width={800} height={800} alt="" />
+
       <div className="footer-content">
         <div className="footer-heading">
           <Copy key={`heading-${pathname}`} type="lines" animateOnScroll>
@@ -136,7 +139,7 @@ const Footer = () => {
       <div className="footer-postcards">
         {POSTCARDS.map((card, index) => (
           <div className="footer-postcard" key={index}>
-            <img src={card.image} alt="Salle Blanche" />
+            <Image src={card.image} alt="Bollywood Bites" fill sizes="(max-width: 1000px) 100vw, 40vw" style={{ objectFit: "cover" }} />
           </div>
         ))}
       </div>

@@ -1,0 +1,142 @@
+.contact-hero {
+  position: relative;
+  width: 100%;
+  height: 50svh;
+  background-color: var(--base-500);
+}
+
+.contact-hero .container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.contact-hero h2 {
+  width: 80%;
+}
+
+.contact-info-section {
+  position: relative;
+  width: 100%;
+  padding: 6rem 0;
+  background-color: var(--base-500);
+}
+
+.contact-info-section .container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+}
+
+.contact-details {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.contact-block h4 {
+  color: var(--base-100);
+  margin-bottom: 1rem;
+}
+
+.contact-block p {
+  color: var(--base-200);
+  font-size: 1.15rem;
+  line-height: 1.5;
+}
+
+.contact-block a {
+  color: var(--base-300);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+.contact-block a:hover {
+  color: var(--base-100);
+}
+
+.contact-form-container {
+  background-color: var(--base-600);
+  border: 1px solid rgba(197, 168, 128, 0.25);
+  border-radius: 8px;
+  padding: 3rem;
+}
+
+.contact-form-container h3 {
+  color: var(--base-100);
+  margin-bottom: 2rem;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-group label {
+  color: var(--base-300);
+  font-family: var(--font-host-grotesk), sans-serif;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.form-group input,
+.form-group textarea {
+  background-color: var(--base-500);
+  border: 1px solid rgba(197, 168, 128, 0.2);
+  border-radius: 4px;
+  padding: 1rem;
+  color: var(--base-100);
+  font-family: var(--font-host-grotesk), sans-serif;
+  font-size: 1rem;
+  transition: border-color 0.3s, outline 0.3s;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: var(--base-300);
+  outline: none;
+}
+
+.contact-submit-btn {
+  background-color: var(--base-300);
+  color: var(--base-600);
+  border: none;
+  border-radius: 4px;
+  padding: 1.2rem;
+  font-family: var(--font-host-grotesk), sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.contact-submit-btn:hover {
+  background-color: var(--base-100);
+  transform: translateY(-2px);
+}
+
+.contact-submit-btn:active {
+  transform: translateY(0);
+}
+
+@media (max-width: 900px) {
+  .contact-info-section .container {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+  .contact-form-container {
+    padding: 2rem;
+  }
+}

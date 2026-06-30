@@ -3,6 +3,7 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Image from "next/image";
 
 import Copy from "@/components/Copy/Copy";
 import ImageBanner from "@/components/ImageBanner/ImageBanner";
@@ -129,7 +130,7 @@ export default function About() {
           </div>
 
           <div className="hero-image">
-            <img src="/about/about-hero.jpg" alt="About Bollywood Bites" />
+            <Image src="/about/about-hero.jpg" alt="About Bollywood Bites" fill priority sizes="(max-width: 768px) 100vw, 600px" style={{ objectFit: "cover" }} />
           </div>
         </div>
       </section>

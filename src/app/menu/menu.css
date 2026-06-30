@@ -62,27 +62,18 @@
   width: calc((100% - 2rem) / 3);
   min-height: 250px;
   padding: 2rem;
-  background-color: var(--base-300); /* Gold outer border background */
+  background-color: var(--base-500); /* Direct dark green background */
+  border: 1px solid rgba(197, 168, 128, 0.2); /* Clean subtle border */
+  border-radius: 8px; /* Clean modern rounded corners */
   will-change: transform, opacity;
-  clip-path: polygon(10px 0%, calc(100% - 10px) 0%, 100% 10px, 100% calc(100% - 10px), calc(100% - 10px) 100%, 10px 100%, 0% calc(100% - 10px), 0% 10px);
   position: relative;
 }
 
-.menu-grid-card::before {
-  content: "";
-  position: absolute;
-  inset: 1px;
-  background-color: var(--base-500); /* Dark green inside */
-  z-index: 0;
-  clip-path: polygon(9px 0%, calc(100% - 9px) 0%, 100% 9px, 100% calc(100% - 9px), calc(100% - 9px) 100%, 9px 100%, 0% calc(100% - 9px), 0% 9px);
-  pointer-events: none;
+.menu-grid-card.alt {
+  background-color: var(--base-700); /* Rich royal maroon card background */
 }
 
-.menu-grid-card.alt::before {
-  background-color: var(--base-600); /* Alternate even darker green inside */
-}
-
-/* Ensure contents render above the border background */
+/* Ensure contents render above the background */
 .menu-grid-card > * {
   position: relative;
   z-index: 1;
@@ -108,7 +99,7 @@
   white-space: nowrap;
   color: var(--base-600); /* Dark green text for high readability */
   font-weight: 500;
-  clip-path: polygon(4px 0%, calc(100% - 4px) 0%, 100% 4px, 100% calc(100% - 4px), calc(100% - 4px) 100%, 4px 100%, 0% calc(100% - 4px), 0% 4px);
+  border-radius: 4px; /* Clean rounded price tag */
 }
 
 .menu-grid-card p {

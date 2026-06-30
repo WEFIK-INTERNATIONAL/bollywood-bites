@@ -5,6 +5,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 import Copy from "@/components/Copy/Copy";
+import Image from "next/image";
 
 import "./CTA.css";
 
@@ -169,8 +170,8 @@ const CTA = () => {
           </div>
         </div>
 
-        <div className="cta-image">
-          <img src="/cta/cta-img.jpg" alt="Restaurant interior" />
+        <div className="cta-image" style={{ position: "relative" }}>
+          <Image src="/cta/cta-img.jpg" alt="Restaurant interior" fill sizes="(max-width: 1000px) 100vw, 45vw" style={{ objectFit: "cover" }} />
         </div>
       </div>
     </section>

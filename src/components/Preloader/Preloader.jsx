@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
+import Image from "next/image";
 import { useLenis } from "lenis/react";
 
 import Button from "@/components/Button/Button";
@@ -14,7 +15,7 @@ const EXIT_ANIMATION_MS = 700;
 let isInitialLoad = true;
 
 export default function Preloader({
-  title = "Salle Blanche",
+  title = "Bollywood Bites",
   duration = 2600,
   buttonText = "Enter Website",
   buttonHref = "#",
@@ -99,6 +100,7 @@ export default function Preloader({
       className={`preloader ${isExiting ? "is-exiting" : ""}`}
       aria-label="Website preloader"
     >
+      <Image src="/mandana/rounded_mandala/Group 9.svg" className="bg-mandala-centered" style={{ opacity: 0.08 }} width={800} height={800} priority loading="eager" alt="" />
       <div className="preloader-inner">
         <div className="preloader-title-wrap">
           <h2 className="preloader-title preloader-title-base">{title}</h2>

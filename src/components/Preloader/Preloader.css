@@ -9,7 +9,7 @@
   min-height: 100vh;
   padding: 2rem;
   overflow: hidden;
-  background: var(--base-600);
+  background: var(--base-700);
   transition:
     opacity 0.7s ease,
     visibility 0.7s ease;

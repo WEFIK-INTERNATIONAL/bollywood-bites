@@ -17,12 +17,90 @@
   will-change: clip-path;
 }
 
+.hero .hero-img::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(9, 30, 23, 0.4) 0%,
+    rgba(9, 30, 23, 0.85) 100%
+  );
+  z-index: 1;
+}
+
+.hero .hero-img img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+  filter: brightness(0.65) contrast(1.05) saturate(0.9) sepia(0.1);
+}
+
 .hero .container {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
 }
+
+.hero-buttons-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  margin-top: 3.5rem;
+  position: relative;
+  z-index: 10;
+  opacity: 0;
+}
+
+/* Primary Button - Solid Gold, Inverts to Hollow on Hover */
+.hero-buttons-container .hero-btn-primary {
+  background-color: var(--base-300);
+  color: var(--base-600);
+}
+
+.hero-buttons-container .hero-btn-primary .slide-button-bg {
+  background-color: var(--base-300);
+}
+
+.hero-buttons-container .hero-btn-primary:hover {
+  color: var(--base-100);
+}
+
+.hero-buttons-container .hero-btn-primary:hover .slide-button-bg {
+  background-color: var(--base-600);
+}
+
+/* Secondary Button - Hollow, Inverts to Solid Gold on Hover */
+.hero-buttons-container .hero-btn-secondary {
+  background-color: var(--base-300);
+  color: var(--base-100);
+}
+
+.hero-buttons-container .hero-btn-secondary .slide-button-bg {
+  background-color: var(--base-600);
+}
+
+.hero-buttons-container .hero-btn-secondary:hover {
+  color: var(--base-600);
+}
+
+.hero-buttons-container .hero-btn-secondary:hover .slide-button-bg {
+  background-color: var(--base-300);
+}
+
+@media (max-width: 768px) {
+  .hero-buttons-container {
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 2.5rem;
+  }
+}
+
 
 .about {
   position: relative;
@@ -126,6 +204,7 @@
   }
 
   .about .about-imgs #about-img-3 {
+    left: 10%;
     width: 20%;
   }
 
@@ -134,6 +213,7 @@
   }
 
   .about .about-imgs #about-img-5 {
+    right: 5%;
     width: 15%;
   }
 
@@ -141,3 +221,144 @@
     width: 20%;
   }
 }
+
+/* Home Chef Section */
+.home-chef {
+  position: relative;
+  width: 100%;
+  padding: 12rem 0;
+  background-color: var(--base-500);
+  overflow: hidden;
+}
+
+.home-chef-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 6rem;
+  width: 100%;
+}
+
+.home-chef-image-container {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.chef-photo-frame {
+  position: relative;
+  padding: 1.5rem; /* Space between outer and inner border */
+  background-color: var(--base-600);
+  border-radius: 0; /* Boxy formal frame matching Ambassadors Clubhouse */
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 500px;
+  border: 1px solid var(--base-300); /* Thin outer gold border */
+  opacity: 0;
+}
+
+/* Oxford Crossover Lines */
+.chef-photo-frame .oxford-line {
+  position: absolute;
+  background-color: var(--base-300); /* Gold line color */
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.chef-photo-frame .line-top {
+  top: 12px;
+  left: 6px;
+  right: 6px;
+  height: 1px;
+}
+
+.chef-photo-frame .line-bottom {
+  bottom: 12px;
+  left: 6px;
+  right: 6px;
+  height: 1px;
+}
+
+.chef-photo-frame .line-left {
+  left: 12px;
+  top: 6px;
+  bottom: 6px;
+  width: 1px;
+}
+
+.chef-photo-frame .line-right {
+  right: 12px;
+  top: 6px;
+  bottom: 6px;
+  width: 1px;
+}
+
+/* Inner Image Container */
+.home-chef-image {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  border: 1px solid var(--base-300); /* Inner gold border around the photo */
+}
+
+.home-chef-content {
+  flex: 1.2;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2rem;
+}
+
+.home-chef-tag {
+  color: var(--base-300);
+  text-transform: uppercase;
+}
+
+.home-chef-title {
+  color: var(--base-100);
+  margin-top: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.home-chef-text {
+  color: var(--base-200);
+  font-size: 1.15rem;
+  line-height: 1.6;
+  max-width: 600px;
+}
+
+.home-chef-cta {
+  margin-top: 1rem;
+  opacity: 0;
+}
+
+@media (max-width: 1000px) {
+  .home-chef {
+    padding: 6rem 0;
+  }
+
+  .home-chef-wrapper {
+    flex-direction: column;
+    gap: 4rem;
+  }
+
+  .home-chef-image {
+    max-width: 100%;
+    aspect-ratio: 4 / 5;
+  }
+
+  .home-chef-content {
+    align-items: center;
+    text-align: center;
+  }
+
+  .home-chef-text {
+    max-width: 100%;
+  }
+}
+

@@ -2,6 +2,7 @@
 
 import { useRef, useEffect } from "react";
 import gsap from "gsap";
+import Image from "next/image";
 
 import "./Chefs.css";
 
@@ -199,7 +200,7 @@ const Chefs = () => {
             key={index}
             ref={(el) => (avatarRefs.current[index] = el)}
           >
-            <img src={chef.image} alt={chef.name} />
+            <Image src={chef.image} alt={chef.name} fill sizes="70px" style={{ objectFit: "cover", borderRadius: "0.35rem" }} />
           </div>
         ))}
       </div>

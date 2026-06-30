@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Image from "next/image";
 
 import Preloader, { isInitialLoad } from "@/components/Preloader/Preloader";
 import Copy from "@/components/Copy/Copy";
@@ -10,6 +11,7 @@ import DiningMenu from "@/components/DiningMenu/DiningMenu";
 import Testimonials from "@/components/Testimonials/Testimonials";
 import CTA from "@/components/CTA/CTA";
 import ImageBanner from "@/components/ImageBanner/ImageBanner";
+import Button from "@/components/Button/Button";
 
 import "./home.css";
 
@@ -27,6 +29,22 @@ export default function Home() {
   const handlePreloaderEnter = () => {
     if (isInitialPageLoad) setPreloaderDelay(0.2);
   };
+
+  useEffect(() => {
+    if (isInitialPageLoad && preloaderDelay === 9999) return;
+
+    gsap.fromTo(
+      ".hero-buttons-container",
+      { y: 40, opacity: 0 },
+      {
+        y: 0,
+        opacity: 1,
+        duration: 1,
+        ease: "power3.out",
+        delay: isInitialPageLoad ? 0.7 : 1.35,
+      }
+    );
+  }, [preloaderDelay, isInitialPageLoad]);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -59,7 +77,42 @@ export default function Home() {
           scrub: true,
         },
       });
-    }, aboutSectionRef);
+
+      /* fade and slide up the chef framed photo and button on scroll */
+      gsap.fromTo(
+        ".chef-photo-frame",
+        { opacity: 0, y: 50, scale: 0.95 },
+        {
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          duration: 1,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: ".home-chef",
+            start: "top 75%",
+            once: true,
+          },
+        }
+      );
+
+      gsap.fromTo(
+        ".home-chef-cta",
+        { opacity: 0, y: 20 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: ".home-chef",
+            start: "top 75%",
+            once: true,
+          },
+          delay: 0.5,
+        }
+      );
+    });
 
     return () => ctx.revert();
   }, []);
@@ -69,8 +122,10 @@ export default function Home() {
       <Preloader onEnter={handlePreloaderEnter} />
 
       <section className="hero">
-        <div className="hero-img">
-          <img src="/home/hero.jpg" alt="" />
+        <div className="leaf-border-bottom" />
+        <Image src="/mandana/rounded_mandala/Group 9.svg" className="bg-mandala-centered" style={{ opacity: 0.08 }} width={800} height={800} priority loading="eager" alt="" />
+        <div className="hero-img" style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%" }}>
+          <Image src="/home/hero.jpg" fill priority sizes="100vw" style={{ objectFit: "cover" }} alt="" />
         </div>
 
         <div className="container">
@@ -83,6 +138,15 @@ export default function Home() {
               Bollywood <br /> Bites
             </h1>
           </Copy>
+
+          <div className="hero-buttons-container">
+            <Button href="/menu" className="hero-btn hero-btn-primary">
+              Order Online
+            </Button>
+            <Button href="/reservation" className="hero-btn hero-btn-secondary">
+              Book a Table
+            </Button>
+          </div>
 
           <div className="section-footer">
             <Copy
@@ -131,10 +195,57 @@ export default function Home() {
                 key={index + 1}
                 className="about-img"
                 id={`about-img-${index + 1}`}
+                style={{ position: "absolute" }}
               >
-                <img src={`/home/about-${index + 1}.jpg`} alt="" />
+                <Image src={`/home/about-${index + 1}.jpg`} fill sizes="(max-width: 768px) 30vw, 15vw" style={{ objectFit: "cover" }} alt="" />
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Chef Section */}
+      <section className="home-chef">
+        {/* background rotating watermark mandala */}
+        <Image src="/mandana/rounded_mandala/Group 9.svg" className="bg-mandala-centered" style={{ opacity: 0.05 }} width={1000} height={1000} alt="" />
+
+        <div className="container">
+          <div className="home-chef-wrapper">
+            <div className="home-chef-image-container">
+              <div className="chef-photo-frame">
+                {/* Oxford Crossover Border lines */}
+                <div className="oxford-line line-top" />
+                <div className="oxford-line line-bottom" />
+                <div className="oxford-line line-left" />
+                <div className="oxford-line line-right" />
+
+                <div className="home-chef-image">
+                  <Image
+                    src="/chefs/avatar1.jpg"
+                    alt="Chef Sanjay Patel"
+                    fill
+                    sizes="(max-width: 768px) 100vw, 500px"
+                    style={{ objectFit: "cover" }}
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div className="home-chef-content">
+              <Copy type="lines" trigger=".home-chef" start="top 75%">
+                <p className="mono home-chef-tag">Hollywood&rsquo;s Prince of the Palate</p>
+                <h3 className="home-chef-title">Chef Sanjay Patel</h3>
+                <p className="home-chef-text">
+                  Dubbed &ldquo;Hollywood&rsquo;s Prince of the Palate,&rdquo; Chef Sanjay is an award-winning chef who captivates his clients with his amazing, authentic and creative cuisine&mdash;prepared to perfection and served with love. Former sous chef at the Four Seasons Beverly Hills Hotel, personal chef to the &ldquo;King of Pop,&rdquo; Michael Jackson, and a private chef for numerous A-list celebrities, Chef Sanjay is a global culinary genius professionally trained in traditional Indian, Indo-Chinese, Italian and Latin American cuisines.
+                </p>
+              </Copy>
+
+              <div className="home-chef-cta">
+                <Button href="/about/chef-sanjay-patel" className="hero-btn-secondary">
+                  Read More
+                </Button>
+              </div>
+            </div>
           </div>
         </div>
       </section>

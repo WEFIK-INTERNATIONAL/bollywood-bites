@@ -1,4 +1,5 @@
 import Copy from "../Copy/Copy";
+import Image from "next/image";
 
 import "./ImageBanner.css";
 
@@ -10,7 +11,7 @@ const ImageBanner = ({
   return (
     <section className="image-banner">
       <div className="image-banner-bg">
-        <img src={image} alt="" />
+        <Image src={image} alt="" fill priority sizes="100vw" style={{ objectFit: "cover" }} />
       </div>
 
       <div className="container">

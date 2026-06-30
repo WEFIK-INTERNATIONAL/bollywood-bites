@@ -81,13 +81,6 @@ export default function ClientLayout({ children }) {
 
   return (
     <ViewTransitions>
-      <svg width="0" height="0" style={{ position: "absolute", width: 0, height: 0, pointerEvents: "none" }}>
-        <defs>
-          <clipPath id="indian-arch-clip" clipPathUnits="objectBoundingBox">
-            <path d="M 0,1 L 0,0.35 C 0,0.22, 0.08,0.18, 0.16,0.2 C 0.22,0.12, 0.32,0.08, 0.38,0.1 C 0.43,0.04, 0.47,0.02, 0.5,0 C 0.53,0.02, 0.57,0.04, 0.62,0.1 C 0.68,0.08, 0.78,0.12, 0.84,0.2 C 0.92,0.18, 1,0.22, 1,0.35 L 1,1 Z" />
-          </clipPath>
-        </defs>
-      </svg>
       <ReactLenis root options={lenisOptions}>
         <Nav pageRef={pageWrapperRef} />
         <div className="page" ref={pageRef}>

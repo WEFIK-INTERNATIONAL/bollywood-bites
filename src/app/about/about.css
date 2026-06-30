@@ -37,7 +37,7 @@
   aspect-ratio: 16 / 9;
   transform-origin: center;
   will-change: transform, opacity;
-  clip-path: url(#indian-arch-clip);
+  border-radius: 8px; /* Clean rounded image card */
 }
 
 .hero-image img {
