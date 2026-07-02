@@ -1,0 +1,391 @@
+/* Gourmet Food Trucks Location & Menu Page Styles */
+
+.trucks-hero {
+  position: relative;
+  width: 100%;
+  min-height: 55svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--base-500);
+  padding: 6rem 2rem 4rem;
+  text-align: center;
+  overflow: hidden;
+}
+
+.trucks-hero-tagline {
+  font-family: 'Outfit', sans-serif;
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--base-300);
+  margin-top: 1rem;
+}
+
+/* Intro Section */
+.trucks-intro {
+  position: relative;
+  padding: 8rem 0;
+  background-color: var(--base-600);
+  overflow: hidden;
+}
+
+.trucks-intro-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+  align-items: center;
+}
+
+@media (max-width: 991px) {
+  .trucks-intro-grid {
+    grid-template-columns: 1fr;
+    gap: 3.5rem;
+  }
+}
+
+.trucks-intro-text {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.trucks-intro-text h3 {
+  font-size: clamp(2rem, 3.5vw, 2.75rem);
+  line-height: 1.2;
+}
+
+.trucks-intro-text p {
+  color: var(--base-200);
+  font-size: 1.1rem;
+  line-height: 1.7;
+}
+
+.trucks-intro-image-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.trucks-luxury-frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4/5;
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+.trucks-luxury-frame::before {
+  content: "";
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  right: 15px;
+  bottom: 15px;
+  border: 1px solid rgba(197, 168, 128, 0.4);
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Interactive Menu Section */
+.trucks-menu-section {
+  position: relative;
+  padding: 8rem 0;
+  background-color: var(--base-500);
+}
+
+.trucks-menu-header {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto 4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.trucks-menu-header h2 {
+  font-size: clamp(2rem, 4vw, 3rem);
+}
+
+.trucks-menu-header p {
+  color: var(--base-200);
+  font-size: 1.1rem;
+}
+
+.vegan-friendly-badge {
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: #fff;
+  background-color: #00b250; /* Fresh Green */
+  padding: 0.6rem 1.5rem;
+  border-radius: 4px;
+  align-self: center;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  margin-top: 0.5rem;
+}
+
+/* Menu Tabs */
+.trucks-tabs-container {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 4rem;
+  flex-wrap: wrap;
+}
+
+.trucks-tab {
+  padding: 1rem 2rem;
+  font-family: 'Outfit', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  background-color: var(--base-600);
+  color: var(--base-200);
+  border: 1px solid rgba(197, 168, 128, 0.2);
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.4s ease;
+}
+
+.trucks-tab:hover,
+.trucks-tab.active {
+  background-color: var(--base-300);
+  color: var(--base-600);
+  border-color: var(--base-300);
+}
+
+/* Menu Items Grid */
+.trucks-food-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+@media (max-width: 991px) {
+  .trucks-food-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 650px) {
+  .trucks-food-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.trucks-food-card {
+  background-color: var(--base-600);
+  border: 1px solid rgba(197, 168, 128, 0.15);
+  border-radius: 6px;
+  padding: 2.2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1.5rem;
+  transition: transform 0.4s ease, border-color 0.4s ease;
+}
+
+.trucks-food-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--base-300);
+}
+
+.trucks-food-details h5 {
+  font-size: 1.3rem;
+  color: var(--base-100);
+  margin-bottom: 0.5rem;
+  font-family: 'Playfair Display', serif;
+}
+
+.trucks-food-details p {
+  color: var(--base-200);
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.trucks-food-price {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--base-300);
+  align-self: flex-start;
+  border-top: 1px dashed rgba(197, 168, 128, 0.2);
+  width: 100%;
+  padding-top: 1rem;
+  margin-top: 0.5rem;
+}
+
+/* Staggered Pricing Panel */
+.trucks-pricing-section {
+  position: relative;
+  padding: 8rem 0;
+  background-color: var(--base-600);
+}
+
+.trucks-pricing-title {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto 5rem;
+}
+
+.trucks-pricing-title h2 {
+  font-size: clamp(2rem, 4vw, 3rem);
+  margin-bottom: 1rem;
+}
+
+.trucks-pricing-title p {
+  color: var(--base-300);
+}
+
+.trucks-pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 3rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+  .trucks-pricing-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}
+
+.trucks-pricing-card {
+  background-color: var(--base-500);
+  border: 1px solid rgba(197, 168, 128, 0.15);
+  border-radius: 8px;
+  padding: 3.5rem 2.5rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  transition: all 0.4s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.trucks-pricing-card::before {
+  content: "";
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  right: 10px;
+  bottom: 10px;
+  border: 1px dashed rgba(197, 168, 128, 0.25);
+  pointer-events: none;
+}
+
+.trucks-pricing-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--base-300);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+}
+
+.trucks-pricing-card h3 {
+  font-size: 1.75rem;
+  color: var(--base-300);
+}
+
+.trucks-pricing-card .price {
+  font-family: 'Outfit', sans-serif;
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  font-weight: 700;
+  color: #fff;
+  margin: 0.5rem 0;
+}
+
+.trucks-pricing-card p {
+  color: var(--base-200);
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+
+/* Event Catering Callout */
+.trucks-catering-section {
+  position: relative;
+  padding: 8rem 0;
+  background-color: var(--base-500);
+  text-align: center;
+  overflow: hidden;
+}
+
+.trucks-catering-container {
+  max-width: 800px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  position: relative;
+  z-index: 2;
+}
+
+.trucks-catering-title h3 {
+  font-size: clamp(2rem, 3.5vw, 2.75rem);
+  color: var(--base-300);
+  margin-bottom: 1rem;
+}
+
+.trucks-catering-title p {
+  color: var(--base-100);
+  font-size: 1.15rem;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+.trucks-btn-group {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.trucks-btn {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1.25rem 2.5rem;
+  font-family: 'Outfit', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border-radius: 4px;
+  transition: all 0.4s ease;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.trucks-btn-primary {
+  background-color: var(--base-300);
+  color: var(--base-600);
+  border: 1px solid var(--base-300);
+}
+
+.trucks-btn-primary:hover {
+  background-color: transparent;
+  color: var(--base-300);
+  transform: translateY(-3px);
+}
+
+.trucks-btn-outline {
+  background-color: transparent;
+  color: var(--base-100);
+  border: 1px solid rgba(197, 168, 128, 0.4);
+}
+
+.trucks-btn-outline:hover {
+  background-color: var(--base-300);
+  color: var(--base-600);
+  border-color: var(--base-300);
+  transform: translateY(-3px);
+}

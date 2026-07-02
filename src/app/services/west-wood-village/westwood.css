@@ -1,0 +1,396 @@
+/* Westwood Village Location Page Styles */
+
+.westwood-hero {
+  position: relative;
+  width: 100%;
+  min-height: 55svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--base-500);
+  padding: 6rem 2rem 4rem;
+  text-align: center;
+  overflow: hidden;
+}
+
+.westwood-hero-tagline {
+  font-family: 'Outfit', sans-serif;
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--base-300);
+  margin-top: 1rem;
+}
+
+/* Intro Section */
+.westwood-intro {
+  position: relative;
+  padding: 8rem 0;
+  background-color: var(--base-600);
+  overflow: hidden;
+}
+
+.westwood-intro-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+  align-items: center;
+}
+
+@media (max-width: 991px) {
+  .westwood-intro-grid {
+    grid-template-columns: 1fr;
+    gap: 3.5rem;
+  }
+}
+
+.westwood-intro-text {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.westwood-intro-text h3 {
+  font-size: clamp(2rem, 3.5vw, 2.75rem);
+  line-height: 1.2;
+}
+
+.westwood-intro-text p {
+  color: var(--base-200);
+  font-size: 1.1rem;
+  line-height: 1.7;
+}
+
+.westwood-intro-image-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.westwood-luxury-frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4/5;
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+.westwood-luxury-frame::before {
+  content: "";
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  right: 15px;
+  bottom: 15px;
+  border: 1px solid rgba(197, 168, 128, 0.4);
+  pointer-events: none;
+  z-index: 2;
+}
+
+.westwood-luxury-frame::after {
+  content: "";
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  right: 20px;
+  bottom: 20px;
+  border: 1px solid rgba(197, 168, 128, 0.2);
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Info Cards Grid */
+.westwood-info {
+  position: relative;
+  padding: 6rem 0;
+  background-color: var(--base-500);
+}
+
+.westwood-info-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2.5rem;
+}
+
+@media (max-width: 991px) {
+  .westwood-info-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}
+
+.westwood-info-card {
+  background-color: var(--base-600);
+  border: 1px solid rgba(197, 168, 128, 0.15);
+  border-radius: 6px;
+  padding: 3rem 2rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  transition: transform 0.4s ease, border-color 0.4s ease;
+}
+
+.westwood-info-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--base-300);
+}
+
+.westwood-info-card h4 {
+  font-size: 1.5rem;
+  color: var(--base-300);
+  font-family: 'Playfair Display', serif;
+  text-transform: capitalize;
+}
+
+.westwood-info-card p {
+  color: var(--base-100);
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+
+.westwood-info-card .highlight-badge {
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: #fff;
+  background: var(--base-700);
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  align-self: center;
+  margin-bottom: 0.5rem;
+  border: 1px solid rgba(197, 168, 128, 0.3);
+}
+
+/* Narrative Staggered Sections */
+.westwood-narrative {
+  position: relative;
+  padding: 8rem 0;
+  background-color: var(--base-600);
+}
+
+.westwood-narrative-title {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto 5rem;
+}
+
+.westwood-narrative-title h2 {
+  font-size: clamp(2rem, 4vw, 3rem);
+  margin-bottom: 1rem;
+}
+
+.westwood-narrative-title p {
+  color: var(--base-300);
+  font-size: 1.1rem;
+  letter-spacing: 0.05em;
+}
+
+.westwood-narrative-row {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 6rem;
+  align-items: center;
+  margin-bottom: 6rem;
+}
+
+.westwood-narrative-row:nth-child(even) {
+  grid-template-columns: 1.2fr 1fr;
+}
+
+@media (max-width: 991px) {
+  .westwood-narrative-row,
+  .westwood-narrative-row:nth-child(even) {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    margin-bottom: 5rem;
+  }
+}
+
+.westwood-narrative-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.westwood-narrative-row:nth-child(even) .westwood-narrative-content {
+  order: 2;
+}
+
+@media (max-width: 991px) {
+  .westwood-narrative-row:nth-child(even) .westwood-narrative-content {
+    order: unset;
+  }
+}
+
+.westwood-narrative-content h3 {
+  font-size: clamp(1.75rem, 3vw, 2.25rem);
+  color: var(--base-100);
+}
+
+.westwood-narrative-content p {
+  color: var(--base-200);
+  font-size: 1.1rem;
+  line-height: 1.7;
+}
+
+/* Westwood Actions / CTA */
+.westwood-actions-section {
+  position: relative;
+  padding: 8rem 0;
+  background-color: var(--base-500);
+  text-align: center;
+}
+
+.westwood-actions-container {
+  max-width: 800px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.westwood-actions-title h3 {
+  font-size: clamp(2rem, 3.5vw, 2.75rem);
+  color: var(--base-300);
+  margin-bottom: 1rem;
+}
+
+.westwood-actions-title p {
+  color: var(--base-100);
+  font-size: 1.15rem;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.westwood-btn-group {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+}
+
+@media (max-width: 991px) {
+  .westwood-btn-group {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
+  }
+}
+
+@media (max-width: 575px) {
+  .westwood-btn-group {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+}
+
+.westwood-btn {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1.25rem 2rem;
+  font-family: 'Outfit', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border-radius: 4px;
+  transition: all 0.4s ease;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.westwood-btn-primary {
+  background-color: var(--base-300);
+  color: var(--base-600);
+  border: 1px solid var(--base-300);
+}
+
+.westwood-btn-primary:hover {
+  background-color: transparent;
+  color: var(--base-300);
+  transform: translateY(-3px);
+}
+
+.westwood-btn-secondary {
+  background-color: var(--base-700);
+  color: #fff;
+  border: 1px solid var(--base-700);
+}
+
+.westwood-btn-secondary:hover {
+  background-color: transparent;
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.4);
+  transform: translateY(-3px);
+}
+
+.westwood-btn-outline {
+  background-color: transparent;
+  color: var(--base-100);
+  border: 1px solid rgba(197, 168, 128, 0.4);
+}
+
+.westwood-btn-outline:hover {
+  background-color: var(--base-300);
+  color: var(--base-600);
+  border-color: var(--base-300);
+  transform: translateY(-3px);
+}
+
+/* Gallery Grid */
+.westwood-gallery {
+  position: relative;
+  padding: 8rem 0;
+  background-color: var(--base-600);
+}
+
+.westwood-gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+}
+
+@media (max-width: 991px) {
+  .westwood-gallery-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 575px) {
+  .westwood-gallery-grid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+}
+
+.westwood-gallery-item {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+  transition: transform 0.5s ease;
+}
+
+.westwood-gallery-item:hover {
+  transform: scale(1.03);
+}
+
+.westwood-gallery-item::before {
+  content: "";
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  right: 10px;
+  bottom: 10px;
+  border: 1px solid rgba(197, 168, 128, 0.3);
+  pointer-events: none;
+  z-index: 2;
+}

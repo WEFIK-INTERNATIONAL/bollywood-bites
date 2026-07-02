@@ -1,0 +1,126 @@
+/* Seasonal Specials Page Styles */
+
+.specials-hero {
+  position: relative;
+  width: 100%;
+  min-height: 55svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--base-500);
+  padding: 6rem 2rem 4rem;
+  text-align: center;
+  overflow: hidden;
+}
+
+.specials-hero-tagline {
+  font-family: 'Outfit', sans-serif;
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--base-300);
+  margin-top: 1rem;
+}
+
+/* Specials Content Grid */
+.specials-content {
+  position: relative;
+  padding: 8rem 0;
+  background-color: var(--base-600);
+  overflow: hidden;
+}
+
+.specials-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 6rem;
+  max-width: 900px;
+  margin: 0 auto;
+  align-items: center;
+}
+
+.specials-card {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  text-align: center;
+  transition: transform 0.4s ease;
+}
+
+.specials-card:hover {
+  transform: translateY(-5px);
+}
+
+.specials-flyer-frame {
+  position: relative;
+  width: 100%;
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(197, 168, 128, 0.2);
+  cursor: pointer;
+  background-color: var(--base-500);
+}
+
+.specials-flyer-frame::before {
+  content: "";
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  right: 15px;
+  bottom: 15px;
+  border: 1px solid rgba(197, 168, 128, 0.35);
+  pointer-events: none;
+  z-index: 2;
+  transition: border-color 0.4s ease, transform 0.4s ease;
+}
+
+.specials-flyer-frame::after {
+  content: "";
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  right: 20px;
+  bottom: 20px;
+  border: 1px solid rgba(197, 168, 128, 0.15);
+  pointer-events: none;
+  z-index: 2;
+  transition: border-color 0.4s ease, transform 0.4s ease;
+}
+
+.specials-card:hover .specials-flyer-frame::before {
+  border-color: var(--base-300);
+  transform: scale(0.98);
+}
+
+.specials-card:hover .specials-flyer-frame::after {
+  border-color: rgba(197, 168, 128, 0.4);
+  transform: scale(0.98);
+}
+
+.specials-flyer-frame img {
+  transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.specials-card:hover .specials-flyer-frame img {
+  transform: scale(1.05);
+}
+
+.specials-card h4 {
+  font-size: 1.4rem;
+  color: var(--base-100);
+  font-family: 'Playfair Display', serif;
+  margin-top: 0.5rem;
+}
+
+.specials-card span {
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--base-300);
+  font-weight: 600;
+}

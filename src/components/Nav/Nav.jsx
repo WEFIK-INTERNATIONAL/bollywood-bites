@@ -73,12 +73,14 @@ function lockScroll(lenisInstance) {
   if (lenisInstance) lenisInstance.stop();
   if (typeof document !== "undefined") {
     document.body.style.overflow = "hidden";
+    document.body.classList.add("nav-menu-open");
   }
 }
 
 function unlockScroll(lenisInstance) {
   if (typeof document !== "undefined") {
     document.body.style.overflow = "";
+    document.body.classList.remove("nav-menu-open");
   }
   if (lenisInstance) lenisInstance.start();
 }
@@ -224,6 +226,9 @@ export default function Nav({ pageRef }) {
     });
     resetPreviewImage();
     unlockScroll(lenisInstanceRef.current);
+    if (typeof document !== "undefined") {
+      document.body.classList.remove("nav-menu-transitioning");
+    }
   }
 
   function openMenu() {
@@ -234,6 +239,9 @@ export default function Nav({ pageRef }) {
     const scrollY = window.scrollY;
 
     lockScroll(lenisInstanceRef.current);
+    if (typeof document !== "undefined") {
+      document.body.classList.add("nav-menu-transitioning");
+    }
 
     if (page) {
       gsap.set(page, { transformOrigin: `right ${scrollY}px` });
@@ -289,6 +297,9 @@ export default function Nav({ pageRef }) {
       onComplete: () => {
         isMenuOpenRef.current = true;
         isMenuAnimatingRef.current = false;
+        if (typeof document !== "undefined") {
+          document.body.classList.remove("nav-menu-transitioning");
+        }
       },
     });
   }
@@ -298,6 +309,9 @@ export default function Nav({ pageRef }) {
     isMenuAnimatingRef.current = true;
 
     const page = pageRef?.current;
+    if (typeof document !== "undefined") {
+      document.body.classList.add("nav-menu-transitioning");
+    }
 
     if (page) {
       gsap.to(page, {
@@ -341,6 +355,9 @@ export default function Nav({ pageRef }) {
         resetMenuTextToHidden();
         resetPreviewImage();
         unlockScroll(lenisInstanceRef.current);
+        if (typeof document !== "undefined") {
+          document.body.classList.remove("nav-menu-transitioning");
+        }
       },
     });
   }

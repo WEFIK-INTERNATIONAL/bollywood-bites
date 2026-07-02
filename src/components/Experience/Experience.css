@@ -1,0 +1,445 @@
+.experience-section {
+  position: relative;
+  width: 100%;
+  padding: 8rem 0 6rem;
+  background-color: var(--base-600); /* Dark Forest Green background */
+  color: var(--base-100); /* Cream text */
+  overflow: hidden;
+}
+
+.experience-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("/backgrounds/background1.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.05; /* Increased opacity to make pattern properly visible */
+  pointer-events: none;
+  z-index: 0;
+}
+
+.experience-section .container {
+  position: relative;
+  z-index: 1;
+}
+
+/* Subtle background watermarks to tie into the Indian theme */
+.experience-ornament-left {
+  position: absolute;
+  top: 5%;
+  left: -10%;
+  width: 400px;
+  height: 400px;
+  background-image: url("/mandana/typeone/mandanafourteen.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  opacity: 0.04;
+  pointer-events: none;
+  filter: sepia(1) saturate(5) hue-rotate(330deg);
+}
+
+.experience-ornament-right {
+  position: absolute;
+  bottom: 10%;
+  right: -10%;
+  width: 400px;
+  height: 400px;
+  background-image: url("/mandana/typeone/mandanaten.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  opacity: 0.04;
+  pointer-events: none;
+  filter: sepia(1) saturate(5) hue-rotate(330deg);
+}
+
+.experience-header {
+  text-align: center;
+  margin-bottom: 5rem;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.experience-tagline {
+  font-family: "Roslindale Variable", sans-serif;
+  font-size: 0.95rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+  color: var(--base-300); /* Brass / Accent Gold */
+  display: inline-block;
+  margin-bottom: 0.75rem;
+}
+
+.experience-divider-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.ornamental-divider {
+  opacity: 0.8;
+}
+
+.experience-title {
+  font-family: "Roslindale Variable", sans-serif;
+  font-size: clamp(2.5rem, 5vw, 4.25rem);
+  font-weight: 500;
+  line-height: 1.15;
+  text-transform: none; /* Sentence case overriding globals.css */
+  color: var(--base-100); /* Off-white main text */
+  margin-bottom: 2rem;
+}
+
+.experience-title .highlight-text {
+  font-style: normal;
+  color: var(--base-300); /* Accent Gold highlight */
+}
+
+.experience-subtitle {
+  font-family: var(--font-host-grotesk), sans-serif;
+  color: var(--base-200); /* Sage/gray secondary description */
+  font-size: clamp(1.05rem, 2vw, 1.25rem);
+  line-height: 1.6;
+  font-weight: 400;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* 3-Column Card Layout */
+.experience-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2.5rem;
+  width: 100%;
+  margin-bottom: 7rem;
+}
+
+.experience-card {
+  position: relative;
+  height: 600px;
+  border-radius: 24px; /* Highly rounded corners matching image */
+  overflow: hidden;
+  box-shadow: 0 15px 35px rgba(9, 30, 23, 0.15);
+  cursor: pointer;
+}
+
+.experience-card-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.experience-card-image {
+  object-fit: cover;
+  filter: brightness(0.7) contrast(1.05);
+}
+
+/* Bottom shadow gradient to ensure card text and button readability */
+.experience-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(9, 30, 23, 0.1) 30%,
+    rgba(9, 30, 23, 0.4) 65%,
+    rgba(9, 30, 23, 0.9) 100%
+  );
+  z-index: 1;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+
+.experience-card:hover .experience-card-bg {
+  transform: scale(1.06);
+}
+
+.experience-card:hover::after {
+  opacity: 0.6;
+}
+
+/* Default state layout inside the card */
+.experience-card-default {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 3.5rem 2rem;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  text-align: center;
+  transition: opacity 0.4s cubic-bezier(0.25, 1, 0.5, 1), transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.card-title-main {
+  font-family: "Roslindale Variable", sans-serif;
+  font-size: 2rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--base-100);
+  margin-bottom: 0.75rem;
+}
+
+.experience-card-line-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+  max-width: 150px;
+  margin-bottom: 2rem;
+}
+
+.card-line {
+  height: 1px;
+  flex: 1;
+  background-color: rgba(197, 168, 128, 0.4);
+}
+
+.card-dot {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background-color: var(--base-300);
+}
+
+/* Standard Button adjustment for Card Default view */
+.experience-btn {
+  border: 1px solid var(--base-300);
+  background-color: transparent !important;
+  color: var(--base-100) !important;
+  padding: 0.95rem 2.2rem !important;
+  font-size: 0.8rem !important;
+  border-radius: 4px;
+}
+
+.experience-btn .slide-button-bg {
+  background-color: transparent !important;
+  border-radius: 3px;
+}
+
+.experience-btn:hover {
+  color: var(--base-600) !important;
+}
+
+.experience-btn:hover .slide-button-bg {
+  background-color: var(--base-300) !important;
+}
+
+/* Glassmorphism Panel on Hover */
+.experience-card-hover-panel {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.9);
+  width: calc(100% - 3.5rem);
+  max-width: 320px;
+  height: auto;
+  z-index: 3;
+  opacity: 0;
+  pointer-events: none;
+  background: rgba(9, 30, 23, 0.8); /* Deep Forest Green Glass */
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(197, 168, 128, 0.25); /* Elegant gold border */
+  border-radius: 16px;
+  padding: 2.5rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+  transition: opacity 0.45s cubic-bezier(0.25, 1, 0.5, 1), transform 0.45s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* Show hover panel and fade default on hover */
+.experience-card:hover .experience-card-hover-panel {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+  pointer-events: auto;
+}
+
+.experience-card:hover .experience-card-default {
+  opacity: 0;
+  transform: translateY(15px);
+  pointer-events: none;
+}
+
+.hover-panel-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.hover-title {
+  font-family: "Roslindale Variable", sans-serif;
+  font-size: 1.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--base-100);
+  margin-bottom: 0.75rem;
+}
+
+.hover-divider {
+  width: 60px;
+  height: 1px;
+  background-color: var(--base-300);
+  margin-bottom: 1.25rem;
+}
+
+.hover-desc {
+  font-family: var(--font-host-grotesk), sans-serif;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: var(--base-200);
+  margin-bottom: 1.75rem;
+}
+
+.experience-btn-hover {
+  border: 1px solid var(--base-300);
+  background-color: transparent !important;
+  color: var(--base-100) !important;
+  padding: 0.95rem 2.2rem !important;
+  font-size: 0.8rem !important;
+  border-radius: 4px;
+}
+
+.experience-btn-hover .slide-button-bg {
+  background-color: transparent !important;
+  border-radius: 3px;
+}
+
+.experience-btn-hover:hover {
+  color: var(--base-600) !important;
+}
+
+.experience-btn-hover:hover .slide-button-bg {
+  background-color: var(--base-300) !important;
+}
+
+/* Values/Features Row at the Bottom */
+.experience-values-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(197, 168, 128, 0.15); /* Light gold border at top */
+}
+
+.value-item {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.25rem;
+  padding: 0 1rem;
+  position: relative;
+}
+
+.value-icon {
+  color: var(--base-300); /* Gold color for brand icon styling */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.value-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.value-text h4 {
+  font-family: var(--font-host-grotesk), sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--base-100); /* Off-white header text */
+  margin-bottom: 0.25rem;
+}
+
+.value-text p {
+  font-family: var(--font-host-grotesk), sans-serif;
+  font-size: 0.85rem;
+  font-weight: 400;
+  color: var(--base-200); /* Sage/gray secondary description */
+}
+
+.value-vertical-divider {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 1px;
+  height: 40px;
+  background-color: rgba(197, 168, 128, 0.15);
+}
+
+/* Responsive Styles */
+@media (max-width: 1100px) {
+  .experience-cards {
+    gap: 1.5rem;
+  }
+  
+  .value-item {
+    gap: 0.75rem;
+  }
+
+  .value-text h4 {
+    font-size: 0.85rem;
+  }
+
+  .value-text p {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 991px) {
+  .experience-cards {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    max-width: 600px;
+    margin: 0 auto 5rem;
+  }
+
+  .experience-card {
+    height: 500px;
+  }
+
+  .experience-values-row {
+    flex-direction: column;
+    gap: 2.5rem;
+    border-top: none;
+  }
+
+  .value-item {
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 0;
+    text-align: center;
+    flex-direction: column;
+  }
+
+  .value-text {
+    align-items: center;
+  }
+
+  .value-vertical-divider {
+    display: none;
+  }
+}

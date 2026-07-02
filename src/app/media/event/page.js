@@ -1,48 +1,58 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Copy from "@/components/Copy/Copy";
 import Testimonials from "@/components/Testimonials/Testimonials";
-import "../media.css";
+import "./event.css";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const UPCOMING_EVENTS = [
+const EVENTS_FLYERS = [
   {
-    title: "Diwali Feast & Sufi Night",
-    excerpt: "Celebrate the festival of lights with a grand royal buffet spread, special candlelit mandalas, and live Sufi music performance by guest musicians.",
-    date: "12 NOV 2026",
-    time: "7:00 PM - 11:30 PM",
-    source: "SPECIAL EVENT",
+    image: "/events/event1.webp",
+    title: "Catering Menu Showcase",
+    tag: "Exclusive Event",
   },
   {
-    title: "Bollywood Classics Cinema Brunch",
-    excerpt: "Indulge in a fusion brunch menu featuring live chaat stations, with classic Bollywood movie soundtrack tunes playing in the background.",
-    date: "27 SEP 2026",
-    time: "11:30 AM - 3:00 PM",
-    source: "MONTHLY BRUNCH",
+    image: "/events/event2.webp",
+    title: "Indian Buffet & Lunch Specials",
+    tag: "Sherman Oaks Event",
   },
   {
-    title: "Indian Wine & Kebab Pairing",
-    excerpt: "An exclusive culinary event matching five premium Indian estate wines from Nashik Valley with signature charcoal tandoori kebabs, guided by our head sommelier.",
-    date: "15 AUG 2026",
-    time: "6:30 PM - 9:30 PM",
-    source: "TICKETED EVENT",
+    image: "/events/event3.webp",
+    title: "Live Comedy & Bollywood Karaoke",
+    tag: "Entertainment Night",
+  },
+  {
+    image: "/events/event4.webp",
+    title: "Weekend Brunch Specials",
+    tag: "Weekend Event",
+  },
+  {
+    image: "/events/event5.png",
+    title: "Grand Celebration Catering",
+    tag: "Special Celebration",
+  },
+  {
+    image: "/events/event6.jpg",
+    title: "Royal Maharaja Buffet",
+    tag: "Weekly Buffet Fest",
   },
 ];
 
 export default function EventPage() {
-  const cardsRef = useRef(null);
+  const pageRef = useRef(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      const cards = gsap.utils.toArray(".media-card");
-      gsap.set(cards, { opacity: 0, y: 40 });
+      const cards = gsap.utils.toArray(".events-card");
+      gsap.set(cards, { opacity: 0, y: 50 });
 
       ScrollTrigger.create({
-        trigger: ".media-grid",
+        trigger: ".events-grid",
         start: "top 80%",
         once: true,
         onEnter: () => {
@@ -50,48 +60,47 @@ export default function EventPage() {
             opacity: 1,
             y: 0,
             duration: 0.8,
-            ease: "power3.out",
             stagger: 0.15,
+            ease: "power2.out",
           });
         },
       });
-    }, cardsRef);
+    }, pageRef);
 
     return () => ctx.revert();
   }, []);
 
   return (
-    <>
-      <section className="media-hero">
+    <div ref={pageRef}>
+      {/* Hero Section */}
+      <section className="events-hero">
+        <div className="bg-mandala-centered" style={{ opacity: 0.03 }} />
         <div className="container">
-          <Copy type="words" animateOnScroll={false} delay={0.85}>
-            <h2>Events & Music</h2>
+          <Copy type="words" animateOnScroll={false} delay={0.35}>
+            <h1>Events & Music</h1>
           </Copy>
-        </div>
-
-        <div className="section-footer">
-          <Copy type="lines" animateOnScroll={false} delay={1.1}>
-            <p className="sm">Upcoming Experiences</p>
-          </Copy>
-          <Copy type="lines" animateOnScroll={false} delay={1.2}>
-            <p className="sm">Reserve Your Spot</p>
-          </Copy>
+          <p className="events-hero-tagline">Live Experiences & Celebrations</p>
         </div>
       </section>
 
-      <section className="media-content" ref={cardsRef}>
+      {/* Events Content */}
+      <section className="events-content">
         <div className="container">
-          <div className="media-grid">
-            {UPCOMING_EVENTS.map((event, idx) => (
-              <div className="media-card" key={idx}>
-                <div className="event-details">
-                  <span>{event.date}</span>
-                  <span>|</span>
-                  <span>{event.time}</span>
+          <div className="events-grid">
+            {EVENTS_FLYERS.map((item, idx) => (
+              <div className="events-card" key={idx}>
+                <div className="events-flyer-frame">
+                  <Image
+                    src={item.image}
+                    alt={item.title}
+                    width={900}
+                    height={1125}
+                    style={{ width: "100%", height: "auto", display: "block" }}
+                    priority={idx === 0}
+                  />
                 </div>
-                <h4>{event.title}</h4>
-                <p>{event.excerpt}</p>
-                <span className="source">{event.source}</span>
+                <span>{item.tag}</span>
+                <h4>{item.title}</h4>
               </div>
             ))}
           </div>
@@ -99,6 +108,6 @@ export default function EventPage() {
       </section>
 
       <Testimonials />
-    </>
+    </div>
   );
 }

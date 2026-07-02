@@ -1,0 +1,323 @@
+.street-section {
+  position: relative;
+  width: 100%;
+  padding: 8rem 0 6rem;
+  background-color: var(--base-600); /* Dark Forest Green background */
+  color: var(--base-100);
+  overflow: hidden;
+}
+
+.street-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("/backgrounds/background1.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.18; /* Subtle background pattern */
+  pointer-events: none;
+  z-index: 0;
+}
+
+.street-section .container {
+  position: relative;
+  z-index: 1;
+}
+
+/* Header Styling */
+.street-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 5rem;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.street-tagline {
+  font-family: var(--font-dm-mono), monospace;
+  font-size: 0.8rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--base-300); /* Accent Gold tagline */
+  display: inline-block;
+  margin: 0.75rem 0 1rem;
+}
+
+.street-title {
+  font-family: "Roslindale Variable", sans-serif;
+  font-size: clamp(2.5rem, 5vw, 4.25rem);
+  font-weight: 500;
+  line-height: 1.15;
+  text-transform: none; /* Sentence case */
+  color: var(--base-100);
+  margin-bottom: 1.5rem;
+}
+
+.street-title .highlight-text {
+  color: var(--base-300); /* Gold highlight */
+}
+
+.street-subtitle {
+  font-family: var(--font-host-grotesk), sans-serif;
+  font-size: clamp(1rem, 1.8vw, 1.15rem);
+  line-height: 1.5;
+  color: var(--base-200); /* Sage/gray description text */
+  margin-top: 1.5rem;
+}
+
+/* 6-Card Staggered Row */
+.street-cards-row {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1.75rem;
+  width: 100%;
+  margin-bottom: 7rem;
+}
+
+.street-card {
+  flex: 1;
+  border-radius: 16px; /* Rounded corners */
+  overflow: hidden;
+  position: relative;
+  border: 1px solid rgba(197, 168, 128, 0.15); /* Gold outline */
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.35);
+  cursor: pointer;
+  background-color: var(--base-600);
+  transition: border-color 0.4s ease, box-shadow 0.4s ease;
+}
+
+.street-card:hover {
+  border-color: rgba(197, 168, 128, 0.4);
+  box-shadow: 0 20px 45px rgba(197, 168, 128, 0.1);
+}
+
+.street-card-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.street-card-image {
+  object-fit: cover;
+  filter: brightness(0.7) contrast(1.05);
+}
+
+/* Gradient card shadow for text clarity */
+.street-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(9, 30, 23, 0.1) 0%,
+    rgba(9, 30, 23, 0.5) 60%,
+    rgba(9, 30, 23, 0.95) 100%
+  );
+  z-index: 1;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+
+.street-card:hover .street-card-bg {
+  transform: scale(1.05);
+}
+
+/* Cards height wave sizing */
+.card-short {
+  height: 380px;
+}
+
+.card-medium {
+  height: 440px;
+}
+
+.card-tall {
+  height: 500px;
+}
+
+/* Card Overlay Content */
+.street-card-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 2.5rem 1.25rem 2.25rem;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.street-card-title {
+  font-family: "Roslindale Variable", sans-serif;
+  font-size: clamp(1.15rem, 2.5vw, 1.45rem);
+  font-weight: 500;
+  color: var(--base-100);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.5rem;
+}
+
+.street-card-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.75;
+}
+
+/* Spices Horizontal Showcase */
+.street-spices-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 3rem 0;
+  border-top: 1px solid rgba(197, 168, 128, 0.15);
+  border-bottom: 1px solid rgba(197, 168, 128, 0.15);
+  margin-bottom: 5rem;
+}
+
+.spice-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 1rem;
+  flex: 1;
+  position: relative;
+}
+
+.spice-bowl-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  filter: drop-shadow(0 8px 12px rgba(0, 0, 0, 0.4));
+  transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.spice-item:hover .spice-bowl-container {
+  transform: translateY(-6px);
+}
+
+.spice-name {
+  font-family: var(--font-dm-mono), monospace;
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--base-200); /* Sage/gray color label */
+  transition: color 0.35s ease;
+}
+
+.spice-item:hover .spice-name {
+  color: var(--base-300); /* Highlights gold on hover */
+}
+
+/* Separation Diamond Icons */
+.spice-dot-divider {
+  position: absolute;
+  right: -6px;
+  top: 30px; /* Aligned with the bowl heights center */
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+/* Explore Button at Bottom */
+.street-cta-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.street-explore-btn {
+  border: 1px solid var(--base-300);
+  background-color: transparent !important;
+  color: var(--base-100) !important;
+  padding: 1.1rem 2.5rem !important;
+  font-size: 0.85rem !important;
+  border-radius: 4px;
+}
+
+.street-explore-btn .slide-button-bg {
+  background-color: transparent !important;
+  border-radius: 3px;
+}
+
+.street-explore-btn:hover {
+  color: var(--base-600) !important;
+}
+
+.street-explore-btn:hover .slide-button-bg {
+  background-color: var(--base-300) !important;
+}
+
+/* Responsive Layouts */
+@media (max-width: 1200px) {
+  .street-cards-row {
+    gap: 1.25rem;
+  }
+  
+  .card-short {
+    height: 340px;
+  }
+
+  .card-medium {
+    height: 390px;
+  }
+
+  .card-tall {
+    height: 440px;
+  }
+}
+
+@media (max-width: 991px) {
+  .street-cards-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    max-width: 750px;
+    margin: 0 auto 5rem;
+  }
+  
+  .card-short,
+  .card-medium,
+  .card-tall {
+    height: 380px; /* Uniform height on medium screens */
+  }
+
+  .street-spices-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2.5rem 1.5rem;
+  }
+
+  .spice-dot-divider {
+    display: none; /* Hide dividers in grid layout */
+  }
+}
+
+@media (max-width: 600px) {
+  .street-cards-row {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  .street-card {
+    height: 320px !important;
+  }
+
+  .street-spices-row {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem 1.5rem;
+  }
+}

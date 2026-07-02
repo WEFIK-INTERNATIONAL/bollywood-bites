@@ -1,45 +1,43 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Copy from "@/components/Copy/Copy";
 import Testimonials from "@/components/Testimonials/Testimonials";
-import "../media.css";
+import "./specials.css";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const SEASONAL_SPECIALS = [
+const SPECIALS_FLYERS = [
   {
-    title: "Summer Monsoon Mango Fest",
-    excerpt: "Celebrate the king of fruits with our special mango-infused menu including Alphonso Mango Lassi, Mango Mint Chicken Tikka, and Mango Rabdi dessert.",
-    date: "LIMITED TIME",
-    source: "SEASONAL PROMOTION",
+    image: "/special/special1.jpg",
+    title: "Signature Catering & Events",
+    tag: "Exclusive Offers",
   },
   {
-    title: "Weekend Cocktail Happy Hour",
-    excerpt: "Buy one, get the second one at half price on all signature botanicals and crafts between 5 PM and 7 PM, Friday to Sunday.",
-    date: "WEEKLY OFFER",
-    source: "BAR PROMOTION",
+    image: "/special/special2.jpg",
+    title: "Gourmet Lunch & Buffet",
+    tag: "Daily Specials",
   },
   {
-    title: "Royal Midweek Thali Discount",
-    excerpt: "Get 15% off on our Maharaja Lunch Thalis every Wednesday and Thursday when you book your table in advance online.",
-    date: "MIDWEEK SPECIAL",
-    source: "DINING SPECIAL",
+    image: "/special/special3.jpg",
+    title: "Food Truck Street Eats",
+    tag: "Weekly Promotions",
   },
 ];
 
 export default function SpecialsPage() {
-  const cardsRef = useRef(null);
+  const pageRef = useRef(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      const cards = gsap.utils.toArray(".media-card");
-      gsap.set(cards, { opacity: 0, y: 40 });
+      const cards = gsap.utils.toArray(".specials-card");
+      gsap.set(cards, { opacity: 0, y: 50 });
 
       ScrollTrigger.create({
-        trigger: ".media-grid",
+        trigger: ".specials-grid",
         start: "top 80%",
         once: true,
         onEnter: () => {
@@ -47,44 +45,47 @@ export default function SpecialsPage() {
             opacity: 1,
             y: 0,
             duration: 0.8,
-            ease: "power3.out",
             stagger: 0.15,
+            ease: "power2.out",
           });
         },
       });
-    }, cardsRef);
+    }, pageRef);
 
     return () => ctx.revert();
   }, []);
 
   return (
-    <>
-      <section className="media-hero">
+    <div ref={pageRef}>
+      {/* Hero Section */}
+      <section className="specials-hero">
+        <div className="bg-mandala-centered" style={{ opacity: 0.03 }} />
         <div className="container">
-          <Copy type="words" animateOnScroll={false} delay={0.85}>
-            <h2>Seasonal Specials</h2>
+          <Copy type="words" animateOnScroll={false} delay={0.35}>
+            <h1>Seasonal Specials</h1>
           </Copy>
-        </div>
-
-        <div className="section-footer">
-          <Copy type="lines" animateOnScroll={false} delay={1.1}>
-            <p className="sm">Limited Time Offers</p>
-          </Copy>
-          <Copy type="lines" animateOnScroll={false} delay={1.2}>
-            <p className="sm">Bollywood Bites Exclusives</p>
-          </Copy>
+          <p className="specials-hero-tagline">Limited Time Offers & Exclusive Promotions</p>
         </div>
       </section>
 
-      <section className="media-content" ref={cardsRef}>
+      {/* Specials Content */}
+      <section className="specials-content">
         <div className="container">
-          <div className="media-grid">
-            {SEASONAL_SPECIALS.map((special, idx) => (
-              <div className="media-card" key={idx}>
-                <span className="date">{special.date}</span>
-                <h4>{special.title}</h4>
-                <p>{special.excerpt}</p>
-                <span className="source">{special.source}</span>
+          <div className="specials-grid">
+            {SPECIALS_FLYERS.map((item, idx) => (
+              <div className="specials-card" key={idx}>
+                <div className="specials-flyer-frame">
+                  <Image
+                    src={item.image}
+                    alt={item.title}
+                    width={900}
+                    height={1125}
+                    style={{ width: "100%", height: "auto", display: "block" }}
+                    priority={idx === 0}
+                  />
+                </div>
+                <span>{item.tag}</span>
+                <h4>{item.title}</h4>
               </div>
             ))}
           </div>
@@ -92,6 +93,6 @@ export default function SpecialsPage() {
       </section>
 
       <Testimonials />
-    </>
+    </div>
   );
 }

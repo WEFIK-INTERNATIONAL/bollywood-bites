@@ -55,6 +55,8 @@ body {
   animation: spin-slow 150s linear infinite;
   transform-origin: center center;
   filter: invert(80%) sepia(15%) saturate(700%) hue-rotate(330deg) brightness(90%) contrast(85%); /* Converts black SVG to subtle brass/gold */
+  will-change: transform;
+  backface-visibility: hidden;
 }
 
 @keyframes spin-slow {
