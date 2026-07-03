@@ -15,7 +15,7 @@ const Button = forwardRef(
     const hoverTimelineRef = useRef(null);
     const { navigateWithTransition } = useViewTransition();
 
-    const buttonText = typeof children === "string" ? children : "";
+    const buttonText = typeof children === "string" ? children.trim().replace(/\s+/g, " ") : "";
     const characters = buttonText.split("");
 
     /* merge forwarded ref with internal ref */

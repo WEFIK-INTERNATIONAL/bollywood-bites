@@ -15,6 +15,7 @@ import Button from "@/components/Button/Button";
 import Experience from "@/components/Experience/Experience";
 import Feast from "@/components/Feast/Feast";
 import HomeChef from "@/components/HomeChef/HomeChef";
+import Moments from "@/components/Moments/Moments";
 import StreetFood from "@/components/StreetFood/StreetFood";
 import GallerySection from "@/components/GallerySection/GallerySection";
 import PressSection from "@/components/PressSection/PressSection";
@@ -111,6 +112,7 @@ export default function Home() {
       <Experience />
       <Feast />
       <HomeChef />
+      <Moments />
       <StreetFood />
       <GallerySection />
 

@@ -2,7 +2,7 @@
   position: relative;
   width: 100%;
   padding: 8rem 0 6rem;
-  background-color: var(--base-600); /* Dark Forest Green background */
+  background-color: var(--base-500); /* Dark Forest Green background */
   color: var(--base-100); /* Cream text */
   overflow: hidden;
 }
@@ -11,7 +11,7 @@
   content: "";
   position: absolute;
   inset: 0;
-  background-image: url("/backgrounds/background1.png");
+  background-image: url("/backgrounds/background2.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -23,6 +23,9 @@
 .experience-section .container {
   position: relative;
   z-index: 1;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
 }
 
 /* Subtle background watermarks to tie into the Indian theme */
@@ -88,10 +91,10 @@
   font-family: "Roslindale Variable", sans-serif;
   font-size: clamp(2.5rem, 5vw, 4.25rem);
   font-weight: 500;
-  line-height: 1.15;
   text-transform: none; /* Sentence case overriding globals.css */
   color: var(--base-100); /* Off-white main text */
   margin-bottom: 2rem;
+  line-height: 1.15;
 }
 
 .experience-title .highlight-text {
@@ -123,8 +126,15 @@
   height: 600px;
   border-radius: 24px; /* Highly rounded corners matching image */
   overflow: hidden;
+  border: 1px solid rgba(197, 168, 128, 0.15); /* Elegant default gold border */
   box-shadow: 0 15px 35px rgba(9, 30, 23, 0.15);
   cursor: pointer;
+  transition: border-color 0.4s ease, box-shadow 0.4s ease;
+}
+
+.experience-card:hover {
+  border-color: rgba(197, 168, 128, 0.45);
+  box-shadow: 0 20px 45px rgba(9, 30, 23, 0.4), 0 0 30px rgba(197, 168, 128, 0.15);
 }
 
 .experience-card-bg {
@@ -214,17 +224,17 @@
 
 /* Standard Button adjustment for Card Default view */
 .experience-btn {
-  border: 1px solid var(--base-300);
-  background-color: transparent !important;
+  background-color: var(--base-300) !important; /* Keep gold background for outline */
   color: var(--base-100) !important;
   padding: 0.95rem 2.2rem !important;
   font-size: 0.8rem !important;
-  border-radius: 4px;
 }
 
 .experience-btn .slide-button-bg {
-  background-color: transparent !important;
-  border-radius: 3px;
+  background-color: rgba(9, 30, 23, 0.6) !important; /* Semi-transparent inside */
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  transition: background-color 0.35s ease;
 }
 
 .experience-btn:hover {
@@ -308,17 +318,17 @@
 }
 
 .experience-btn-hover {
-  border: 1px solid var(--base-300);
-  background-color: transparent !important;
+  background-color: var(--base-300) !important; /* Keep gold background for outline */
   color: var(--base-100) !important;
   padding: 0.95rem 2.2rem !important;
   font-size: 0.8rem !important;
-  border-radius: 4px;
 }
 
 .experience-btn-hover .slide-button-bg {
-  background-color: transparent !important;
-  border-radius: 3px;
+  background-color: rgba(9, 30, 23, 0.6) !important; /* Semi-transparent inside */
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  transition: background-color 0.35s ease;
 }
 
 .experience-btn-hover:hover {
@@ -336,7 +346,6 @@
   align-items: center;
   width: 100%;
   padding-top: 2rem;
-  border-top: 1px solid rgba(197, 168, 128, 0.15); /* Light gold border at top */
 }
 
 .value-item {

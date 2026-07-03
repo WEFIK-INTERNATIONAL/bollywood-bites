@@ -78,22 +78,8 @@ const Feast = () => {
       <div className="container">
         
         {/* Section Header */}
-        <div className="feast-header">
-          <div className="feast-header-animate header-flourish-top">
-            <svg width="180" height="24" viewBox="0 0 180 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M0 12 H75 L80 7 L85 12 L90 17 L95 12 H180" stroke="var(--base-300)" strokeWidth="0.8" />
-              <path d="M85 12 L90 7 L95 12 L90 17 Z" fill="var(--base-300)" />
-            </svg>
-          </div>
-          
+        <div className="feast-header"> 
           <h2 className="feast-header-animate feast-title">A Feast of India</h2>
-          
-          <div className="feast-header-animate header-flourish-bottom">
-            <svg width="180" height="24" viewBox="0 0 180 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M0 12 H75 L80 17 L85 12 L90 7 L95 12 H180" stroke="var(--base-300)" strokeWidth="0.8" />
-              <path d="M85 12 L90 17 L95 12 L90 7 Z" fill="var(--base-300)" />
-            </svg>
-          </div>
         </div>
 
         {/* 4-Card Dish Grid Layout */}

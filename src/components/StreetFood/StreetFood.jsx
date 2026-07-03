@@ -1,124 +1,94 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
 import Button from "@/components/Button/Button";
-import Copy from "@/components/Copy/Copy";
 
 import "./StreetFood.css";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const STREET_FOODS = [
-  { id: "pani-puri", title: "Pani Puri", class: "card-short", image: "/home/feast-pani-puri.png" },
-  { id: "bhel-puri", title: "Bhel Puri", class: "card-medium", image: "/home/about-3.jpg" },
-  { id: "kati-roll", title: "Kati Roll", class: "card-tall", image: "/about/sticky-card-3.jpg" },
-  { id: "naan-wrap", title: "Naan Wrap", class: "card-tall", image: "/about/sticky-card-2.jpg" },
-  { id: "pav-bhaji", title: "Pav Bhaji", class: "card-medium", image: "/dining-menu/dining-menu.jpg" },
-  { id: "samosa-chaat", title: "Samosa Chaat", class: "card-short", image: "/about/sticky-card-4.jpg" },
-];
-
-const SPICES = [
   {
-    name: "Cumin",
+    id: "pani-puri",
+    title: "Pani Puri",
+    desc: "Crispy hollow puris filled with spiced potato, chickpeas, and flooded with tangy mint-tamarind water.",
+    image: "/home/feast-pani-puri.png",
     icon: (
-      <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="30" cy="30" r="26" fill="#1b120c" stroke="var(--base-300)" strokeWidth="1"/>
-        <path d="M22 25 Q24 23 26 26" stroke="#c5a880" strokeWidth="2" strokeLinecap="round"/>
-        <path d="M32 20 Q34 18 36 21" stroke="#c5a880" strokeWidth="2" strokeLinecap="round"/>
-        <path d="M18 34 Q20 32 22 35" stroke="#c5a880" strokeWidth="2" strokeLinecap="round"/>
-        <path d="M38 38 Q40 36 42 39" stroke="#c5a880" strokeWidth="2" strokeLinecap="round"/>
-        <path d="M25 42 Q27 40 29 43" stroke="#c5a880" strokeWidth="2" strokeLinecap="round"/>
-        <path d="M30 32 Q32 30 34 33" stroke="#a38c6b" strokeWidth="2" strokeLinecap="round"/>
-        <path d="M44 26 Q46 24 48 27" stroke="#a38c6b" strokeWidth="2" strokeLinecap="round"/>
-        <path d="M14 22 Q16 20 18 23" stroke="#a38c6b" strokeWidth="2" strokeLinecap="round"/>
-        <path d="M24 15 Q26 13 28 16" stroke="#a38c6b" strokeWidth="2" strokeLinecap="round"/>
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+        <circle cx="12" cy="12" r="9" />
+        <circle cx="9" cy="10" r="1.5" fill="currentColor" />
+        <circle cx="15" cy="10" r="1.5" fill="currentColor" />
+        <path d="M8 15h8" strokeLinecap="round" />
       </svg>
-    ),
+    )
   },
   {
-    name: "Coriander",
+    id: "bhel-puri",
+    title: "Bhel Puri",
+    desc: "A crunchy, savory medley of puffed rice, peanuts, onions, tomatoes, and spicy-sweet chutneys.",
+    image: "/home/about-3.jpg",
     icon: (
-      <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="30" cy="30" r="26" fill="#221810" stroke="var(--base-300)" strokeWidth="1"/>
-        <circle cx="20" cy="22" r="3" fill="#bfa680"/>
-        <circle cx="34" cy="18" r="3.5" fill="#a38c6b"/>
-        <circle cx="28" cy="28" r="3.2" fill="#bfa680"/>
-        <circle cx="42" cy="25" r="3" fill="#a38c6b"/>
-        <circle cx="18" cy="36" r="3.5" fill="#bfa680"/>
-        <circle cx="32" cy="40" r="3.2" fill="#a38c6b"/>
-        <circle cx="44" cy="38" r="3" fill="#bfa680"/>
-        <circle cx="25" cy="14" r="3" fill="#a38c6b"/>
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+        <path d="M3 20h18L12 4z" />
+        <path d="M7 16h10" />
       </svg>
-    ),
+    )
   },
   {
-    name: "Cardamom",
+    id: "kati-roll",
+    title: "Kati Roll",
+    desc: "Skewer-roasted kebabs and fresh veggies wrapped in a warm, flaky paratha flatbread.",
+    image: "/about/sticky-card-3.jpg",
     icon: (
-      <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="30" cy="30" r="26" fill="#141c12" stroke="var(--base-300)" strokeWidth="1"/>
-        <path d="M22 28 C20 22 28 20 30 26 C32 32 24 34 22 28 Z" fill="#60704c" stroke="#8f9e7b" strokeWidth="1"/>
-        <path d="M38 34 C36 28 44 26 46 32 C48 38 40 40 38 34 Z" fill="#546440" stroke="#7e8c6a" strokeWidth="1"/>
-        <path d="M28 42 C26 36 34 34 36 40 C38 46 30 48 28 42 Z" fill="#60704c" stroke="#8f9e7b" strokeWidth="1"/>
-        <path d="M34 20 C32 14 40 12 42 18 C44 24 36 26 34 20 Z" fill="#546440" stroke="#7e8c6a" strokeWidth="1"/>
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+        <rect x="6" y="2" width="12" height="20" rx="3" />
+        <path d="M6 8h12M6 14h12" />
       </svg>
-    ),
+    )
   },
   {
-    name: "Turmeric",
+    id: "naan-wrap",
+    title: "Naan Wrap",
+    desc: "Soft, freshly baked tandoori naan rolled with spiced meats, paneer, and mint yogurt dressing.",
+    image: "/about/sticky-card-2.jpg",
     icon: (
-      <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="30" cy="30" r="26" fill="#2d1d03" stroke="var(--base-300)" strokeWidth="1"/>
-        <path d="M12 42 C16 32 24 16 30 16 C36 16 44 32 48 42 Z" fill="#e0a93c"/>
-        <path d="M16 42 C20 35 25 24 30 24 C35 24 40 35 44 42 Z" fill="#c99128"/>
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+        <ellipse cx="12" cy="12" rx="5" ry="9" />
+        <path d="M8 12h8" />
       </svg>
-    ),
+    )
   },
   {
-    name: "Kashmiri Chili",
+    id: "pav-bhaji",
+    title: "Pav Bhaji",
+    desc: "A thick, spicy vegetable mash simmered in butter, served hot with toasted, butter-soaked pav buns.",
+    image: "/dining-menu/dining-menu.jpg",
     icon: (
-      <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="30" cy="30" r="26" fill="#220b08" stroke="var(--base-300)" strokeWidth="1"/>
-        <path d="M12 42 C16 30 24 18 30 18 C36 18 44 30 48 42 Z" fill="#c23f2f"/>
-        <path d="M16 42 C20 33 25 24 30 24 C35 24 40 33 44 42 Z" fill="#9c271b"/>
-        <path d="M22 28 Q28 20 32 28 Q34 32 38 34" stroke="#c23f2f" strokeWidth="2.5" strokeLinecap="round"/>
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+        <rect x="3" y="3" width="18" height="18" rx="2" />
+        <path d="M12 3v18M3 12h18" />
       </svg>
-    ),
+    )
   },
   {
-    name: "Black Pepper",
+    id: "samosa-chaat",
+    title: "Samosa Chaat",
+    desc: "Crushed golden samosas layered with warm chickpea curry, cool yogurt, and dynamic sweet-tangy chutneys.",
+    image: "/about/sticky-card-4.jpg",
     icon: (
-      <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="30" cy="30" r="26" fill="#111111" stroke="var(--base-300)" strokeWidth="1"/>
-        <circle cx="20" cy="20" r="2.5" fill="#3b3835"/>
-        <circle cx="26" cy="18" r="3" fill="#222222"/>
-        <circle cx="32" cy="24" r="2.5" fill="#3b3835"/>
-        <circle cx="38" cy="20" r="3" fill="#222222"/>
-        <circle cx="22" cy="32" r="3" fill="#222222"/>
-        <circle cx="28" cy="36" r="2.8" fill="#3b3835"/>
-        <circle cx="34" cy="32" r="3.2" fill="#222222"/>
-        <circle cx="42" cy="30" r="2.5" fill="#3b3835"/>
-        <circle cx="40" cy="40" r="3" fill="#222222"/>
-        <circle cx="18" cy="42" r="2.5" fill="#3b3835"/>
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+        <path d="M12 3l9 16H3L12 3z" />
       </svg>
-    ),
-  },
-  {
-    name: "Cinnamon",
-    icon: (
-      <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="30" cy="30" r="26" fill="#1b120c" stroke="var(--base-300)" strokeWidth="1"/>
-        <rect x="22" y="16" width="6" height="30" rx="1.5" transform="rotate(-15 22 16)" fill="#8a5e3b" stroke="#6b4629" strokeWidth="1"/>
-        <rect x="34" y="14" width="6" height="30" rx="1.5" transform="rotate(15 34 14)" fill="#784f30" stroke="#5a391f" strokeWidth="1"/>
-      </svg>
-    ),
-  },
+    )
+  }
 ];
 
 const StreetFood = () => {
   const sectionRef = useRef(null);
+  const [activeIdx, setActiveIdx] = useState(0);
 
   useEffect(() => {
     const section = sectionRef.current;
@@ -126,7 +96,6 @@ const StreetFood = () => {
 
     const cards = section.querySelectorAll(".street-card");
     const headerElements = section.querySelectorAll(".street-header-animate");
-    const spices = section.querySelectorAll(".spice-item");
     const ctaWrapper = section.querySelector(".street-cta-wrapper");
 
     gsap.fromTo(
@@ -158,23 +127,6 @@ const StreetFood = () => {
         scrollTrigger: {
           trigger: ".street-cards-row",
           start: "top 80%",
-          once: true,
-        },
-      }
-    );
-
-    gsap.fromTo(
-      spices,
-      { opacity: 0, y: 25 },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 0.8,
-        stagger: 0.08,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: ".street-spices-row",
-          start: "top 90%",
           once: true,
         },
       }
@@ -232,48 +184,40 @@ const StreetFood = () => {
           </p>
         </div>
 
-        {/* 6-Card Staggered Stature Row */}
+        {/* Interactive Accordion Layout */}
         <div className="street-cards-row">
-          {STREET_FOODS.map((food) => (
-            <div key={food.id} className={`street-card ${food.class}`}>
+          {STREET_FOODS.map((food, idx) => (
+            <div
+              key={food.id}
+              className={`street-card ${activeIdx === idx ? "is-active" : ""}`}
+              onMouseEnter={() => setActiveIdx(idx)}
+            >
+              {/* Background Image */}
               <div className="street-card-bg">
                 <Image
                   src={food.image}
                   alt={food.title}
                   fill
-                  sizes="(max-width: 768px) 50vw, 16vw"
+                  sizes="(max-width: 768px) 100vw, 40vw"
                   className="street-card-image"
+                  priority={idx === 0}
                 />
               </div>
-              <div className="street-card-overlay">
-                <h3 className="street-card-title">{food.title}</h3>
-                <div className="street-card-divider">
-                  <svg width="40" height="8" viewBox="0 0 40 8" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <line x1="0" y1="4" x2="16" y2="4" stroke="var(--base-300)" strokeWidth="0.8" />
-                    <circle cx="20" cy="4" r="1.5" fill="var(--base-300)" />
-                    <line x1="24" y1="4" x2="40" y2="4" stroke="var(--base-300)" strokeWidth="0.8" />
-                  </svg>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
 
-        {/* Spices Horizontal Showcase */}
-        <div className="street-spices-row">
-          {SPICES.map((spice, idx) => (
-            <div key={idx} className="spice-item">
-              <div className="spice-bowl-container">
-                {spice.icon}
+              {/* Vertical Title (reads top to bottom) */}
+              <div className="street-card-vertical-header">
+                <span className="street-card-vertical-title">{food.title}</span>
               </div>
-              <span className="spice-name">{spice.name}</span>
-              {idx < SPICES.length - 1 && (
-                <div className="spice-dot-divider">
-                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M6 2 L8 6 L10 6 L8 8 L9 10 L6 8 L3 10 L4 8 L2 6 L4 6 Z" fill="rgba(197, 168, 128, 0.4)"/>
-                  </svg>
-                </div>
-              )}
+
+              {/* Collapsed Bottom Icon */}
+              <div className="street-card-collapsed-icon">
+                {food.icon}
+              </div>
+
+              {/* Expanded Content Overlay */}
+              <div className="street-card-expanded-content">
+                <p className="street-card-desc">{food.desc}</p>
+              </div>
             </div>
           ))}
         </div>

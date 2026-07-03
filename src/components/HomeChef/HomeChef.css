@@ -2,7 +2,7 @@
   position: relative;
   width: 100%;
   padding: 8rem 0 6rem;
-  background-color: var(--base-600); /* Dark Forest Green background */
+  background-color: var(--base-500); /* Dark Forest Green background */
   color: var(--base-100);
   overflow: hidden;
 }
@@ -11,11 +11,11 @@
   content: "";
   position: absolute;
   inset: 0;
-  background-image: url("/backgrounds/background1.png");
+  background-image: url("/backgrounds/background2.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  opacity: 0.18; /* Subtle background pattern */
+  opacity: 0.05; /* Subtle background pattern */
   pointer-events: none;
   z-index: 0;
 }
@@ -23,6 +23,9 @@
 .home-chef-section .container {
   position: relative;
   z-index: 1;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
 }
 
 /* Two Column Layout */
@@ -30,7 +33,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 5rem;
+  gap: 4rem;
   margin-bottom: 7rem;
 }
 
@@ -62,6 +65,7 @@
   font-size: clamp(2.5rem, 5vw, 4.25rem);
   font-weight: 500;
   line-height: 1.15;
+  letter-spacing: -0.02em; /* Tighter letter-spacing for premium feel */
   text-transform: none; /* Sentence case */
   color: var(--base-100);
   margin-bottom: 2rem;
@@ -90,167 +94,47 @@
 
 .chef-image-frame {
   position: relative;
-  padding: 1.5rem;
-  background-color: rgba(9, 30, 23, 0.4);
-  border: 1px solid rgba(197, 168, 128, 0.25);
-  border-radius: 20px;
   width: 100%;
-  max-width: 600px;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
+  max-width: 460px;
+  aspect-ratio: 1169 / 1346; /* Matching original portrait aspect ratio exactly */
+  border-radius: 4px; /* Sharp elegant corners matching chef-luxury-frame */
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+.chef-image-frame::before {
+  content: "";
+  position: absolute;
+  inset: 12px;
+  border: 1px solid var(--base-300);
+  z-index: 2;
+  pointer-events: none;
+  opacity: 0.8;
+}
+
+.chef-image-frame::after {
+  content: "";
+  position: absolute;
+  inset: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  z-index: 2;
+  pointer-events: none;
 }
 
 .chef-image-container {
   position: relative;
   width: 100%;
-  aspect-ratio: 16 / 10;
-  border-radius: 12px;
-  overflow: hidden;
-  border: 1px solid rgba(197, 168, 128, 0.15);
+  height: 100%;
 }
 
 .chef-cooking-image {
   object-fit: cover;
-  transition: transform 0.6s ease;
 }
 
-.chef-image-frame:hover .chef-cooking-image {
-  transform: scale(1.03);
-}
-
-/* Moments Slider Section */
-.home-chef-moments-section {
-  width: 100%;
-  border-top: 1px solid rgba(197, 168, 128, 0.15); /* Light divider line */
-  padding-top: 4rem;
-}
-
-.moments-header {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 3.5rem;
-}
-
-.moments-title-wrapper {
-  display: flex;
-  align-items: center;
-  gap: 1.25rem;
-}
-
-.moments-title-wrapper h3 {
-  font-family: "Roslindale Variable", sans-serif;
-  font-size: clamp(1.25rem, 3vw, 1.85rem);
-  font-weight: 500;
-  letter-spacing: 0.05em;
-  color: var(--base-300); /* Accent Gold slider title */
-  text-transform: uppercase;
-}
-
-/* Slider / Track Wrapper */
-.moments-slider-container {
-  position: relative;
-  display: flex;
-  align-items: center;
-  width: 100%;
-  padding: 0 1rem;
-}
-
-.moments-track-wrapper {
-  display: flex;
-  gap: 1.75rem;
-  overflow-x: auto;
-  scroll-behavior: smooth;
-  width: 100%;
-  padding: 1rem 0;
-  scroll-snap-type: x mandatory;
-  scrollbar-width: none; /* Hide standard Firefox scrollbar */
-}
-
-.moments-track-wrapper::-webkit-scrollbar {
-  display: none; /* Hide Chrome/Safari scrollbar */
-}
-
-/* Moment Card */
-.moment-card {
-  flex: 0 0 calc(16.66% - 1.45rem); /* Exactly 6 cards fit on large screens */
-  min-width: 220px;
-  scroll-snap-align: start;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  gap: 1rem;
-  cursor: pointer;
-}
-
-.moment-img-container {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 1.1 / 1;
-  border-radius: 12px;
-  overflow: hidden;
-  border: 1px solid rgba(197, 168, 128, 0.15);
-  background-color: var(--base-600);
-}
-
-.moment-image {
-  object-fit: cover;
-  filter: grayscale(100%) brightness(0.9) contrast(1.1); /* Black and white photo styling */
-  transition: transform 0.5s ease, filter 0.5s ease;
-}
-
-.moment-card:hover .moment-image {
-  transform: scale(1.05);
-  filter: grayscale(0%) brightness(1) contrast(1); /* Colorize slightly on hover for premium interaction */
-}
-
-.moment-name {
-  font-family: var(--font-host-grotesk), sans-serif;
-  font-size: 0.9rem;
-  font-weight: 550;
-  color: var(--base-200); /* Sage/gray name */
-  transition: color 0.35s ease;
-}
-
-.moment-card:hover .moment-name {
-  color: var(--base-300); /* Turns gold on hover */
-}
-
-/* Slider Controls */
-.slider-control {
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  border: 1px solid rgba(197, 168, 128, 0.4);
-  background: transparent;
-  color: var(--base-300);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.35rem;
-  cursor: pointer;
-  z-index: 5;
-  transition: background 0.3s, color 0.3s, border-color 0.3s;
-}
-
-.slider-control:hover {
-  background: var(--base-300);
-  color: var(--base-600);
-  border-color: var(--base-300);
-}
-
-.btn-left {
-  margin-right: 1.5rem;
-}
-
-.btn-right {
-  margin-left: 1.5rem;
-}
-
-/* Responsive Layouts */
-@media (max-width: 1200px) {
-  .moment-card {
-    flex: 0 0 calc(25% - 1.35rem); /* 4 cards visible */
-  }
+/* Hide helper divs from previous layout */
+.frame-border-outer,
+.frame-border-inner {
+  display: none;
 }
 
 @media (max-width: 991px) {
@@ -260,37 +144,14 @@
     margin-bottom: 5rem;
   }
   
-  .home-chef-left {
+  .home-chef-left,
+  .home-chef-right {
+    width: 100%;
     align-items: center;
     text-align: center;
   }
   
   .chef-desc {
     max-width: 100%;
-  }
-
-  .moment-card {
-    flex: 0 0 calc(33.33% - 1.2rem); /* 3 cards visible */
-    min-width: 200px;
-  }
-}
-
-@media (max-width: 600px) {
-  .moment-card {
-    flex: 0 0 80%; /* 1 full card visible, scrollable */
-  }
-
-  .slider-control {
-    width: 40px;
-    height: 40px;
-    font-size: 1.15rem;
-  }
-  
-  .btn-left {
-    margin-right: 0.75rem;
-  }
-  
-  .btn-right {
-    margin-left: 0.75rem;
   }
 }

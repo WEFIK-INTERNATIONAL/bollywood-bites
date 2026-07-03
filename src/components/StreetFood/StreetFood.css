@@ -2,7 +2,7 @@
   position: relative;
   width: 100%;
   padding: 8rem 0 6rem;
-  background-color: var(--base-600); /* Dark Forest Green background */
+  background-color: var(--base-500); /* Dark Forest Green background */
   color: var(--base-100);
   overflow: hidden;
 }
@@ -11,11 +11,11 @@
   content: "";
   position: absolute;
   inset: 0;
-  background-image: url("/backgrounds/background1.png");
+  background-image: url("/backgrounds/background2.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  opacity: 0.18; /* Subtle background pattern */
+  opacity: 0.05; /* Rich scenic background pattern */
   pointer-events: none;
   z-index: 0;
 }
@@ -23,6 +23,9 @@
 .street-section .container {
   position: relative;
   z-index: 1;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
 }
 
 /* Header Styling */
@@ -70,167 +73,192 @@
   margin-top: 1.5rem;
 }
 
-/* 6-Card Staggered Row */
+/* Interactive Horizontal Accordion Row */
 .street-cards-row {
   display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: 1.75rem;
   width: 100%;
+  height: 480px;
+  gap: 1.25rem;
   margin-bottom: 7rem;
+  overflow: hidden;
 }
 
 .street-card {
-  flex: 1;
-  border-radius: 16px; /* Rounded corners */
-  overflow: hidden;
   position: relative;
-  border: 1px solid rgba(197, 168, 128, 0.15); /* Gold outline */
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.35);
+  flex: 0 0 80px; /* Collapsed state fixed width */
+  border-radius: 12px;
+  overflow: hidden;
+  background-color: #080d09;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
   cursor: pointer;
-  background-color: var(--base-600);
-  transition: border-color 0.4s ease, box-shadow 0.4s ease;
+  transition: flex 0.6s cubic-bezier(0.25, 1, 0.3, 1), border-color 0.4s ease, box-shadow 0.4s ease;
 }
 
 .street-card:hover {
-  border-color: rgba(197, 168, 128, 0.4);
-  box-shadow: 0 20px 45px rgba(197, 168, 128, 0.1);
+  border-color: rgba(197, 168, 128, 0.35);
+  box-shadow: 0 20px 45px rgba(9, 30, 23, 0.5);
+}
+
+.street-card.is-active {
+  flex: 1; /* Expands to take up remaining container space */
+  border-color: rgba(197, 168, 128, 0.5);
+  box-shadow: 0 25px 55px rgba(9, 30, 23, 0.6), 0 0 30px rgba(197, 168, 128, 0.15);
 }
 
 .street-card-bg {
   position: absolute;
   inset: 0;
   z-index: 0;
-  transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+  opacity: 0.15;
+  /* filter: grayscale(15%); */
+  transition: opacity 0.6s ease, filter 0.6s ease, transform 0.6s ease;
 }
 
 .street-card-image {
   object-fit: cover;
-  filter: brightness(0.7) contrast(1.05);
 }
 
-/* Gradient card shadow for text clarity */
+.street-card.is-active .street-card-bg {
+  opacity: 1;
+  transform: scale(1.02);
+}
+
+/* Gradient card shadow overlay for expanded text clarity */
 .street-card::after {
   content: "";
   position: absolute;
   inset: 0;
   background: linear-gradient(
-    to bottom,
-    rgba(9, 30, 23, 0.1) 0%,
-    rgba(9, 30, 23, 0.5) 60%,
-    rgba(9, 30, 23, 0.95) 100%
+    to top,
+    rgba(9, 30, 23, 0.95) 0%,
+    rgba(9, 30, 23, 0.4) 60%,
+    transparent 100%
   );
   z-index: 1;
   pointer-events: none;
-  transition: opacity 0.4s ease;
+  opacity: 0;
+  transition: opacity 0.6s ease;
 }
 
-.street-card:hover .street-card-bg {
-  transform: scale(1.05);
+.street-card.is-active::after {
+  opacity: 1;
 }
 
-/* Cards height wave sizing */
-.card-short {
-  height: 380px;
-}
-
-.card-medium {
-  height: 440px;
-}
-
-.card-tall {
-  height: 500px;
-}
-
-/* Card Overlay Content */
-.street-card-overlay {
+/* Vertical Title Positioning (Centered on Collapsed strip) */
+.street-card-vertical-header {
   position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  padding: 2.5rem 1.25rem 2.25rem;
+  top: 40px;
+  left: 28px; /* Perfectly centers a 24px wide vertical line in an 80px card */
+  z-index: 2;
+  pointer-events: none;
+}
+
+.street-card-vertical-title {
+  font-family: var(--font-dm-mono), monospace;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--base-200);
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  writing-mode: vertical-rl; /* Reads top to bottom */
+  white-space: nowrap;
+  transition: color 0.4s ease;
+}
+
+.street-card:hover .street-card-vertical-title {
+  color: var(--base-100);
+}
+
+.street-card.is-active .street-card-vertical-title {
+  color: var(--base-300); /* Accent gold when active */
+}
+
+/* Collapsed state bottom icon */
+.street-card-collapsed-icon {
+  position: absolute;
+  bottom: 35px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  pointer-events: none;
+  color: rgba(197, 168, 128, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid rgba(197, 168, 128, 0.25);
+  background: rgba(9, 30, 23, 0.65);
+  backdrop-filter: blur(4px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.street-card.is-active .street-card-collapsed-icon {
+  opacity: 0;
+  transform: translate(-50%, 15px);
+}
+
+/* Expanded card content overlay */
+.street-card-expanded-content {
+  position: absolute;
+  bottom: 40px;
+  left: 85px; /* Offset to clear the vertical title on the left */
+  right: 40px;
   z-index: 2;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  text-align: center;
-}
-
-.street-card-title {
-  font-family: "Roslindale Variable", sans-serif;
-  font-size: clamp(1.15rem, 2.5vw, 1.45rem);
-  font-weight: 500;
-  color: var(--base-100);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  margin-bottom: 0.5rem;
-}
-
-.street-card-divider {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0.75;
-}
-
-/* Spices Horizontal Showcase */
-.street-spices-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  padding: 3rem 0;
-  border-top: 1px solid rgba(197, 168, 128, 0.15);
-  border-bottom: 1px solid rgba(197, 168, 128, 0.15);
-  margin-bottom: 5rem;
-}
-
-.spice-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  gap: 1rem;
-  flex: 1;
-  position: relative;
-}
-
-.spice-bowl-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  filter: drop-shadow(0 8px 12px rgba(0, 0, 0, 0.4));
-  transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
-}
-
-.spice-item:hover .spice-bowl-container {
-  transform: translateY(-6px);
-}
-
-.spice-name {
-  font-family: var(--font-dm-mono), monospace;
-  font-size: 0.75rem;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.15em;
-  color: var(--base-200); /* Sage/gray color label */
-  transition: color 0.35s ease;
-}
-
-.spice-item:hover .spice-name {
-  color: var(--base-300); /* Highlights gold on hover */
-}
-
-/* Separation Diamond Icons */
-.spice-dot-divider {
-  position: absolute;
-  right: -6px;
-  top: 30px; /* Aligned with the bowl heights center */
-  transform: translateY(-50%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  align-items: flex-start;
+  text-align: left;
+  opacity: 0;
+  transform: translateY(15px);
   pointer-events: none;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.street-card.is-active .street-card-expanded-content {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: all;
+  transition: opacity 0.6s 0.25s ease, transform 0.6s 0.25s ease;
+}
+
+.street-card-desc {
+  font-family: var(--font-host-grotesk), sans-serif;
+  font-size: 1.05rem;
+  line-height: 1.55;
+  color: var(--base-100);
+  max-width: 500px;
+  margin: 0;
+}
+
+/* Action button at bottom left of active card */
+.street-card-action {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 1.75rem;
+  color: var(--base-300);
+  font-family: var(--font-dm-mono), monospace;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-weight: 600;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.street-card-action svg {
+  transition: transform 0.3s ease;
+}
+
+.street-card-action:hover {
+  color: var(--base-100);
+}
+
+.street-card-action:hover svg {
+  transform: scale(1.1) rotate(15deg);
 }
 
 /* Explore Button at Bottom */
@@ -240,17 +268,18 @@
 }
 
 .street-explore-btn {
-  border: 1px solid var(--base-300);
-  background-color: transparent !important;
+  background-color: var(--base-300) !important; /* Gold background for the 1px chamfer border */
   color: var(--base-100) !important;
   padding: 1.1rem 2.5rem !important;
   font-size: 0.85rem !important;
-  border-radius: 4px;
+  transition: color 0.35s ease !important;
 }
 
 .street-explore-btn .slide-button-bg {
-  background-color: transparent !important;
-  border-radius: 3px;
+  background-color: rgba(9, 30, 23, 0.6) !important; /* Semi-transparent dark green */
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  transition: background-color 0.35s ease !important;
 }
 
 .street-explore-btn:hover {
@@ -261,63 +290,104 @@
   background-color: var(--base-300) !important;
 }
 
-/* Responsive Layouts */
-@media (max-width: 1200px) {
-  .street-cards-row {
-    gap: 1.25rem;
-  }
-  
-  .card-short {
-    height: 340px;
-  }
-
-  .card-medium {
-    height: 390px;
-  }
-
-  .card-tall {
-    height: 440px;
-  }
-}
-
+/* Responsive Accordion Layouts */
 @media (max-width: 991px) {
   .street-cards-row {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
-    max-width: 750px;
-    margin: 0 auto 5rem;
-  }
-  
-  .card-short,
-  .card-medium,
-  .card-tall {
-    height: 380px; /* Uniform height on medium screens */
-  }
-
-  .street-spices-row {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 2.5rem 1.5rem;
-  }
-
-  .spice-dot-divider {
-    display: none; /* Hide dividers in grid layout */
-  }
-}
-
-@media (max-width: 600px) {
-  .street-cards-row {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1.5rem;
+    height: 440px;
+    gap: 0.75rem;
   }
 
   .street-card {
-    height: 320px !important;
+    flex: 0 0 70px;
   }
 
-  .street-spices-row {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 2rem 1.5rem;
+  .street-card-vertical-header {
+    left: 23px;
+  }
+
+  .street-card-expanded-content {
+    left: 70px;
+    right: 25px;
+  }
+}
+
+@media (max-width: 768px) {
+  /* Transformed into vertical interactive accordion on tablet and mobile */
+  .street-cards-row {
+    flex-direction: column;
+    height: auto;
+    gap: 0.75rem;
+    overflow: visible;
+  }
+
+  .street-card {
+    flex: none;
+    width: 100%;
+    height: 64px; /* Collapsed height */
+    transition: height 0.6s cubic-bezier(0.25, 1, 0.3, 1), border-color 0.4s ease, box-shadow 0.4s ease;
+  }
+
+  .street-card.is-active {
+    flex: none;
+    height: 320px; /* Expanded height */
+  }
+
+  .street-card-bg {
+    filter: grayscale(10%) brightness(0.25);
+  }
+
+  .street-card.is-active .street-card-bg {
+    filter: grayscale(0%) brightness(0.45);
+  }
+
+  /* Rotated to horizontal title */
+  .street-card-vertical-header {
+    left: 24px;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: top 0.6s ease, transform 0.6s ease;
+  }
+
+  .street-card.is-active .street-card-vertical-header {
+    top: 25px;
+    transform: none;
+  }
+
+  .street-card-vertical-title {
+    writing-mode: horizontal-tb; /* Horizontal on mobile */
+    font-size: 1.15rem;
+    font-family: "Roslindale Variable", sans-serif;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+  }
+
+  /* Collapsed icon on the right side */
+  .street-card-collapsed-icon {
+    right: 24px;
+    left: auto;
+    bottom: 50%;
+    transform: translateY(50%);
+  }
+
+  .street-card.is-active .street-card-collapsed-icon {
+    opacity: 0;
+    transform: translate(15px, 50%);
+  }
+
+  /* Expanded content layout adjustment */
+  .street-card-expanded-content {
+    left: 24px;
+    right: 24px;
+    bottom: 25px;
+  }
+
+  .street-card-desc {
+    font-size: 0.95rem;
+    line-height: 1.45;
+    max-width: 100%;
+  }
+
+  .street-card-action {
+    margin-top: 1rem;
   }
 }

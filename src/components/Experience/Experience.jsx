@@ -134,23 +134,12 @@ const Experience = () => {
   return (
     <section className="experience-section" ref={sectionRef}>
       {/* Subtle mandana background watermarks for premium theme styling */}
-      <div className="experience-ornament-left" />
-      <div className="experience-ornament-right" />
 
       <div className="container">
         <div className="experience-header">
           <Copy type="lines" animateOnScroll>
             <span className="experience-tagline">Experience Bollywood Bites</span>
           </Copy>
-          
-          <div className="experience-divider-wrapper">
-            <svg className="ornamental-divider" width="120" height="20" viewBox="0 0 120 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <line x1="0" y1="10" x2="45" y2="10" stroke="var(--base-300)" strokeWidth="1"/>
-              <circle cx="60" cy="10" r="4" fill="none" stroke="var(--base-300)" strokeWidth="1.5"/>
-              <path d="M57 10 L60 7 L63 10 L60 13 Z" fill="var(--base-300)"/>
-              <line x1="75" y1="10" x2="120" y2="10" stroke="var(--base-300)" strokeWidth="1"/>
-            </svg>
-          </div>
 
           <Copy type="lines" animateOnScroll delay={0.1}>
             <h2 className="experience-title">
@@ -220,7 +209,6 @@ const Experience = () => {
                 <h4>{val.title}</h4>
                 <p>{val.subtitle}</p>
               </div>
-              {idx < VALUES.length - 1 && <div className="value-vertical-divider" />}
             </div>
           ))}
         </div>

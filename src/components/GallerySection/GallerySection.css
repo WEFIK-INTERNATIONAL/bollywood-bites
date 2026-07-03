@@ -2,7 +2,7 @@
   position: relative;
   width: 100%;
   padding: 8rem 0 6rem;
-  background-color: var(--base-600); /* Dark Forest Green background */
+  background-color: var(--base-500); /* Dark Forest Green background */
   color: var(--base-100);
   overflow: hidden;
 }
@@ -11,11 +11,11 @@
   content: "";
   position: absolute;
   inset: 0;
-  background-image: url("/backgrounds/background1.png");
+  background-image: url("/backgrounds/background2.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  opacity: 0.18; /* Subtle background pattern */
+  opacity: 0.05; /* Subtle background pattern */
   pointer-events: none;
   z-index: 0;
 }
