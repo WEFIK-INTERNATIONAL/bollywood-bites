@@ -3,10 +3,7 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import Image from "next/image";
-import { HiOutlineChevronLeft, HiOutlineChevronRight, HiPlay } from "react-icons/hi";
 import Button from "@/components/Button/Button";
-import Copy from "@/components/Copy/Copy";
 
 import "./PressSection.css";
 
@@ -15,69 +12,30 @@ gsap.registerPlugin(ScrollTrigger);
 const PRESS_ITEMS = [
   {
     id: "cbs",
-    category: "Video Feature",
-    title: "CBS Los Angeles",
-    text: "Chef Sanjay on the art of Indian cuisine",
-    actionText: "Watch Video",
-    link: "/media/press",
-    image: "/chefs/avatar1.jpg",
+    category: "Video feature — CBS Los Angeles",
+    title: "Chef Sanjay on the art of Indian cuisine",
+    videoId: "T4g7awJAwGo",
     isVideo: true,
   },
   {
     id: "ktla",
-    category: "TV Appearance",
-    title: "KTLA 5 Morning News",
-    text: "Bollywood Bites takes LA by storm",
-    actionText: "Watch Video",
-    link: "/media/press",
-    image: "/chefs/avatar3.jpg",
+    category: "TV appearance — KTLA 5 morning news",
+    title: "Bollywood Bites takes LA by storm",
+    videoId: "1cgFkAZCUsc",
     isVideo: true,
   },
   {
-    id: "la-times",
-    category: "Featured Article",
-    title: "Los Angeles Times",
-    text: "Chef Sanjay Patel brings India to LA",
-    actionText: "Read Article",
-    link: "/media/press",
-    image: "/chefs/avatar5.jpg",
+    id: "daily-bruin",
+    category: "Daily Bruin",
+    title: "Flavors of Westwood: Bollywood Bites chef-owner brings vast experience to table",
+    link: "https://dailybruin.com/2014/05/06/flavors-of-westwood-bollywood-bites-chef-owner-brings-vast-experience-to-table",
     isVideo: false,
-  },
-  {
-    id: "eater",
-    category: "Featured Article",
-    title: "Eater Los Angeles",
-    text: "The best new Indian restaurants in LA",
-    actionText: "Read Article",
-    link: "/media/press",
-    image: "/dining-menu/dining-menu-foodsharing.jpg",
-    isVideo: false,
-  },
-  {
-    id: "forbes",
-    category: "Featured Article",
-    title: "Forbes",
-    text: "Chef Sanjay: Redefining Indian Dining in America",
-    actionText: "Read Article",
-    link: "/media/press",
-    image: "/chefs/avatar6.jpg",
-    isVideo: false,
-  },
-  {
-    id: "yahoo",
-    category: "Featured Article",
-    title: "Yahoo News",
-    text: "How Chef Sanjay built Bollywood Bites",
-    actionText: "Read Article",
-    link: "/media/press",
-    image: "/about/sticky-card-4.jpg",
-    isVideo: false,
+    isQuote: true,
   },
 ];
 
 const PressSection = () => {
   const sectionRef = useRef(null);
-  const trackRef = useRef(null);
 
   useEffect(() => {
     const section = sectionRef.current;
@@ -111,10 +69,10 @@ const PressSection = () => {
         opacity: 1,
         y: 0,
         duration: 1,
-        stagger: 0.1,
+        stagger: 0.15,
         ease: "power3.out",
         scrollTrigger: {
-          trigger: ".press-slider-container",
+          trigger: ".press-grid",
           start: "top 80%",
           once: true,
         },
@@ -137,18 +95,6 @@ const PressSection = () => {
       }
     );
   }, []);
-
-  const handlePrev = () => {
-    if (trackRef.current) {
-      trackRef.current.scrollBy({ left: -320, behavior: "smooth" });
-    }
-  };
-
-  const handleNext = () => {
-    if (trackRef.current) {
-      trackRef.current.scrollBy({ left: 320, behavior: "smooth" });
-    }
-  };
 
   return (
     <section className="press-section" ref={sectionRef}>
@@ -173,56 +119,57 @@ const PressSection = () => {
           </div>
         </div>
 
-        {/* Press Carousel Slider */}
-        <div className="press-slider-container">
-          
-          {/* Circular Navigation Left */}
-          <button className="press-slider-control press-btn-left" onClick={handlePrev} aria-label="Previous articles">
-            <HiOutlineChevronLeft />
-          </button>
-
-          {/* Scroll Track Wrapper */}
-          <div className="press-track-wrapper" ref={trackRef}>
-            {PRESS_ITEMS.map((item) => (
-              <div key={item.id} className="press-card">
-                
-                {/* Top Image Frame */}
-                <div className="press-card-img-wrapper">
-                  <Image
-                    src={item.image}
-                    alt={item.title}
-                    fill
-                    sizes="300px"
-                    className="press-card-image"
-                  />
-                  {item.isVideo && (
-                    <div className="press-video-play-btn">
-                      <HiPlay className="play-icon" />
+        {/* Press 3-Card Grid */}
+        <div className="press-grid">
+          {PRESS_ITEMS.map((item) => {
+            if (item.isQuote) {
+              return (
+                <a 
+                  key={item.id} 
+                  href={item.link} 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="press-card quote-card"
+                >
+                  <div className="press-quote-container">
+                    {/* Quote icon at top */}
+                    <div className="press-quote-icon">
+                      <svg width="32" height="24" viewBox="0 0 32 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 0v10H6c0 4.4 3.6 8 8 8v6C6.3 24 0 17.7 0 10V0h12zm18 0v10h-6c0 4.4 3.6 8 8 8v6c-7.7 0-14-6.3-14-10V0h12z" fill="currentColor" />
+                      </svg>
                     </div>
-                  )}
-                </div>
-
-                {/* Bottom Card Content */}
-                <div className="press-card-content">
-                  <span className="press-card-tag">{item.category}</span>
-                  <h3 className="press-card-heading">{item.title}</h3>
-                  <p className="press-card-text">{item.text}</p>
+                    
+                    {/* Quote content */}
+                    <h3 className="press-quote-text">{item.title}</h3>
+                    
+                    {/* Source paper at bottom */}
+                    <span className="press-quote-source">{item.category}</span>
+                  </div>
+                </a>
+              );
+            } else {
+              return (
+                <div key={item.id} className="press-card video-card">
+                  {/* Top half: embedded YouTube player */}
+                  <div className="press-video-preview">
+                    <iframe
+                      src={`https://www.youtube.com/embed/${item.videoId}`}
+                      title={item.title}
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                      className="press-video-iframe"
+                    ></iframe>
+                  </div>
                   
-                  <a href={item.link} className="press-card-link">
-                    <span>{item.actionText}</span>
-                    <span className="arrow">&nbsp;→</span>
-                  </a>
+                  {/* Bottom half: video metadata */}
+                  <div className="press-video-info">
+                    <span className="press-info-category">{item.category}</span>
+                    <h3 className="press-info-title">{item.title}</h3>
+                  </div>
                 </div>
-
-              </div>
-            ))}
-          </div>
-
-          {/* Circular Navigation Right */}
-          <button className="press-slider-control press-btn-right" onClick={handleNext} aria-label="Next articles">
-            <HiOutlineChevronRight />
-          </button>
-
+              );
+            }
+          })}
         </div>
 
         {/* Bottom CTA Button */}

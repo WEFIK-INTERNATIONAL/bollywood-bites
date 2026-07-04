@@ -23,6 +23,9 @@
 .gallery-section .container {
   position: relative;
   z-index: 1;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
 }
 
 /* Header Styling */
@@ -62,7 +65,8 @@
 /* Grid Layout */
 .gallery-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: clamp(180px, 20vw, 280px);
   gap: 1.5rem;
   width: 100%;
   margin-bottom: 5rem;
@@ -71,13 +75,18 @@
 /* Item card */
 .gallery-item {
   position: relative;
-  aspect-ratio: 1.15 / 1;
   border-radius: 16px; /* Rounded corners */
   overflow: hidden;
   border: 1px solid rgba(197, 168, 128, 0.15); /* Gold outline */
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
   cursor: pointer;
   background-color: var(--base-600);
+}
+
+/* Bento Spans */
+.gallery-item:nth-child(1) {
+  grid-column: span 2;
+  grid-row: span 2;
 }
 
 .gallery-image {
@@ -126,35 +135,32 @@
   justify-content: center;
 }
 
-.gallery-explore-btn {
-  border: 1px solid var(--base-300);
-  background-color: transparent !important;
-  color: var(--base-100) !important;
-  padding: 1.1rem 2.5rem !important;
-  font-size: 0.85rem !important;
-  border-radius: 4px;
-}
 
-.gallery-explore-btn .slide-button-bg {
-  background-color: transparent !important;
-  border-radius: 3px;
-}
-
-.gallery-explore-btn:hover {
-  color: var(--base-600) !important;
-}
-
-.gallery-explore-btn:hover .slide-button-bg {
-  background-color: var(--base-300) !important;
-}
 
 /* Responsive Layouts */
 @media (max-width: 991px) {
   .gallery-grid {
     grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: auto;
     gap: 1.5rem;
     max-width: 750px;
     margin: 0 auto 4rem;
+  }
+
+  .gallery-item {
+    aspect-ratio: 1.2 / 1;
+  }
+
+  .gallery-item:nth-child(1) {
+    grid-column: span 2;
+    grid-row: span 1;
+    aspect-ratio: 2.2 / 1;
+  }
+
+  .gallery-item:nth-child(6) {
+    grid-column: span 2;
+    grid-row: span 1;
+    aspect-ratio: 2.2 / 1;
   }
 }
 
@@ -162,5 +168,15 @@
   .gallery-grid {
     grid-template-columns: 1fr;
     gap: 1.25rem;
+  }
+
+  .gallery-item {
+    aspect-ratio: 1.3 / 1;
+  }
+
+  .gallery-item:nth-child(1),
+  .gallery-item:nth-child(6) {
+    grid-column: span 1;
+    aspect-ratio: 1.3 / 1;
   }
 }

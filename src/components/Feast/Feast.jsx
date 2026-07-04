@@ -1,25 +1,59 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState, useCallback } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { HiOutlineArrowLeft, HiOutlineArrowRight } from "react-icons/hi";
 import Image from "next/image";
 import Button from "@/components/Button/Button";
-import Copy from "@/components/Copy/Copy";
+import { SteppedFrame } from "../Steppedframe/SteppedFrame";
 
 import "./Feast.css";
 
 gsap.registerPlugin(ScrollTrigger);
 
+const FEAST_IMAGES = [
+  {
+    src: "/home/feast-butter-chicken.png",
+    alt: "Butter Chicken",
+    tag: "Chef Recommends",
+    title: "Butter Chicken",
+  },
+  {
+    src: "/home/feast-chicken-tikka.png",
+    alt: "Chicken Tikka",
+    tag: "From the Tandoor",
+    title: "Chicken Tikka",
+  },
+  {
+    src: "/home/feast-biryani.png",
+    alt: "Hyderabadi Biryani",
+    tag: "House Favorite",
+    title: "Hyderabadi Biryani",
+  },
+  {
+    src: "/home/feast-pani-puri.png",
+    alt: "Pani Puri",
+    tag: "Street Classic",
+    title: "Pani Puri",
+  },
+];
+
 const Feast = () => {
   const sectionRef = useRef(null);
+  const slideContainerRef = useRef(null);
+  const prevIndexRef = useRef(0);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [direction, setDirection] = useState("next"); // "next" | "prev"
 
+  /* Entrance animations on scroll */
   useEffect(() => {
     const section = sectionRef.current;
     if (!section) return;
 
-    const cards = section.querySelectorAll(".feast-card");
     const headerElements = section.querySelectorAll(".feast-header-animate");
+    const navButtons = section.querySelectorAll(".feast-frame-nav-button");
+    const frameWrapper = section.querySelector(".feast-stepped-frame-wrapper");
     const buttonWrapper = section.querySelector(".feast-cta-wrapper");
 
     gsap.fromTo(
@@ -40,16 +74,16 @@ const Feast = () => {
     );
 
     gsap.fromTo(
-      cards,
-      { opacity: 0, y: 50 },
+      [frameWrapper, navButtons],
+      { opacity: 0, y: 50, scale: 0.98 },
       {
         opacity: 1,
         y: 0,
-        duration: 1,
-        stagger: 0.15,
+        scale: 1,
+        duration: 1.2,
         ease: "power3.out",
         scrollTrigger: {
-          trigger: ".feast-grid",
+          trigger: frameWrapper,
           start: "top 80%",
           once: true,
         },
@@ -73,141 +107,138 @@ const Feast = () => {
     );
   }, []);
 
+  const handleNext = useCallback(() => {
+    setDirection("next");
+    setCurrentIndex((prev) => (prev + 1) % FEAST_IMAGES.length);
+  }, []);
+
+  const handlePrev = useCallback(() => {
+    setDirection("prev");
+    setCurrentIndex((prev) => (prev - 1 + FEAST_IMAGES.length) % FEAST_IMAGES.length);
+  }, []);
+
+  /* Auto-slide mechanism */
+  useEffect(() => {
+    const timer = setInterval(() => {
+      handleNext();
+    }, 5000);
+    return () => clearInterval(timer);
+  }, [handleNext]);
+
+  /* Physical image-pushing sliding animations via GSAP */
+  useEffect(() => {
+    const container = slideContainerRef.current;
+    if (!container) return;
+
+    const slides = container.querySelectorAll(".feast-slide");
+    const incomingSlide = slides[currentIndex];
+    const outgoingSlide = slides[prevIndexRef.current];
+
+    if (currentIndex !== prevIndexRef.current) {
+      const isNext = direction === "next";
+      const incomingStart = isNext ? 100 : -100;
+      const outgoingEnd = isNext ? -100 : 100;
+
+      // Animate outgoing slide pushing out (no opacity fade during slide)
+      gsap.killTweensOf(outgoingSlide);
+      gsap.fromTo(outgoingSlide,
+        { xPercent: 0, opacity: 1 },
+        { 
+          xPercent: outgoingEnd, 
+          duration: 1.2, 
+          ease: "power2.inOut",
+          onComplete: () => {
+            // Hide after the animation finishes
+            gsap.set(outgoingSlide, { opacity: 0 });
+          }
+        }
+      );
+
+      // Animate incoming slide pushing in
+      gsap.killTweensOf(incomingSlide);
+      gsap.fromTo(incomingSlide,
+        { xPercent: incomingStart, opacity: 1 },
+        { xPercent: 0, duration: 1.2, ease: "power2.inOut" }
+      );
+
+      // Animate text elements on the incoming slide
+      const textElements = incomingSlide.querySelectorAll(".slide-animate");
+      gsap.killTweensOf(textElements);
+      gsap.fromTo(textElements,
+        { opacity: 0, y: 20 },
+        { opacity: 1, y: 0, duration: 0.6, stagger: 0.1, ease: "power2.out", delay: 0.4 }
+      );
+    } else {
+      // Set initial layout
+      slides.forEach((slide, idx) => {
+        if (idx === currentIndex) {
+          gsap.set(slide, { xPercent: 0, opacity: 1 });
+        } else {
+          gsap.set(slide, { xPercent: 100, opacity: 0 });
+        }
+      });
+    }
+
+    prevIndexRef.current = currentIndex;
+  }, [currentIndex, direction]);
+
   return (
     <section className="feast-section" ref={sectionRef}>
       <div className="container">
         
-        {/* Section Header */}
+        {/* Centered Section Header */}
         <div className="feast-header"> 
           <h2 className="feast-header-animate feast-title">A Feast of India</h2>
         </div>
 
-        {/* 4-Card Dish Grid Layout */}
-        <div className="feast-grid">
-          
-          {/* Left Column - Large Full Height Card */}
-          <div className="feast-left-col">
-            <div className="feast-card card-large">
-              <div className="feast-card-bg">
-                <Image
-                  src="/home/feast-butter-chicken.png"
-                  alt="Butter Chicken"
-                  fill
-                  sizes="(max-width: 991px) 100vw, 50vw"
-                  className="feast-card-image"
-                />
-              </div>
-              <div className="feast-card-overlay">
-                <span className="dish-tag">Chef Recommends</span>
-                <div className="dish-bottom">
-                  <h3 className="dish-title">Butter Chicken</h3>
-                  <div className="dish-icon">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2">
-                      <circle cx="12" cy="12" r="3" fill="none" />
-                      <path d="M12 2a4 4 0 0 1 4 4v2H8V6a4 4 0 0 1 4-4z" />
-                      <path d="M12 22a4 4 0 0 1-4-4v-2h8v2a4 4 0 0 1-4 4z" />
-                      <path d="M2 12a4 4 0 0 1 4-4h2v8H6a4 4 0 0 1-4-4z" />
-                      <path d="M22 12a4 4 0 0 1-4 4h-2V8h2a4 4 0 0 1 4 4z" />
-                    </svg>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+        {/* Carousel Stepped Frame Wrapper with Flourish Navigation Buttons */}
+        <div className="feast-stepped-frame-wrapper">
+          <button className="feast-frame-nav-button prev-btn" onClick={handlePrev} aria-label="Previous slide">
+            <svg width="48" height="60" viewBox="0 0 48 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M42 24 L48 30 L42 36 L36 30 Z" fill="var(--base-300)" />
+              <path className="feast-nav-chevron" d="M34 24 L28 30 L34 36" stroke="var(--base-300)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </button>
 
-          {/* Right Column - Top Wide and Bottom Split Row */}
-          <div className="feast-right-col">
-            
-            {/* Top Row - Wide Card */}
-            <div className="feast-card card-wide">
-              <div className="feast-card-bg">
-                <Image
-                  src="/home/feast-chicken-tikka.png"
-                  alt="Chicken Tikka"
-                  fill
-                  sizes="(max-width: 991px) 100vw, 50vw"
-                  className="feast-card-image"
-                />
-              </div>
-              <div className="feast-card-overlay">
-                <div className="overlay-left-content">
-                  <span className="dish-tag">From the Tandoor</span>
-                  <h3 className="dish-title">Chicken Tikka</h3>
-                  <div className="dish-icon">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z" />
-                    </svg>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Bottom Row - Two Square-ish Cards */}
-            <div className="feast-bottom-row">
-              
-              {/* Biryani Card */}
-              <div className="feast-card card-square">
-                <div className="feast-card-bg">
+          <SteppedFrame stepSize="md" borderColor="gold" innerRing={true} className="feast-stepped-frame">
+            <div className="feast-slides-container" ref={slideContainerRef}>
+              {FEAST_IMAGES.map((img, index) => (
+                <div 
+                  className="feast-slide" 
+                  key={index}
+                  style={{ 
+                    zIndex: index === currentIndex ? 1 : 0,
+                    opacity: index === 0 ? 1 : 0
+                  }}
+                >
                   <Image
-                    src="/home/feast-biryani.png"
-                    alt="Hyderabadi Biryani"
+                    src={img.src}
+                    alt={img.alt}
                     fill
-                    sizes="(max-width: 991px) 50vw, 25vw"
-                    className="feast-card-image"
+                    sizes="100vw"
+                    className="feast-slide-image"
+                    priority={index === 0}
                   />
-                </div>
-                <div className="feast-card-overlay">
-                  <span className="dish-tag">House Favorite</span>
-                  <div className="dish-bottom">
-                    <h3 className="dish-title">Hyderabadi Biryani</h3>
-                    <div className="dish-icon">
-                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round">
-                        <path d="M12 3v3" />
-                        <path d="M18 6H6a2 2 0 0 0-2 2v2a8 8 0 0 0 16 0V8a2 2 0 0 0-2-2z" />
-                        <path d="M4 10h16" />
-                        <path d="M7 21h10" />
-                        <path d="M9 16v5" />
-                        <path d="M15 16v5" />
-                      </svg>
-                    </div>
+                  <div className="feast-slide-overlay">
+                    <span className="slide-animate dish-tag">{img.tag}</span>
+                    <h3 className="slide-animate dish-title">{img.title}</h3>
+                  </div>
+                  <div className="feast-slide-counter">
+                    <span className="slide-animate counter-current">0{index + 1}</span>
+                    <span className="counter-separator">/</span>
+                    <span className="counter-total">0{FEAST_IMAGES.length}</span>
                   </div>
                 </div>
-              </div>
-
-              {/* Pani Puri Card */}
-              <div className="feast-card card-square">
-                <div className="feast-card-bg">
-                  <Image
-                    src="/home/feast-pani-puri.png"
-                    alt="Pani Puri"
-                    fill
-                    sizes="(max-width: 991px) 50vw, 25vw"
-                    className="feast-card-image"
-                  />
-                </div>
-                <div className="feast-card-overlay">
-                  <span className="dish-tag">Street Classic</span>
-                  <div className="dish-bottom">
-                    <h3 className="dish-title">Pani Puri</h3>
-                    <div className="dish-icon">
-                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round">
-                        <rect x="3" y="3" width="18" height="12" rx="2" />
-                        <circle cx="7" cy="19" r="2" />
-                        <circle cx="17" cy="19" r="2" />
-                        <path d="M10 19h4" />
-                        <path d="M14 15v-4" />
-                        <path d="M8 11h8" />
-                        <path d="M3 9h18" />
-                      </svg>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
+              ))}
             </div>
+          </SteppedFrame>
 
-          </div>
-
+          <button className="feast-frame-nav-button next-btn" onClick={handleNext} aria-label="Next slide">
+            <svg width="48" height="60" viewBox="0 0 48 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M6 24 L12 30 L6 36 L0 30 Z" fill="var(--base-300)" />
+              <path className="feast-nav-chevron" d="M14 24 L20 30 L14 36" stroke="var(--base-300)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </button>
         </div>
 
         {/* Bottom CTA Button */}

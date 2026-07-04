@@ -96,7 +96,7 @@ const Testimonials = () => {
 
     gsap.set(track, { height: cards[0].offsetHeight });
 
-    const wrapPosition = gsap.utils.wrap(-itemWidth, totalWidth - itemWidth);
+    const wrapPosition = gsap.utils.wrap(-itemWidth + 50, totalWidth - itemWidth + 50);
 
     let targetX = 0;
     let currentX = 0;

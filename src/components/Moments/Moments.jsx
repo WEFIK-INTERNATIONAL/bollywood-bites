@@ -5,23 +5,17 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { HiOutlineArrowLeft, HiOutlineArrowRight } from "react-icons/hi";
 import Image from "next/image";
+
+import { moments } from "./moments-data";
 import Copy from "@/components/Copy/Copy";
+import { SteppedFrame } from "../Steppedframe/SteppedFrame";
 
 import "./Moments.css";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const MOMENTS = [
-  { name: "Ranbir Kapoor", image: "/home/moment-ranbir.png" },
-  { name: "Shah Rukh Khan", image: "/home/moment-srk.png" },
-  { name: "Virat Kohli", image: "/home/moment-kohli.png" },
-  { name: "Deepika Padukone", image: "/home/moment-deepika.png" },
-  { name: "A. R. Rahman", image: "/home/moment-rahman.png" },
-  { name: "Amitabh Bachchan", image: "/home/moment-bachchan.png" },
-];
-
-const MOBILE_BREAKPOINT = 768;
-const CARD_GAP = 28;
+const MOBILE_BREAKPOINT = 1000;
+const CARD_GAP = 20;
 const LERP_FACTOR = 0.075;
 const VELOCITY_DAMPING = 0.95;
 const VELOCITY_THRESHOLD = 0.05;
@@ -31,12 +25,14 @@ const Moments = () => {
   const trackRef = useRef(null);
   const slideByRef = useRef(null);
 
-  /* Entrance animations on scroll */
+  /* entrance animations on scroll */
   useEffect(() => {
     const section = sectionRef.current;
     if (!section) return;
 
-    const navButtons = section.querySelectorAll(".moments-nav-button-wrapper");
+    const navButtons = section.querySelectorAll(
+      ".moments-nav-button-wrapper",
+    );
     const cards = section.querySelectorAll(".moment-card");
 
     gsap.set(navButtons, { scale: 0 });
@@ -69,10 +65,12 @@ const Moments = () => {
     return () => scrollTrigger.kill();
   }, []);
 
-  /* Infinite carousel with drag and momentum (matching Testimonials) */
+  /* infinite carousel with drag and momentum */
   useEffect(() => {
     const track = trackRef.current;
-    const cards = gsap.utils.toArray(track.querySelectorAll(".moment-card"));
+    const cards = gsap.utils.toArray(
+      track.querySelectorAll(".moment-card"),
+    );
     const cardCount = cards.length;
     if (!cardCount) return;
 
@@ -87,9 +85,9 @@ const Moments = () => {
       x: (index) => index * itemWidth,
     });
 
-    gsap.set(track, { height: cards[0].offsetHeight + 20 });
+    gsap.set(track, { height: cards[0].offsetHeight });
 
-    const wrapPosition = gsap.utils.wrap(-itemWidth, totalWidth - itemWidth);
+    const wrapPosition = gsap.utils.wrap(-itemWidth + 50, totalWidth - itemWidth + 50);
 
     let targetX = 0;
     let currentX = 0;
@@ -201,44 +199,44 @@ const Moments = () => {
   }, []);
 
   return (
-    <section className="moments-section" ref={sectionRef}>
+    <section className="moments" ref={sectionRef}>
       <div className="container">
-        
         <div className="moments-header">
           <Copy type="lines" animateOnScroll>
-            <h3>Moments Through The Years</h3>
+            <h3>Timeless Moments</h3>
           </Copy>
 
           <div className="moments-nav">
             <div className="moments-nav-button-wrapper">
-              <button className="moments-nav-button" onClick={handlePrev} aria-label="Previous moments">
+              <button className="moments-nav-button" onClick={handlePrev}>
                 <HiOutlineArrowLeft />
               </button>
             </div>
             <div className="moments-nav-button-wrapper">
-              <button className="moments-nav-button" onClick={handleNext} aria-label="Next moments">
+              <button className="moments-nav-button" onClick={handleNext}>
                 <HiOutlineArrowRight />
               </button>
             </div>
           </div>
         </div>
-
       </div>
 
       <div className="moments-carousel">
         <div className="moments-track" ref={trackRef}>
-          {MOMENTS.map((moment, index) => (
+          {moments.map((moment, index) => (
             <div className="moment-card" key={index}>
-              <div className="moment-img-container">
-                <Image
-                  src={moment.image}
-                  alt={`Chef Sanjay Patel with ${moment.name}`}
-                  fill
-                  sizes="300px"
-                  className="moment-image"
-                />
-              </div>
-              <span className="moment-name">{moment.name}</span>
+              <SteppedFrame stepSize="sm" borderColor="cream" innerRing={true} className="moment-stepped-frame">
+                <div className="moment-image-wrapper">
+                  <Image
+                    src={moment.image}
+                    alt={moment.alt}
+                    fill
+                    sizes="520px"
+                    style={{ objectFit: "cover" }}
+                    priority={index < 3}
+                  />
+                </div>
+              </SteppedFrame>
             </div>
           ))}
         </div>

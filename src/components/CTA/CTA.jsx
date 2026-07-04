@@ -4,25 +4,27 @@ import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
-import { HiOutlineLocationMarker, HiOutlinePhone, HiOutlineMail, HiOutlineClock, HiOutlineMap, HiArrowRight } from "react-icons/hi";
-import Button from "@/components/Button/Button";
-import Copy from "@/components/Copy/Copy";
+import {
+  HiOutlineLocationMarker,
+  HiOutlinePhone,
+  HiOutlineClock,
+  HiOutlineMap,
+  HiArrowRight,
+  HiOutlineExternalLink,
+} from "react-icons/hi";
 
 import "./CTA.css";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const ACTION_CARDS = [
+const ACTION_LINKS = [
   {
     id: "reserve",
     title: "Reserve a Table",
     link: "/reservation",
     icon: (
-      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M3 20h18" />
-        <path d="M5 20a7 7 0 0 1 14 0" />
-        <path d="M12 5V2" />
-        <circle cx="12" cy="5" r="1" />
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M3 20h18" /><path d="M5 20a7 7 0 0 1 14 0" /><path d="M12 5V2" /><circle cx="12" cy="5" r="1" />
       </svg>
     ),
   },
@@ -31,10 +33,8 @@ const ACTION_CARDS = [
     title: "Order Online",
     link: "/menu",
     icon: (
-      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z" />
-        <line x1="3" y1="6" x2="21" y2="6" />
-        <path d="M16 10a4 4 0 0 1-8 0" />
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z" /><line x1="3" y1="6" x2="21" y2="6" /><path d="M16 10a4 4 0 0 1-8 0" />
       </svg>
     ),
   },
@@ -43,12 +43,8 @@ const ACTION_CARDS = [
     title: "Plan Catering",
     link: "/services/catering",
     icon: (
-      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M6 18 L18 6" />
-        <path d="M6 6 Q9 12 6 18 C5 19 4 19 4 19 H20" />
-        <path d="M18 18 Q15 12 18 6 C19 5 20 5 20 5 H4" />
-        <circle cx="6" cy="6" r="1" />
-        <circle cx="18" cy="18" r="1" />
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M3 11l19-9-9 19-2-8-8-2z" />
       </svg>
     ),
   },
@@ -57,14 +53,10 @@ const ACTION_CARDS = [
     title: "Book The Food Truck",
     link: "/services/food-trucks",
     icon: (
-      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round">
-        <rect x="2" y="4" width="16" height="12" rx="2" />
-        <path d="M18 8h4l2 3v5h-6V8z" />
-        <circle cx="6" cy="20" r="2" />
-        <circle cx="14" cy="20" r="2" />
-        <circle cx="20" cy="20" r="2" />
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
+        <rect x="2" y="4" width="16" height="12" rx="2" /><path d="M18 8h4l2 3v5h-6V8z" />
+        <circle cx="6" cy="20" r="2" /><circle cx="14" cy="20" r="2" /><circle cx="20" cy="20" r="2" />
         <path d="M8 20h4" />
-        <path d="M16 20h2" />
       </svg>
     ),
   },
@@ -77,220 +69,172 @@ const CTA = () => {
     const section = sectionRef.current;
     if (!section) return;
 
-    const cards = section.querySelectorAll(".cta-card");
-    const headerElements = section.querySelectorAll(".cta-header-animate");
-    const splitLeft = section.querySelector(".cta-split-left");
-    const splitRight = section.querySelector(".cta-split-right");
+    const animEls = section.querySelectorAll(".cta-animate");
 
     gsap.fromTo(
-      headerElements,
-      { opacity: 0, y: 30 },
+      animEls,
+      { opacity: 0, y: 35 },
       {
-        opacity: 1,
-        y: 0,
+        opacity: 1, y: 0,
         duration: 1,
-        stagger: 0.15,
+        stagger: 0.12,
         ease: "power3.out",
-        scrollTrigger: {
-          trigger: ".cta-header",
-          start: "top 85%",
-          once: true,
-        },
+        scrollTrigger: { trigger: section, start: "top 80%", once: true },
       }
     );
 
+    const mapWrapper = section.querySelector(".cta-map-wrapper");
     gsap.fromTo(
-      cards,
-      { opacity: 0, y: 40 },
+      mapWrapper,
+      { opacity: 0, scale: 0.97 },
       {
-        opacity: 1,
-        y: 0,
-        duration: 0.8,
-        stagger: 0.1,
+        opacity: 1, scale: 1,
+        duration: 1.3,
         ease: "power2.out",
-        scrollTrigger: {
-          trigger: ".cta-cards-grid",
-          start: "top 80%",
-          once: true,
-        },
-      }
-    );
-
-    gsap.fromTo(
-      [splitLeft, splitRight],
-      { opacity: 0, y: 50 },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 1,
-        stagger: 0.2,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: ".cta-split-container",
-          start: "top 80%",
-          once: true,
-        },
+        scrollTrigger: { trigger: mapWrapper, start: "top 85%", once: true },
       }
     );
   }, []);
 
   return (
     <section className="cta" ref={sectionRef}>
-      <div className="container">
-        
-        {/* Upper Block - Header & Actions */}
-        <div className="cta-header">
-          <div className="cta-header-animate header-flourish-top">
-            <svg width="60" height="20" viewBox="0 0 60 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+
+      {/* ── Hero background image ── */}
+      <div className="cta-bg-image">
+        <Image
+          src="/cta/cta-img.jpg"
+          alt=""
+          fill
+          sizes="100vw"
+          className="cta-bg-img"
+          priority={false}
+        />
+        <div className="cta-bg-overlay" />
+      </div>
+
+      <div className="cta-inner container">
+
+        {/* ─────────────────────────── */}
+        {/* TOP: Centred headline block  */}
+        {/* ─────────────────────────── */}
+        <div className="cta-headline-block">
+          <div className="cta-animate cta-flourish">
+            <svg width="60" height="20" viewBox="0 0 60 20" fill="none">
               <line x1="0" y1="10" x2="25" y2="10" stroke="var(--base-300)" strokeWidth="0.8"/>
               <path d="M27 10 L30 7 L33 10 L30 13 Z" fill="var(--base-300)"/>
               <line x1="35" y1="10" x2="60" y2="10" stroke="var(--base-300)" strokeWidth="0.8"/>
             </svg>
           </div>
-
-          <span className="cta-header-animate cta-tagline">Ready To Experience</span>
-          
-          <h2 className="cta-header-animate cta-title">Bollywood Bites?</h2>
-
-          <p className="cta-header-animate cta-subtitle">
-            Whether you&rsquo;re joining us for dinner, planning an unforgettable celebration, or bringing our food truck to your next event, we&rsquo;re ready to make it memorable.
+          <span className="cta-animate cta-tagline">Ready to Experience</span>
+          <h2 className="cta-animate cta-title">Bollywood Bites?</h2>
+          <p className="cta-animate cta-subtitle">
+            Whether you&rsquo;re joining us for dinner, planning an unforgettable celebration,
+            or bringing our food truck to your next event — we&rsquo;re ready to make it memorable.
           </p>
         </div>
 
-        {/* 4 Cards Grid */}
-        <div className="cta-cards-grid">
-          {ACTION_CARDS.map((card) => (
-            <a href={card.link} key={card.id} className="cta-card">
-              <div className="cta-card-icon">{card.icon}</div>
-              <h3 className="cta-card-title">{card.title}</h3>
-              <div className="cta-card-arrow">
-                <HiArrowRight className="arrow-icon" />
+        {/* ─────────────────────────────────── */}
+        {/* MIDDLE: 3-column info + action strip */}
+        {/* ─────────────────────────────────── */}
+        <div className="cta-info-strip">
+
+          {/* Col 1: Restaurant details */}
+          <div className="cta-animate cta-details-col">
+            <h3 className="cta-col-label">Find Us</h3>
+
+            <div className="cta-detail-row">
+              <HiOutlineLocationMarker className="cta-detail-icon" />
+              <div>
+                <span className="cta-detail-title">Location</span>
+                <p>10789 Weyburn Ave<br />Los Angeles, CA 90024<br /><span className="cta-detail-sub">Westwood Village</span></p>
               </div>
+            </div>
+
+            <div className="cta-detail-row">
+              <HiOutlineClock className="cta-detail-icon" />
+              <div>
+                <span className="cta-detail-title">Hours</span>
+                <p className="cta-time-row"><span>Mon – Thu</span>11 AM – 10 PM</p>
+                <p className="cta-time-row"><span>Fri – Sun</span>11 AM – 11 PM</p>
+              </div>
+            </div>
+
+            <div className="cta-detail-row">
+              <HiOutlinePhone className="cta-detail-icon" />
+              <div>
+                <span className="cta-detail-title">Phone</span>
+                <p>(310) 474-0707</p>
+              </div>
+            </div>
+
+            <div className="cta-detail-row">
+              <HiOutlineMap className="cta-detail-icon" />
+              <div>
+                <span className="cta-detail-title">Parking</span>
+                <p>Valet &amp; street parking available</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Col 2: Central CTA pillar */}
+          <div className="cta-animate cta-pillar-col">
+            <div className="cta-pillar-ornament">
+              <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+                <path d="M24 4 L44 24 L24 44 L4 24 Z" stroke="var(--base-300)" strokeWidth="1" fill="none" opacity="0.4"/>
+                <path d="M24 12 L36 24 L24 36 L12 24 Z" stroke="var(--base-300)" strokeWidth="1" fill="none" opacity="0.6"/>
+                <circle cx="24" cy="24" r="4" fill="var(--base-300)"/>
+              </svg>
+            </div>
+            <p className="cta-pillar-quote">&ldquo;Come for the food.<br/>Stay for the experience.&rdquo;</p>
+            <a href="/reservation" className="cta-pillar-btn">
+              Reserve a Table
+              <HiArrowRight />
             </a>
-          ))}
+            <a
+              href="https://maps.app.goo.gl/SE5nVw5Ahf5vF4ZY8"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="cta-directions-link"
+            >
+              <HiOutlineExternalLink />
+              Get Directions
+            </a>
+          </div>
+
+          {/* Col 3: Action links */}
+          <div className="cta-animate cta-actions-col">
+            <h3 className="cta-col-label">Quick Links</h3>
+            <div className="cta-action-list">
+              {ACTION_LINKS.map((item) => (
+                <a key={item.id} href={item.link} className="cta-action-item">
+                  <div className="cta-action-icon">{item.icon}</div>
+                  <span className="cta-action-title">{item.title}</span>
+                  <HiArrowRight className="cta-action-arrow" />
+                </a>
+              ))}
+            </div>
+          </div>
         </div>
 
-        {/* Lower Block - splitscreen */}
-        <div className="cta-split-container">
-          
-          {/* Left Column - Framed Photo Card */}
-          <div className="cta-split-left">
-            <div className="visit-image-frame">
-              <Image
-                src="/cta/cta-img.jpg"
-                alt="Bollywood Bites Sunset Exterior"
-                fill
-                sizes="(max-width: 991px) 100vw, 50vw"
-                className="visit-image"
-              />
-              <div className="visit-image-overlay">
-                <span className="visit-tag">Visit</span>
-                <h3 className="visit-title">Bollywood Bites</h3>
-                <div className="visit-divider" />
-                <p className="visit-caption">An unforgettable experience awaits you.</p>
-              </div>
-            </div>
+        {/* ─────────────────────────────── */}
+        {/* BOTTOM: full-width embedded map */}
+        {/* ─────────────────────────────── */}
+        <div className="cta-map-wrapper">
+          <iframe
+            src="https://maps.google.com/maps?q=Bollywood+Bites+10789+Weyburn+Ave+Los+Angeles+CA+90024&z=16&output=embed"
+            width="100%"
+            height="100%"
+            style={{ border: 0 }}
+            allowFullScreen=""
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+            title="Bollywood Bites on Google Maps"
+            className="cta-map-iframe"
+          />
+          <div className="cta-map-badge">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+            Bollywood Bites — Westwood Village, LA
           </div>
-
-          {/* Right Column - Info Box & Map */}
-          <div className="cta-split-right">
-            
-            <div className="visit-info-details">
-              
-              {/* Location */}
-              <div className="info-detail-item">
-                <div className="detail-icon"><HiOutlineLocationMarker /></div>
-                <div className="detail-content">
-                  <h4>Location</h4>
-                  <p>10789 Weyburn Ave, Los Angeles, CA 90024 (Westwood Village)</p>
-                </div>
-              </div>
-
-              {/* Hours */}
-              <div className="info-detail-item">
-                <div className="detail-icon"><HiOutlineClock /></div>
-                <div className="detail-content">
-                  <h4>Hours</h4>
-                  <p className="time-row"><span>Mon &ndash; Thu:</span> 11:00 AM &ndash; 10:00 PM</p>
-                  <p className="time-row"><span>Fri &ndash; Sun:</span> 11:00 AM &ndash; 11:00 PM</p>
-                </div>
-              </div>
-
-              {/* Phone */}
-              <div className="info-detail-item">
-                <div className="detail-icon"><HiOutlinePhone /></div>
-                <div className="detail-content">
-                  <h4>Phone</h4>
-                  <p>(310) 474-0707</p>
-                </div>
-              </div>
-
-              {/* Parking */}
-              <div className="info-detail-item">
-                <div className="detail-icon"><HiOutlineMap /></div>
-                <div className="detail-content">
-                  <h4>Parking</h4>
-                  <p>Valet &amp; street parking available</p>
-                </div>
-              </div>
-
-              {/* Email */}
-              <div className="info-detail-item">
-                <div className="detail-icon"><HiOutlineMail /></div>
-                <div className="detail-content">
-                  <h4>Email</h4>
-                  <p>hello@bollywoodbites.com</p>
-                </div>
-              </div>
-
-            </div>
-
-            {/* Custom Styled Map & Directions Button */}
-            <div className="visit-map-container">
-              <div className="map-mockup-wrapper">
-                <svg className="map-vector" viewBox="0 0 400 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  {/* Background map area */}
-                  <rect width="400" height="200" fill="rgba(9, 30, 23, 0.4)" rx="12" stroke="rgba(197, 168, 128, 0.15)"/>
-                  
-                  {/* Roads network */}
-                  <path d="M40 0 V200 M140 0 V200 M240 0 V200 M340 0 V200" stroke="rgba(197, 168, 128, 0.08)" strokeWidth="10"/>
-                  <path d="M0 60 H400 M0 140 H400" stroke="rgba(197, 168, 128, 0.08)" strokeWidth="10"/>
-                  
-                  <path d="M40 0 V200 M140 0 V200 M240 0 V200 M340 0 V200" stroke="rgba(197, 168, 128, 0.2)" strokeWidth="1"/>
-                  <path d="M0 60 H400 M0 140 H400" stroke="rgba(197, 168, 128, 0.2)" strokeWidth="1"/>
-                  
-                  {/* Map Text Labels */}
-                  <text x="50" y="50" fill="var(--base-200)" fontSize="8" fontFamily="var(--font-dm-mono)" opacity="0.6" letterSpacing="0.05em">Weyburn Ave</text>
-                  <text x="150" y="130" fill="var(--base-200)" fontSize="8" fontFamily="var(--font-dm-mono)" opacity="0.6" letterSpacing="0.05em">Westwood Blvd</text>
-                  <text x="250" y="50" fill="var(--base-300)" fontSize="9" fontWeight="bold" fontFamily="var(--font-host-grotesk)" opacity="0.8">UCLA</text>
-                  <text x="45" y="170" fill="var(--base-200)" fontSize="8" fontFamily="var(--font-host-grotesk)" opacity="0.5">Westwood Village</text>
-                  
-                  {/* Glowing pin marker with BB badge */}
-                  <g transform="translate(140, 60)">
-                    <circle cx="0" cy="0" r="12" fill="rgba(197, 168, 128, 0.25)"/>
-                    <path d="M0 -15 C-6 -15 -6 -8 0 0 C6 -8 6 -15 0 -15 Z" fill="var(--base-300)" stroke="var(--base-600)" strokeWidth="1"/>
-                    <circle cx="0" cy="-11" r="3.5" fill="var(--base-600)"/>
-                    <text x="9" y="-8" fill="var(--base-300)" fontSize="9" fontWeight="bold" fontFamily="var(--font-dm-mono)">BB</text>
-                  </g>
-                </svg>
-              </div>
-
-              {/* Get Directions Link button */}
-              <a
-                href="https://www.google.com/maps/dir/?api=1&destination=10789+Weyburn+Ave+Los+Angeles+CA+90024"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="directions-btn"
-              >
-                <svg className="directions-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-                  <path d="M3 22l8-20 8 20-8-5z" />
-                </svg>
-                <span>Get Directions</span>
-              </a>
-            </div>
-
-          </div>
-
         </div>
 
       </div>

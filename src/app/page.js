@@ -96,14 +96,14 @@ export default function Home() {
               animateOnScroll={false}
               delay={isInitialPageLoad ? preloaderDelay + 0.15 : 1.1}
             >
-              <p className="sm">Est. 2026</p>
+              <p className="sm">Est. 2012</p>
             </Copy>
             <Copy
               type="lines"
               animateOnScroll={false}
               delay={isInitialPageLoad ? preloaderDelay + 0.25 : 1.2}
             >
-              <p className="sm">London, UK</p>
+              <p className="sm">Los Angeles</p>
             </Copy>
           </div>
         </div>

@@ -18,8 +18,6 @@ const GALLERY_IMAGES = [
   { src: "/home/services-food-truck.png", alt: "Bollywood Bites Food Truck at Night" },
   { src: "/dining-menu/dining-menu-drinks.jpg", alt: "Indian Spiced Cocktail and Appetizer" },
   { src: "/about/about-image-banner.jpg", alt: "Beautiful Banquet Table Setting" },
-  { src: "/home/about-3.jpg", alt: "Indian Family Dining Together" },
-  { src: "/home/services-catering.png", alt: "Luxury Indian Buffet Catering Spread" },
 ];
 
 const GallerySection = () => {

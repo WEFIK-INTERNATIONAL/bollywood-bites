@@ -92,49 +92,25 @@
   align-items: center;
 }
 
-.chef-image-frame {
+.chef-stepped-frame-wrapper {
   position: relative;
   width: 100%;
   max-width: 460px;
-  aspect-ratio: 1169 / 1346; /* Matching original portrait aspect ratio exactly */
-  border-radius: 4px; /* Sharp elegant corners matching chef-luxury-frame */
-  overflow: hidden;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+  filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.4));
 }
 
-.chef-image-frame::before {
-  content: "";
-  position: absolute;
-  inset: 12px;
-  border: 1px solid var(--base-300);
-  z-index: 2;
-  pointer-events: none;
-  opacity: 0.8;
+.chef-stepped-frame {
+  width: 100%;
 }
 
-.chef-image-frame::after {
-  content: "";
-  position: absolute;
-  inset: 16px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  z-index: 2;
-  pointer-events: none;
-}
-
-.chef-image-container {
+.chef-stepped-image-container {
   position: relative;
   width: 100%;
-  height: 100%;
+  aspect-ratio: 1169 / 1346; /* Matching original portrait aspect ratio exactly */
 }
 
 .chef-cooking-image {
   object-fit: cover;
-}
-
-/* Hide helper divs from previous layout */
-.frame-border-outer,
-.frame-border-inner {
-  display: none;
 }
 
 @media (max-width: 991px) {

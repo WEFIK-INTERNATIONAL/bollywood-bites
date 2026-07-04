@@ -2,7 +2,7 @@
   position: relative;
   width: 100%;
   padding: 8rem 0 6rem;
-  background-color: var(--base-600); /* Dark Forest Green background */
+  background-color: var(--base-500); /* Dark Forest Green background */
   color: var(--base-100);
   overflow: hidden;
 }
@@ -11,11 +11,11 @@
   content: "";
   position: absolute;
   inset: 0;
-  background-image: url("/backgrounds/background1.png");
+  background-image: url("/backgrounds/background2.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  opacity: 0.18; /* Subtle background pattern */
+  opacity: 0.05; /* Subtle background pattern */
   pointer-events: none;
   z-index: 0;
 }
@@ -23,6 +23,9 @@
 .press-section .container {
   position: relative;
   z-index: 1;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
 }
 
 /* Header Styling */
@@ -64,249 +67,153 @@
   color: var(--base-300); /* Gold subtitle */
 }
 
-/* Slider Container */
-.press-slider-container {
-  position: relative;
-  display: flex;
-  align-items: center;
-  width: 100%;
-  padding: 0 1rem;
-  margin-bottom: 6rem;
-}
-
-.press-track-wrapper {
-  display: flex;
+/* Press Grid Layout */
+.press-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   gap: 1.75rem;
-  overflow-x: auto;
-  scroll-behavior: smooth;
   width: 100%;
-  padding: 1rem 0;
-  scroll-snap-type: x mandatory;
-  scrollbar-width: none;
+  margin-bottom: 5rem;
 }
 
-.press-track-wrapper::-webkit-scrollbar {
-  display: none;
-}
-
-/* Press Card */
+/* Press Card Base with brand styling */
 .press-card {
-  flex: 0 0 calc(25% - 1.35rem); /* Exactly 4 cards visible on desktop */
-  min-width: 280px;
-  scroll-snap-align: start;
-  border-radius: 16px;
-  overflow: hidden;
-  border: 1px solid rgba(197, 168, 128, 0.15); /* Gold outline border */
-  background-color: rgba(9, 30, 23, 0.4);
   display: flex;
   flex-direction: column;
+  background-color: var(--base-600); /* Deep Forest Green */
+  border: 1px solid rgba(197, 168, 128, 0.15); /* Gold outline */
+  border-radius: 16px;
+  overflow: hidden;
+  text-decoration: none;
   cursor: pointer;
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.35);
-  transition: border-color 0.4s ease, box-shadow 0.4s ease;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+  transition: 
+    transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), 
+    border-color 0.4s ease, 
+    box-shadow 0.4s ease;
+  min-height: 420px;
 }
 
 .press-card:hover {
-  border-color: rgba(197, 168, 128, 0.45);
-  box-shadow: 0 20px 45px rgba(197, 168, 128, 0.1);
+  transform: translateY(-6px);
+  border-color: rgba(197, 168, 128, 0.45); /* bright gold border */
+  box-shadow: 0 20px 45px rgba(197, 168, 128, 0.12);
 }
 
-/* Top Image Frame */
-.press-card-img-wrapper {
+/* Video Card Preview Shading */
+.press-video-preview {
   position: relative;
   width: 100%;
-  aspect-ratio: 16 / 10;
-  overflow: hidden;
+  aspect-ratio: 1.6 / 1;
+  background-color: rgba(9, 30, 23, 0.6); /* Lighter semi-transparent forest green */
   border-bottom: 1px solid rgba(197, 168, 128, 0.15);
+  overflow: hidden;
 }
 
-.press-card-image {
-  object-fit: cover;
-  filter: brightness(0.8) contrast(1.05);
-  transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
-}
-
-.press-card:hover .press-card-image {
-  transform: scale(1.05);
-}
-
-/* Video Play Overlay Button */
-.press-video-play-btn {
+.press-video-iframe {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 46px;
-  height: 46px;
-  border-radius: 50%;
-  background: rgba(9, 30, 23, 0.75);
-  border: 1.5px solid var(--base-300);
-  color: var(--base-300);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.35rem;
-  z-index: 2;
-  transition: transform 0.3s ease, background 0.3s ease, color 0.3s ease;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
 }
 
-.press-card:hover .press-video-play-btn {
-  transform: translate(-50%, -50%) scale(1.1);
-  background: var(--base-300);
-  color: var(--base-600);
-}
-
-.play-icon {
-  margin-left: 2px; /* Centering fix for play triangle */
-}
-
-/* Card Content Details */
-.press-card-content {
-  padding: 1.75rem;
+/* Video Info Details */
+.press-video-info {
+  padding: 1.75rem 2rem;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
   gap: 0.75rem;
   flex: 1;
 }
 
-.press-card-tag {
-  font-family: var(--font-dm-mono), monospace;
-  font-size: 0.7rem;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.15em;
-  color: var(--base-300); /* Accent Gold tag label */
-}
-
-.press-card-heading {
-  font-family: "Roslindale Variable", sans-serif;
-  font-size: 1.25rem;
-  font-weight: 500;
-  color: var(--base-100);
-  line-height: 1.25;
-  text-transform: none; /* natural title case */
-}
-
-.press-card-text {
-  font-family: var(--font-host-grotesk), sans-serif;
-  font-size: 0.9rem;
-  line-height: 1.45;
-  color: var(--base-200); /* Sage/gray secondary body */
-  margin-bottom: 0.75rem;
-  flex: 1;
-}
-
-/* Link Actions */
-.press-card-link {
-  display: inline-flex;
-  align-items: center;
+.press-info-category {
   font-family: var(--font-dm-mono), monospace;
   font-size: 0.75rem;
   font-weight: 500;
   text-transform: uppercase;
-  letter-spacing: 0.15em;
-  color: var(--base-300);
-  text-decoration: none;
-  margin-top: auto;
+  letter-spacing: 0.1em;
+  color: var(--base-300); /* Accent Gold tag */
 }
 
-.press-card-link .arrow {
-  display: inline-block;
-  transition: transform 0.3s ease;
+.press-info-title {
+  font-family: var(--font-host-grotesk), sans-serif;
+  font-size: 1.25rem;
+  font-weight: 550;
+  line-height: 1.35;
+  color: var(--base-100);
 }
 
-.press-card:hover .press-card-link .arrow {
-  transform: translateX(6px);
-}
-
-/* Slider Circular Controls */
-.press-slider-control {
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  border: 1px solid rgba(197, 168, 128, 0.4);
-  background: transparent;
-  color: var(--base-300);
+/* Quote Card Container */
+.press-quote-container {
+  padding: 2.5rem 2rem;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.35rem;
-  cursor: pointer;
-  z-index: 5;
-  transition: background 0.3s, color 0.3s, border-color 0.3s;
+  flex-direction: column;
+  height: 100%;
+  flex: 1;
 }
 
-.press-slider-control:hover {
-  background: var(--base-300);
-  color: var(--base-600);
-  border-color: var(--base-300);
+.press-quote-icon {
+  color: var(--base-300); /* Gold quotes */
+  opacity: 0.75;
+  margin-bottom: 1.5rem;
+  transition: transform 0.4s ease;
 }
 
-.press-btn-left {
-  margin-right: 1.5rem;
+.press-card:hover .press-quote-icon {
+  transform: scale(1.1);
 }
 
-.press-btn-right {
-  margin-left: 1.5rem;
+.press-quote-text {
+  font-family: "Roslindale Variable", sans-serif;
+  font-size: 1.45rem;
+  font-weight: 500;
+  line-height: 1.35;
+  color: var(--base-100);
+  margin-bottom: 2rem;
 }
 
-/* Explore Button at Bottom */
+.press-quote-source {
+  font-family: var(--font-dm-mono), monospace;
+  font-size: 0.8rem;
+  font-weight: 550;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--base-300); /* Gold publisher text */
+  margin-top: auto; /* Align to card bottom */
+}
+
+/* Bottom Explore Button */
 .press-cta-wrapper {
   display: flex;
   justify-content: center;
 }
 
-.press-explore-btn {
-  border: 1px solid var(--base-300);
-  background-color: transparent !important;
-  color: var(--base-100) !important;
-  padding: 1.1rem 2.5rem !important;
-  font-size: 0.85rem !important;
-  border-radius: 4px;
-}
-
-.press-explore-btn .slide-button-bg {
-  background-color: transparent !important;
-  border-radius: 3px;
-}
-
-.press-explore-btn:hover {
-  color: var(--base-600) !important;
-}
-
-.press-explore-btn:hover .slide-button-bg {
-  background-color: var(--base-300) !important;
-}
-
-/* Responsive Layouts */
-@media (max-width: 1200px) {
-  .press-card {
-    flex: 0 0 calc(33.33% - 1.2rem); /* 3 cards visible */
-  }
-}
-
+/* Responsive Breakpoints */
 @media (max-width: 991px) {
-  .press-card {
-    flex: 0 0 calc(50% - 0.9rem); /* 2 cards visible */
+  .press-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+  
+  /* Quote card spans 2 columns on tablet for grid balance */
+  .press-card.quote-card {
+    grid-column: span 2;
   }
 }
 
 @media (max-width: 600px) {
+  .press-grid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+  
+  .press-card.quote-card {
+    grid-column: span 1;
+  }
+  
   .press-card {
-    flex: 0 0 82%; /* 1 card snap visible, mobile swipe */
-  }
-
-  .press-slider-control {
-    width: 40px;
-    height: 40px;
-    font-size: 1.15rem;
-  }
-  
-  .press-btn-left {
-    margin-right: 0.75rem;
-  }
-  
-  .press-btn-right {
-    margin-left: 0.75rem;
+    min-height: auto;
   }
 }

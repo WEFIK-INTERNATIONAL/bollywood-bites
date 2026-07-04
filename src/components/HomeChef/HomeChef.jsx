@@ -5,6 +5,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
 import Button from "@/components/Button/Button";
+import { SteppedFrame } from "../Steppedframe/SteppedFrame";
 
 import "./HomeChef.css";
 
@@ -81,28 +82,26 @@ const HomeChef = () => {
 
             <div className="chef-action">
               <Button href="/about/chef-sanjay-patel" className="chef-explore-btn">
-                Meet Chef Sanjay Patel
+                Learn More
               </Button>
             </div>
           </div>
 
           {/* Right Column - Landscape Image */}
           <div className="home-chef-right">
-            <div className="chef-image-frame">
-              {/* Outer ornamental border */}
-              <div className="frame-border-outer" />
-              <div className="frame-border-inner" />
-              
-              <div className="chef-image-container">
-                <Image
-                  src="/chefs/chef.png"
-                  alt="Chef Sanjay Patel Cooking"
-                  fill
-                  sizes="(max-width: 991px) 100vw, 50vw"
-                  className="chef-cooking-image"
-                  priority
-                />
-              </div>
+            <div className="chef-stepped-frame-wrapper">
+              <SteppedFrame stepSize="md" borderColor="gold" innerRing={true} className="chef-stepped-frame">
+                <div className="chef-stepped-image-container">
+                  <Image
+                    src="/chefs/chef.png"
+                    alt="Chef Sanjay Patel Cooking"
+                    fill
+                    sizes="(max-width: 991px) 100vw, 50vw"
+                    className="chef-cooking-image"
+                    priority
+                  />
+                </div>
+              </SteppedFrame>
             </div>
           </div>
 
@@ -114,3 +113,4 @@ const HomeChef = () => {
 };
 
 export default HomeChef;
+
