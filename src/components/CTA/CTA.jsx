@@ -112,19 +112,28 @@ const CTA = () => {
         <div className="cta-bg-overlay" />
       </div>
 
+      {/* Spinning mandala halo — layered above dark overlay for depth */}
+      <Image
+        src="/mandana/rounded_mandala/Group 9.svg"
+        className="cta-mandala-halo"
+        width={800}
+        height={800}
+        alt=""
+        aria-hidden="true"
+      />
+
+      {/* Corner mandanas — TL and TR to frame the headline */}
+      <Image src="/mandana/corner/Group.svg" className="mandala-corner mandala-corner-tl" width={200} height={200} alt="" aria-hidden="true" />
+      <Image src="/mandana/corner/Group.svg" className="mandala-corner mandala-corner-tr" width={200} height={200} alt="" aria-hidden="true" />
+      <Image src="/mandana/corner/Group.svg" className="mandala-corner mandala-corner-bl" width={200} height={200} alt="" aria-hidden="true" />
+      <Image src="/mandana/corner/Group.svg" className="mandala-corner mandala-corner-br" width={200} height={200} alt="" aria-hidden="true" />
+
       <div className="cta-inner container">
 
         {/* ─────────────────────────── */}
         {/* TOP: Centred headline block  */}
         {/* ─────────────────────────── */}
         <div className="cta-headline-block">
-          <div className="cta-animate cta-flourish">
-            <svg width="60" height="20" viewBox="0 0 60 20" fill="none">
-              <line x1="0" y1="10" x2="25" y2="10" stroke="var(--base-300)" strokeWidth="0.8"/>
-              <path d="M27 10 L30 7 L33 10 L30 13 Z" fill="var(--base-300)"/>
-              <line x1="35" y1="10" x2="60" y2="10" stroke="var(--base-300)" strokeWidth="0.8"/>
-            </svg>
-          </div>
           <span className="cta-animate cta-tagline">Ready to Experience</span>
           <h2 className="cta-animate cta-title">Bollywood Bites?</h2>
           <p className="cta-animate cta-subtitle">
@@ -186,7 +195,14 @@ const CTA = () => {
               </svg>
             </div>
             <p className="cta-pillar-quote">&ldquo;Come for the food.<br/>Stay for the experience.&rdquo;</p>
-            <a href="/reservation" className="cta-pillar-btn">
+            <a 
+              href="/reservation" 
+              className="cta-pillar-btn"
+              data-glf-cuid="a7270cd0-483e-4bb9-9097-6c78af888686" 
+              data-glf-ruid="4e577927-f19b-48d5-bae9-918577bd4a09" 
+              data-glf-reservation="true"
+              onClick={(e) => e.preventDefault()}
+            >
               Reserve a Table
               <HiArrowRight />
             </a>
@@ -200,18 +216,32 @@ const CTA = () => {
               Get Directions
             </a>
           </div>
-
+ 
           {/* Col 3: Action links */}
           <div className="cta-animate cta-actions-col">
             <h3 className="cta-col-label">Quick Links</h3>
             <div className="cta-action-list">
-              {ACTION_LINKS.map((item) => (
-                <a key={item.id} href={item.link} className="cta-action-item">
-                  <div className="cta-action-icon">{item.icon}</div>
-                  <span className="cta-action-title">{item.title}</span>
-                  <HiArrowRight className="cta-action-arrow" />
-                </a>
-              ))}
+              {ACTION_LINKS.map((item) => {
+                const isReserve = item.id === "reserve";
+                const isOrder = item.id === "order";
+                return (
+                  <a 
+                    key={item.id} 
+                    href={item.link} 
+                    className="cta-action-item"
+                    {...((isReserve || isOrder) ? {
+                      "data-glf-cuid": "a7270cd0-483e-4bb9-9097-6c78af888686",
+                      "data-glf-ruid": "4e577927-f19b-48d5-bae9-918577bd4a09",
+                      onClick: (e) => e.preventDefault()
+                    } : {})}
+                    {...(isReserve ? { "data-glf-reservation": "true" } : {})}
+                  >
+                    <div className="cta-action-icon">{item.icon}</div>
+                    <span className="cta-action-title">{item.title}</span>
+                    <HiArrowRight className="cta-action-arrow" />
+                  </a>
+                );
+              })}
             </div>
           </div>
         </div>

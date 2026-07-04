@@ -114,6 +114,11 @@
 }
 
 @media (max-width: 991px) {
+  .home-chef-section::before {
+    background-size: 500px;
+    background-repeat: repeat;
+  }
+
   .home-chef-top-row {
     flex-direction: column;
     gap: 4rem;

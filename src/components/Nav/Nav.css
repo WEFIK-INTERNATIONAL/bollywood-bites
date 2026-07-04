@@ -7,7 +7,7 @@
   align-items: center;
   width: 100%;
   max-width: 2000px;
-  padding: 2.5rem;
+  padding: 1.25rem 2.5rem;
   transform: translateX(-50%);
 }
 
@@ -279,7 +279,7 @@
 
 @media (max-width: 900px) {
   .nav-bar {
-    padding: 2rem 1.5rem;
+    padding: 1rem 1.5rem;
   }
 
   .nav-menu-items,

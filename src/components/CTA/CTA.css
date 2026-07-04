@@ -12,6 +12,24 @@
   overflow: hidden;
 }
 
+/* Spinning mandala halo — sits above the photo overlay, below the content */
+.cta-mandala-halo {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: clamp(500px, 70vw, 800px);
+  height: clamp(500px, 70vw, 800px);
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.06;
+  animation: spin-slow 160s linear infinite;
+  filter: invert(80%) sepia(15%) saturate(700%) hue-rotate(330deg) brightness(90%) contrast(85%);
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+
 /* Full-bleed background image layer */
 .cta-bg-image {
   position: absolute;
@@ -38,11 +56,12 @@
 /* Inner content wrapper */
 .cta-inner {
   position: relative;
-  z-index: 1;
+  z-index: 2;
   max-width: 1200px;
   margin: 0 auto;
   padding: 8rem 1.5rem 0;
 }
+
 
 /* ── Headline block ── */
 .cta-headline-block {

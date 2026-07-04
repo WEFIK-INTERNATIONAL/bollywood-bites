@@ -152,32 +152,13 @@ const StreetFood = () => {
   return (
     <section className="street-section" ref={sectionRef}>
       <div className="container">
-        
         {/* Section Header */}
         <div className="street-header">
-          <div className="street-header-animate header-flourish-top">
-            <svg width="120" height="20" viewBox="0 0 120 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <line x1="0" y1="10" x2="45" y2="10" stroke="var(--base-300)" strokeWidth="1"/>
-              <circle cx="60" cy="10" r="4" fill="none" stroke="var(--base-300)" strokeWidth="1.5"/>
-              <path d="M57 10 L60 7 L63 10 L60 13 Z" fill="var(--base-300)"/>
-              <line x1="75" y1="10" x2="120" y2="10" stroke="var(--base-300)" strokeWidth="1"/>
-            </svg>
-          </div>
-
           <span className="street-header-animate street-tagline">Bollywood Bites Signatures</span>
-          
           <h2 className="street-header-animate street-title">
             India&rsquo;s Street <br />
             <span className="highlight-text">Food Classics</span>
           </h2>
-
-          <div className="street-header-animate header-flourish-bottom">
-            <svg width="60" height="20" viewBox="0 0 60 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <line x1="0" y1="10" x2="25" y2="10" stroke="var(--base-300)" strokeWidth="0.8"/>
-              <path d="M27 10 L30 7 L33 10 L30 13 Z" fill="var(--base-300)"/>
-              <line x1="35" y1="10" x2="60" y2="10" stroke="var(--base-300)" strokeWidth="0.8"/>
-            </svg>
-          </div>
 
           <p className="street-header-animate street-subtitle">
             The iconic flavors that made India fall in love with street food.
@@ -207,11 +188,6 @@ const StreetFood = () => {
               {/* Vertical Title (reads top to bottom) */}
               <div className="street-card-vertical-header">
                 <span className="street-card-vertical-title">{food.title}</span>
-              </div>
-
-              {/* Collapsed Bottom Icon */}
-              <div className="street-card-collapsed-icon">
-                {food.icon}
               </div>
 
               {/* Expanded Content Overlay */}

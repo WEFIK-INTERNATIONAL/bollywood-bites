@@ -200,6 +200,9 @@ const Moments = () => {
 
   return (
     <section className="moments" ref={sectionRef}>
+      {/* Mandana leaf borders top and bottom */}
+      <div className="leaf-border-top" aria-hidden="true" />
+      <div className="leaf-border-bottom" aria-hidden="true" />
       <div className="container">
         <div className="moments-header">
           <Copy type="lines" animateOnScroll>

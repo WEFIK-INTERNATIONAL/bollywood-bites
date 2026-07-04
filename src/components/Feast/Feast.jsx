@@ -184,6 +184,20 @@ const Feast = () => {
 
   return (
     <section className="feast-section" ref={sectionRef}>
+      {/* Spinning mandala halo — atmospheric background watermark */}
+      <Image
+        src="/mandana/rounded_mandala/Group 9.svg"
+        className="feast-mandala-halo"
+        width={900}
+        height={900}
+        alt=""
+        aria-hidden="true"
+      />
+      {/* Corner mandanas — frame all four corners of the section */}
+      <Image src="/mandana/corner/Group.svg" className="mandala-corner mandala-corner-tl" width={200} height={200} alt="" aria-hidden="true" />
+      <Image src="/mandana/corner/Group.svg" className="mandala-corner mandala-corner-tr" width={200} height={200} alt="" aria-hidden="true" />
+      <Image src="/mandana/corner/Group.svg" className="mandala-corner mandala-corner-bl" width={200} height={200} alt="" aria-hidden="true" />
+      <Image src="/mandana/corner/Group.svg" className="mandala-corner mandala-corner-br" width={200} height={200} alt="" aria-hidden="true" />
       <div className="container">
         
         {/* Centered Section Header */}
@@ -215,18 +229,13 @@ const Feast = () => {
                     src={img.src}
                     alt={img.alt}
                     fill
-                    sizes="100vw"
+                    sizes="(max-width: 1200px) calc(100vw - 3rem), 1152px"
                     className="feast-slide-image"
                     priority={index === 0}
                   />
                   <div className="feast-slide-overlay">
                     <span className="slide-animate dish-tag">{img.tag}</span>
                     <h3 className="slide-animate dish-title">{img.title}</h3>
-                  </div>
-                  <div className="feast-slide-counter">
-                    <span className="slide-animate counter-current">0{index + 1}</span>
-                    <span className="counter-separator">/</span>
-                    <span className="counter-total">0{FEAST_IMAGES.length}</span>
                   </div>
                 </div>
               ))}

@@ -139,6 +139,11 @@
 
 /* Responsive Layouts */
 @media (max-width: 991px) {
+  .gallery-section::before {
+    background-size: 500px;
+    background-repeat: repeat;
+  }
+
   .gallery-grid {
     grid-template-columns: repeat(2, 1fr);
     grid-auto-rows: auto;

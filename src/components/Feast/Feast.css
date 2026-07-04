@@ -7,6 +7,24 @@
   overflow: hidden;
 }
 
+/* Spinning mandala halo — large background watermark behind the carousel */
+.feast-mandala-halo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: clamp(600px, 90vw, 1000px);
+  height: clamp(600px, 90vw, 1000px);
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.05;
+  animation: spin-slow 200s linear infinite;
+  filter: invert(80%) sepia(15%) saturate(700%) hue-rotate(330deg) brightness(90%) contrast(85%);
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+
 .feast-section::before {
   content: "";
   position: absolute;
@@ -50,8 +68,9 @@
 /* Stepped Frame Wrapper with Relative Position for Overlays */
 .feast-stepped-frame-wrapper {
   position: relative;
-  width: 100%;
-  max-width: 100%;
+  width: calc(100% - 36px);
+  margin-left: auto;
+  margin-right: auto;
   filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.4));
   margin-bottom: 4rem;
   display: flex;
@@ -230,6 +249,11 @@
 
 /* Responsive Styles */
 @media (max-width: 991px) {
+  .feast-section::before {
+    background-size: 500px;
+    background-repeat: repeat;
+  }
+
   .feast-slides-container {
     aspect-ratio: 1.4 / 1;
   }
@@ -245,14 +269,6 @@
 }
 
 @media (max-width: 768px) {
-  .feast-frame-nav-button.prev-btn {
-    left: -15px; /* Shift safely inside on tablet */
-  }
-
-  .feast-frame-nav-button.next-btn {
-    right: -15px;
-  }
-
   .feast-slides-container {
     aspect-ratio: 1.15 / 1;
   }

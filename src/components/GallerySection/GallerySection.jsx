@@ -12,12 +12,12 @@ import "./GallerySection.css";
 gsap.registerPlugin(ScrollTrigger);
 
 const GALLERY_IMAGES = [
-  { src: "/home/about-5.jpg", alt: "Luxury Indoor Restaurant Dining Room" },
-  { src: "/dining-menu/dining-menu-foodsharing.jpg", alt: "Gourmet Food Sharing" },
-  { src: "/home/chef-cooking.png", alt: "Chef Sanjay Patel Cooking" },
-  { src: "/home/services-food-truck.png", alt: "Bollywood Bites Food Truck at Night" },
-  { src: "/dining-menu/dining-menu-drinks.jpg", alt: "Indian Spiced Cocktail and Appetizer" },
-  { src: "/about/about-image-banner.jpg", alt: "Beautiful Banquet Table Setting" },
+  { src: "/restaurant/homegallery1.jpg", alt: "Dinning Area" },
+  { src: "/restaurant/homegallery2.jpg", alt: "Customer Serving" },
+  { src: "/restaurant/homegallery3.jpeg", alt: "Food Track" },
+  { src: "/restaurant/homegallery4.jpg", alt: "Food Buffet" },
+  { src: "/restaurant/homegallery5.jpg", alt: "Catering" },
+  { src: "/restaurant/homegallery6.jpeg", alt: "Spirit of india" },
 ];
 
 const GallerySection = () => {
@@ -89,29 +89,11 @@ const GallerySection = () => {
         
         {/* Section Header */}
         <div className="gallery-header">
-          <div className="gallery-header-animate header-flourish-top">
-            <svg width="60" height="20" viewBox="0 0 60 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <line x1="0" y1="10" x2="25" y2="10" stroke="var(--base-300)" strokeWidth="0.8"/>
-              <path d="M27 10 L30 7 L33 10 L30 13 Z" fill="var(--base-300)"/>
-              <line x1="35" y1="10" x2="60" y2="10" stroke="var(--base-300)" strokeWidth="0.8"/>
-            </svg>
-          </div>
-
           <span className="gallery-header-animate gallery-tagline">The Bollywood Bites Experience</span>
-          
           <h2 className="gallery-header-animate gallery-title">
             Where Every Meal <br />
             <span className="highlight-text">Becomes a Memory.</span>
           </h2>
-
-          <div className="gallery-header-animate header-flourish-bottom">
-            <svg width="120" height="20" viewBox="0 0 120 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <line x1="0" y1="10" x2="45" y2="10" stroke="var(--base-300)" strokeWidth="1"/>
-              <circle cx="60" cy="10" r="4" fill="none" stroke="var(--base-300)" strokeWidth="1.5"/>
-              <path d="M57 10 L60 7 L63 10 L60 13 Z" fill="var(--base-300)"/>
-              <line x1="75" y1="10" x2="120" y2="10" stroke="var(--base-300)" strokeWidth="1"/>
-            </svg>
-          </div>
         </div>
 
         {/* 4x2 Photo Collage Grid */}

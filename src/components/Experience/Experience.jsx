@@ -134,6 +134,40 @@ const Experience = () => {
   return (
     <section className="experience-section" ref={sectionRef}>
       {/* Subtle mandana background watermarks for premium theme styling */}
+      {/* Corner mandanas — frame the section top-left and bottom-right */}
+      <Image
+        src="/mandana/corner/Group.svg"
+        className="mandala-corner mandala-corner-tl"
+        width={200}
+        height={200}
+        alt=""
+        aria-hidden="true"
+      />
+      <Image
+        src="/mandana/corner/Group.svg"
+        className="mandala-corner mandala-corner-tr"
+        width={200}
+        height={200}
+        alt=""
+        aria-hidden="true"
+      />
+      <Image
+        src="/mandana/corner/Group.svg"
+        className="mandala-corner mandala-corner-bl"
+        width={200}
+        height={200}
+        alt=""
+        aria-hidden="true"
+      />
+      <Image
+        src="/mandana/corner/Group.svg"
+        className="mandala-corner mandala-corner-br"
+        width={200}
+        height={200}
+        alt=""
+        aria-hidden="true"
+      />
+
 
       <div className="container">
         <div className="experience-header">

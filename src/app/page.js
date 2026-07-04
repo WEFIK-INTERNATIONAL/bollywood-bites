@@ -82,10 +82,21 @@ export default function Home() {
           </Copy>
 
           <div className="hero-buttons-container">
-            <Button href="/menu" className="hero-btn hero-btn-primary">
+            <Button 
+            href="javascript:;" 
+            className="hero-btn hero-btn-primary"
+            data-glf-cuid="a7270cd0-483e-4bb9-9097-6c78af888686" 
+            data-glf-ruid="4e577927-f19b-48d5-bae9-918577bd4a09" 
+            >
               Order Online
             </Button>
-            <Button href="/reservation" className="hero-btn hero-btn-secondary">
+            <Button 
+            href="javascript:;" 
+            className="hero-btn hero-btn-secondary"
+            data-glf-cuid="a7270cd0-483e-4bb9-9097-6c78af888686" 
+            data-glf-ruid="4e577927-f19b-48d5-bae9-918577bd4a09" 
+            data-glf-reservation="true" 
+            >
               Book a Table
             </Button>
           </div>

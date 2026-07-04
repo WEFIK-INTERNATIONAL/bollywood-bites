@@ -411,6 +411,10 @@
   .brand-column {
     grid-column: span 3;
   }
+
+  .footer-bottom{
+    border-top: none;
+  }
 }
 
 @media (max-width: 580px) {

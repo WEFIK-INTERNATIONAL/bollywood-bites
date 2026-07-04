@@ -31,31 +31,35 @@
 /* Subtle background watermarks to tie into the Indian theme */
 .experience-ornament-left {
   position: absolute;
-  top: 5%;
-  left: -10%;
-  width: 400px;
-  height: 400px;
-  background-image: url("/mandana/typeone/mandanafourteen.svg");
+  top: 0%;
+  left: -8%;
+  width: clamp(340px, 40vw, 580px);
+  height: clamp(340px, 40vw, 580px);
+  background-image: url("/mandana/typetwo/mandanasix.svg");
   background-repeat: no-repeat;
   background-size: contain;
-  opacity: 0.04;
+  opacity: 0.055;
   pointer-events: none;
-  filter: sepia(1) saturate(5) hue-rotate(330deg);
+  z-index: 0;
+  filter: invert(80%) sepia(15%) saturate(700%) hue-rotate(330deg) brightness(90%) contrast(85%);
 }
 
 .experience-ornament-right {
   position: absolute;
-  bottom: 10%;
-  right: -10%;
-  width: 400px;
-  height: 400px;
-  background-image: url("/mandana/typeone/mandanaten.svg");
+  bottom: 2%;
+  right: -8%;
+  width: clamp(340px, 40vw, 580px);
+  height: clamp(340px, 40vw, 580px);
+  background-image: url("/mandana/typetwo/mandanaeight.svg");
   background-repeat: no-repeat;
   background-size: contain;
-  opacity: 0.04;
+  opacity: 0.055;
   pointer-events: none;
-  filter: sepia(1) saturate(5) hue-rotate(330deg);
+  z-index: 0;
+  filter: invert(80%) sepia(15%) saturate(700%) hue-rotate(330deg) brightness(90%) contrast(85%);
+  transform: scaleX(-1); /* mirror for visual balance */
 }
+
 
 .experience-header {
   text-align: center;
@@ -418,6 +422,11 @@
 }
 
 @media (max-width: 991px) {
+  .experience-section::before {
+    background-size: 500px;
+    background-repeat: repeat;
+  }
+
   .experience-cards {
     grid-template-columns: 1fr;
     gap: 2rem;

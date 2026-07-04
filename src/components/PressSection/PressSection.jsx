@@ -99,17 +99,8 @@ const PressSection = () => {
   return (
     <section className="press-section" ref={sectionRef}>
       <div className="container">
-        
         {/* Section Header */}
         <div className="press-header">
-          <div className="press-header-animate header-flourish-top">
-            <svg width="60" height="20" viewBox="0 0 60 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <line x1="0" y1="10" x2="25" y2="10" stroke="var(--base-300)" strokeWidth="0.8"/>
-              <path d="M27 10 L30 7 L33 10 L30 13 Z" fill="var(--base-300)"/>
-              <line x1="35" y1="10" x2="60" y2="10" stroke="var(--base-300)" strokeWidth="0.8"/>
-            </svg>
-          </div>
-
           <span className="press-header-animate press-tagline">In The Media</span>
           
           <h2 className="press-header-animate press-title">Chef Sanjay in the Spotlight</h2>

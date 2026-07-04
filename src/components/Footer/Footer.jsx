@@ -14,7 +14,6 @@ const NAV_COLUMNS = [
   {
     heading: "About",
     links: [
-      { label: "Our Story", href: "/about" },
       { label: "Chef Sanjay Patel", href: "/about/chef-sanjay-patel" },
       { label: "Event Gallery", href: "/about/event-gallery" },
       { label: "Star Gallery", href: "/about/star-gallery" },

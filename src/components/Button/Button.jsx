@@ -10,10 +10,13 @@ import "./Button.css";
 const MOBILE_BREAKPOINT = 1000;
 
 const Button = forwardRef(
-  ({ href = "#", children, className = "", onClick }, ref) => {
+  ({ href, children, className = "", onClick, ...props }, ref) => {
     const buttonRef = useRef(null);
     const hoverTimelineRef = useRef(null);
     const { navigateWithTransition } = useViewTransition();
+
+    const isButton = !href || href === "#" || href.startsWith("javascript:");
+    const Tag = isButton ? "button" : "a";
 
     const buttonText = typeof children === "string" ? children.trim().replace(/\s+/g, " ") : "";
     const characters = buttonText.split("");
@@ -109,7 +112,7 @@ const Button = forwardRef(
         button.removeEventListener("mouseenter", handleMouseEnter);
         button.removeEventListener("mouseleave", handleMouseLeave);
         gsap.set(defaultChars, { yPercent: 0 });
-        gsap.set(hoverChars, { yPercent: -100 });
+        hoverChars.forEach(char => gsap.set(char, { yPercent: -100 }));
         if (hoverTimelineRef.current) hoverTimelineRef.current.kill();
         isHoverActive = false;
       };
@@ -135,15 +138,15 @@ const Button = forwardRef(
     const handleClick = (e) => {
       if (onClick) onClick(e);
       if (e.defaultPrevented) return;
-      if (href && href !== "#" && href.startsWith("/")) {
+      if (!isButton && href && href.startsWith("/")) {
         e.preventDefault();
         navigateWithTransition(href);
       }
     };
 
     return (
-      <a
-        href={href}
+      <Tag
+        {...(isButton ? { type: "button", ...props } : { href, ...props })}
         className={`slide-button ${className}`}
         ref={mergeRefs}
         onClick={handleClick}
@@ -161,7 +164,7 @@ const Button = forwardRef(
             </span>
           ))}
         </span>
-      </a>
+      </Tag>
     );
   },
 );

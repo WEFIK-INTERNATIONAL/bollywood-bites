@@ -1,9 +1,33 @@
 .moments {
+  position: relative;
   width: 100%;
   padding: 10rem 0;
   overflow: hidden;
   background-color: var(--base-700);
 }
+
+/* Left-side mandala ornament — mirrors Testimonials right ornament */
+.moments-mandala-ornament {
+  position: absolute;
+  top: 50%;
+  left: -10%;
+  transform: translateY(-50%);
+  width: clamp(300px, 38vw, 520px);
+  height: clamp(300px, 38vw, 520px);
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.06;
+  filter: invert(80%) sepia(15%) saturate(700%) hue-rotate(330deg) brightness(90%) contrast(85%);
+}
+
+/* Ensure content sits above the mandala ornament */
+.moments .container,
+.moments .moments-carousel {
+  position: relative;
+  z-index: 1;
+}
+
+
 
 .moments-header {
   display: flex;

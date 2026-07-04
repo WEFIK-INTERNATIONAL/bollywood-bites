@@ -9,6 +9,7 @@ import Image from "next/image";
 import { testimonials } from "./testimonials-data";
 import Copy from "@/components/Copy/Copy";
 
+
 import "./Testimonials.css";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -209,6 +210,10 @@ const Testimonials = () => {
 
   return (
     <section className="testimonials" ref={sectionRef}>
+
+      <div className="leaf-border-top" aria-hidden="true" />
+      <div className="leaf-border-bottom" aria-hidden="true" />
+
       <div className="container">
         <div className="testimonials-header">
           <Copy type="lines" animateOnScroll>

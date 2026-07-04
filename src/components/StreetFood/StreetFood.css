@@ -292,6 +292,11 @@
 
 /* Responsive Accordion Layouts */
 @media (max-width: 991px) {
+  .street-section::before {
+    background-size: 500px;
+    background-repeat: repeat;
+  }
+
   .street-cards-row {
     height: 440px;
     gap: 0.75rem;

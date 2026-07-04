@@ -101,8 +101,96 @@ body {
 @media (max-width: 768px) {
   .leaf-border-top,
   .leaf-border-bottom {
-    height: 20px;
-    background-size: auto 20px;
+    height: 16px;
+    background-size: auto 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .leaf-border-top,
+  .leaf-border-bottom {
+    height: 12px;
+    background-size: auto 12px;
+  }
+}
+
+/* ── Mandala Utility Classes ── */
+/* Gold filter to convert black SVG paths to the site's brass/gold tone */
+.mandala-gold {
+  filter: invert(80%) sepia(15%) saturate(700%) hue-rotate(330deg) brightness(90%) contrast(85%);
+}
+
+/* Large spinning halo — centered in a section, used as a background watermark */
+.mandala-section-halo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: clamp(500px, 80vw, 900px);
+  height: clamp(500px, 80vw, 900px);
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.055;
+  animation: spin-slow 180s linear infinite;
+  filter: invert(80%) sepia(15%) saturate(700%) hue-rotate(330deg) brightness(90%) contrast(85%);
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+/* Static side ornament — large SVG pinned to left or right edge */
+.mandala-side-ornament {
+  position: absolute;
+  width: clamp(300px, 35vw, 520px);
+  height: clamp(300px, 35vw, 520px);
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.055;
+  filter: invert(80%) sepia(15%) saturate(700%) hue-rotate(330deg) brightness(90%) contrast(85%);
+}
+
+/* Corner ornament — base styles, pinned to a corner of a position:relative parent */
+.mandala-corner {
+  position: absolute;
+  width: clamp(120px, 14vw, 200px);
+  height: clamp(120px, 14vw, 200px);
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.18;
+  filter: invert(80%) sepia(15%) saturate(700%) hue-rotate(330deg) brightness(90%) contrast(85%);
+}
+
+/* Top-left — natural orientation */
+.mandala-corner-tl {
+  top: 0;
+  left: 0;
+  transform: rotate(0deg);
+}
+
+/* Top-right — rotated 90° */
+.mandala-corner-tr {
+  top: 0;
+  right: 0;
+  transform: rotate(90deg);
+}
+
+/* Bottom-right — rotated 180° */
+.mandala-corner-br {
+  bottom: 0;
+  right: 0;
+  transform: rotate(180deg);
+}
+
+/* Bottom-left — rotated 270° */
+.mandala-corner-bl {
+  bottom: 0;
+  left: 0;
+  transform: rotate(270deg);
+}
+
+@media (max-width: 768px) {
+  .mandala-corner {
+    width: clamp(80px, 12vw, 130px);
+    height: clamp(80px, 12vw, 130px);
   }
 }
 
