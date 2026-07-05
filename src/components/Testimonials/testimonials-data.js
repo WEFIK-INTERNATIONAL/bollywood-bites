@@ -1,51 +1,37 @@
 export const testimonials = [
   {
-    name: "Sophie Laurent",
-    profilePicture: "/testimonials/sophie.jpg",
-    review:
-      "An unforgettable evening in a romantic setting. Every detail was crafted with precision, from the candlelit ambiance to the exquisite plating.",
+    name: "Supraja Narayanan",
+    profilePicture: "/chefs/avatar1.jpg",
+    review: "The brunch buffet is worth the try! The chicken tikka masala is my favorite and the garlic naan is fresh and pillowy. Best Indian food near UCLA Westwood!",
     rating: 5,
+    source: "Google Review"
   },
   {
-    name: "Olivia Robinson",
-    profilePicture: "/testimonials/olivia.jpg",
-    review:
-      "Each dish looked like a work of art, from the amuse-bouche to dessert. I left impressed by both the flavors and the professionalism of the staff.",
+    name: "Brian L.",
+    profilePicture: "/chefs/avatar2.jpg",
+    review: "Beautiful taste and friendly staff. The tandoori chicken and curries were cooked to absolute perfection. Great vibe!",
     rating: 5,
+    source: "Google Review"
   },
   {
-    name: "Lucas Meyer",
-    profilePicture: "/testimonials/lucas.jpg",
-    review:
-      "I loved the harmony between textures and flavors in every dish. This place proves that luxury dining can still feel warm and welcoming.",
+    name: "Aman S.",
+    profilePicture: "/chefs/avatar3.jpg",
+    review: "Incredible catering services! We hired Bollywood Bites and their food truck for our UCLA campus event. Everyone loved the authentic flavors.",
     rating: 5,
+    source: "Google Review"
   },
   {
-    name: "Fine Laurent",
-    profilePicture: "/testimonials/fine.jpg",
-    review:
-      "Flawless from start to finish. The tasting menu felt like a journey through seasons, and the sommelier's pairings were extraordinary.",
+    name: "Sarah M.",
+    profilePicture: "/chefs/avatar4.jpg",
+    review: "Best Indian Food in Los Angeles 5 years in a row, and it speaks for itself. The butter chicken, saag paneer, and samosas are outstanding.",
     rating: 5,
+    source: "Google Review"
   },
   {
-    name: "Emma Dubois",
-    profilePicture: "/testimonials/emma.jpg",
-    review:
-      "A culinary masterpiece. The attention to detail in every course was remarkable, and the service was impeccable throughout the evening.",
+    name: "Supriya K.",
+    profilePicture: "/chefs/avatar5.jpg",
+    review: "Absolutely amazing dinner experience! The service was prompt, and the ambiance was elegant. The spices in the biryani were just right.",
     rating: 5,
-  },
-  {
-    name: "James Chen",
-    profilePicture: "/testimonials/james.jpg",
-    review:
-      "The perfect blend of classic technique and modern creativity. Each bite told a story, and the atmosphere was nothing short of magical.",
-    rating: 4,
-  },
-  {
-    name: "Clara Fontaine",
-    profilePicture: "/testimonials/clara.jpg",
-    review:
-      "From the moment we walked in, we felt transported. The wine selection is phenomenal, and the duck confit was the best I've ever had.",
-    rating: 5,
-  },
+    source: "Google Review"
+  }
 ];

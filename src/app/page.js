@@ -18,7 +18,9 @@ import HomeChef from "@/components/HomeChef/HomeChef";
 import Moments from "@/components/Moments/Moments";
 import StreetFood from "@/components/StreetFood/StreetFood";
 import GallerySection from "@/components/GallerySection/GallerySection";
+import Ingredients from "@/components/Ingredients/Ingredients";
 import PressSection from "@/components/PressSection/PressSection";
+import SocialSection from "@/components/SocialSection/SocialSection";
 
 import "./home.css";
 
@@ -125,11 +127,13 @@ export default function Home() {
       <HomeChef />
       <Moments />
       <StreetFood />
+      <Ingredients />
       <GallerySection />
 
       {/* <DiningMenu /> */}
       <Testimonials />
       <PressSection />
+      <SocialSection />
       <CTA />
     </>
   );

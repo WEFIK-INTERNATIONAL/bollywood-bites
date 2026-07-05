@@ -31,10 +31,16 @@
 /* Header Styling */
 .press-header {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
+  justify-content: space-between;
+  align-items: flex-end;
   margin-bottom: 5rem;
+}
+
+.press-header-left {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
 }
 
 .press-tagline {
@@ -67,13 +73,63 @@
   color: var(--base-300); /* Gold subtitle */
 }
 
-/* Press Grid Layout */
-.press-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.75rem;
+/* Press Nav Button Rows */
+.press-nav {
+  display: flex;
+  gap: 1rem;
+  position: relative;
+  z-index: 2;
+}
+
+.press-nav-mobile {
+  display: none;
+}
+
+.press-nav-button-wrapper {
+  position: relative;
+  will-change: transform;
+}
+
+.press-nav-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80px;
+  height: 80px;
+  border: 1px solid rgba(197, 168, 128, 0.2);
+  border-radius: 50%;
+  background: var(--base-600);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--base-100);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.press-nav-button:hover {
+  border-color: var(--base-300);
+  color: var(--base-300);
+  background-color: var(--base-500);
+}
+
+.press-nav-button:active {
+  transform: scale(0.85);
+}
+
+/* Press Carousel Slider Track */
+.press-carousel {
   width: 100%;
-  margin-bottom: 5rem;
+  padding: 0 2rem 4rem 2rem;
+  overflow: visible;
+  will-change: transform;
+}
+
+.press-track {
+  position: relative;
+  width: 100%;
+  cursor: grab;
+  touch-action: none;
+  will-change: transform, opacity;
 }
 
 /* Press Card Base with brand styling */
@@ -86,18 +142,29 @@
   overflow: hidden;
   text-decoration: none;
   cursor: pointer;
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
-  transition: 
-    transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), 
-    border-color 0.4s ease, 
-    box-shadow 0.4s ease;
-  min-height: 420px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
+  width: 420px;
+  height: 460px; /* Enforces uniform size for all cards */
+  flex-shrink: 0;
+  will-change: transform;
+}
+
+.press-card-inner {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  flex: 1;
+  transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 .press-card:hover {
-  transform: translateY(-6px);
   border-color: rgba(197, 168, 128, 0.45); /* bright gold border */
   box-shadow: 0 20px 45px rgba(197, 168, 128, 0.12);
+}
+
+.press-card:hover .press-card-inner {
+  transform: translateY(-8px);
 }
 
 /* Video Card Preview Shading */
@@ -145,80 +212,119 @@
   color: var(--base-100);
 }
 
-/* Quote Card Container */
-.press-quote-container {
-  padding: 2.5rem 2rem;
+/* Article Card Sizing and Details */
+.press-article-preview {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1.6 / 1;
+  background-color: #ffffff; /* White background so logos stand out */
+  border-bottom: 1px solid rgba(197, 168, 128, 0.15);
+  overflow: hidden;
+}
+
+.press-article-preview img {
+  object-fit: contain !important;
+  padding: 1.75rem 2rem !important; /* Adds space around the logo graphics */
+  transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.press-card:hover .press-article-preview img {
+  transform: scale(1.05);
+}
+
+.press-article-info {
+  padding: 1.75rem 2rem;
   display: flex;
   flex-direction: column;
-  height: 100%;
+  gap: 0.75rem;
   flex: 1;
 }
 
-.press-quote-icon {
-  color: var(--base-300); /* Gold quotes */
-  opacity: 0.75;
-  margin-bottom: 1.5rem;
-  transition: transform 0.4s ease;
-}
-
-.press-card:hover .press-quote-icon {
-  transform: scale(1.1);
-}
-
-.press-quote-text {
-  font-family: "Roslindale Variable", sans-serif;
-  font-size: 1.45rem;
-  font-weight: 500;
-  line-height: 1.35;
-  color: var(--base-100);
-  margin-bottom: 2rem;
-}
-
-.press-quote-source {
+.press-card-action {
   font-family: var(--font-dm-mono), monospace;
-  font-size: 0.8rem;
-  font-weight: 550;
+  font-size: 0.7rem;
+  font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.12em;
-  color: var(--base-300); /* Gold publisher text */
-  margin-top: auto; /* Align to card bottom */
+  color: var(--base-300);
+  letter-spacing: 0.08em;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: auto; /* Push link bottom */
+  transition: color 0.3s ease;
+}
+
+.press-card-action .arrow {
+  transition: transform 0.3s ease;
+}
+
+.press-card:hover .press-card-action {
+  color: var(--base-200);
+}
+
+.press-card:hover .press-card-action .arrow {
+  transform: translateX(4px);
 }
 
 /* Bottom Explore Button */
 .press-cta-wrapper {
   display: flex;
   justify-content: center;
+  margin-top: 2rem;
 }
 
 /* Responsive Breakpoints */
-@media (max-width: 991px) {
-  .press-section::before {
-    background-size: 500px;
-    background-repeat: repeat;
+@media (max-width: 1000px) {
+  .press-section {
+    padding: 6rem 0 4rem 0;
   }
 
-  .press-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1.5rem;
+  .press-header {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    text-align: center;
   }
-  
-  /* Quote card spans 2 columns on tablet for grid balance */
-  .press-card.quote-card {
-    grid-column: span 2;
-  }
-}
 
-@media (max-width: 600px) {
-  .press-grid {
-    grid-template-columns: 1fr;
-    gap: 1.25rem;
+  .press-header-left {
+    align-items: center;
+    text-align: center;
   }
-  
-  .press-card.quote-card {
-    grid-column: span 1;
+
+  .press-nav-desktop {
+    display: none;
   }
-  
+
+  .press-nav-mobile {
+    display: flex;
+    justify-content: center;
+    margin-top: 1.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .press-carousel {
+    width: 100%;
+    padding: 0 1.5rem 3rem 1.5rem;
+    overflow: visible;
+  }
+
+  .press-track {
+    position: relative;
+    width: 100%;
+    will-change: transform, opacity;
+  }
+
   .press-card {
-    min-height: auto;
+    width: 310px; /* Narrower for mobile/tablet screen sizes */
+    height: 430px; /* Shorter for compact mobile layouts */
   }
 }
+
+@media (max-width: 480px) {
+  .press-card {
+    width: 275px;
+    height: 410px;
+  }
+}
+

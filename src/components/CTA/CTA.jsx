@@ -107,7 +107,7 @@ const CTA = () => {
           fill
           sizes="100vw"
           className="cta-bg-img"
-          priority={false}
+          loading="eager"
         />
         <div className="cta-bg-overlay" />
       </div>
