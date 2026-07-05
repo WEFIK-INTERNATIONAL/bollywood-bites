@@ -11,6 +11,9 @@
 .ingredients-section .mandala-corner {
   opacity: 0.08; /* Subtle watermark */
   z-index: 1;
+  -webkit-user-drag: none;
+  user-select: none;
+  pointer-events: none;
 }
 
 .ingredients-header {
@@ -71,6 +74,8 @@
 
 .ingredients-img {
   object-fit: contain;
+  -webkit-user-drag: none;
+  user-select: none;
 }
 
 /* Lift and soft drop-shadow animation on hover */

@@ -63,10 +63,10 @@ export default function Ingredients() {
   return (
     <section className="ingredients-section" ref={containerRef}>
       {/* Corner Ornaments */}
-      <Image src="/mandana/corner/Group.svg" className="mandala-corner mandala-corner-tl" width={200} height={200} alt="" aria-hidden="true" />
-            <Image src="/mandana/corner/Group.svg" className="mandala-corner mandala-corner-tr" width={200} height={200} alt="" aria-hidden="true" />
-            <Image src="/mandana/corner/Group.svg" className="mandala-corner mandala-corner-bl" width={200} height={200} alt="" aria-hidden="true" />
-            <Image src="/mandana/corner/Group.svg" className="mandala-corner mandala-corner-br" width={200} height={200} alt="" aria-hidden="true" />
+      <Image src="/mandana/corner/Group.svg" className="mandala-corner mandala-corner-tl" width={200} height={200} alt="" aria-hidden="true" draggable={false} />
+      <Image src="/mandana/corner/Group.svg" className="mandala-corner mandala-corner-tr" width={200} height={200} alt="" aria-hidden="true" draggable={false} />
+      <Image src="/mandana/corner/Group.svg" className="mandala-corner mandala-corner-bl" width={200} height={200} alt="" aria-hidden="true" draggable={false} />
+      <Image src="/mandana/corner/Group.svg" className="mandala-corner mandala-corner-br" width={200} height={200} alt="" aria-hidden="true" draggable={false} />
 
       <div className="container">
         {/* Section title */}
@@ -93,6 +93,7 @@ export default function Ingredients() {
                       fill
                       sizes="150px"
                       className="ingredients-img"
+                      draggable={false}
                     />
                   </div>
                   <h6 className="ingredients-label">{item.name}</h6>
