@@ -1,7 +1,7 @@
 .ingredients-section {
   position: relative;
   width: 100%;
-  padding: 6rem 0 5rem 0;
+  padding: 8rem 0;
   background-color: var(--base-600); /* Dark Forest Green to match theme */
   overflow: hidden;
   border-top: 1px solid rgba(197, 168, 128, 0.12);
@@ -17,7 +17,7 @@
 }
 
 .ingredients-header {
-  margin-bottom: 3.5rem;
+  margin-bottom: 4rem;
   text-align: center;
   position: relative;
   z-index: 2;
@@ -33,25 +33,33 @@
   font-size: clamp(2.5rem, 5vw, 4.5rem);
 }
 
-/* Row wrapper for desktop and mobile scroll */
-.ingredients-row-wrapper {
+/* ── Infinite Looping Marquee Track ── */
+.ingredients-marquee {
   width: 100%;
-  overflow-x: auto;
+  overflow: hidden;
+  position: relative;
+  z-index: 2;
   padding: 1.5rem 0;
-  -webkit-overflow-scrolling: touch;
 }
 
-.ingredients-row-wrapper::-webkit-scrollbar {
-  display: none;
+.ingredients-track {
+  display: flex;
+  width: max-content;
+  animation: marquee-scroll 24s linear infinite;
+  will-change: transform;
 }
 
-.ingredients-row {
+/* Pause the scrolling animation when hovered on desktop devices */
+@media (hover: hover) {
+  .ingredients-marquee:hover .ingredients-track {
+    animation-play-state: paused;
+  }
+}
+
+.ingredients-group {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  min-width: 1100px; /* Ensures row layout holds on smaller screens, allowing horizontal swipe */
-  width: 100%;
-  padding: 0 1rem;
+  flex-shrink: 0;
 }
 
 .ingredients-item {
@@ -60,7 +68,7 @@
   align-items: center;
   gap: 1.25rem;
   text-align: center;
-  flex: 1;
+  padding: 0 3.5rem; /* Horizontal spacing between elements */
 }
 
 .ingredients-img-wrap {
@@ -91,6 +99,7 @@
   text-transform: uppercase;
   color: var(--base-100); /* Cream text */
   letter-spacing: 0.05em;
+  user-select: none;
 }
 
 /* Vertical divider lines */
@@ -102,53 +111,39 @@
   flex-shrink: 0;
 }
 
-/* Decorative separator line at the bottom */
-.ingredients-separator-line {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 1.2rem;
-  margin-top: 3.5rem;
-  padding-top: 2rem;
-  border-top: 1px solid rgba(197, 168, 128, 0.15);
-  width: 100%;
-}
-
-.separator-text {
-  font-size: 0.75rem;
-  letter-spacing: 0.12em;
-  color: var(--base-400);
-}
-
-.separator-star {
-  color: var(--base-300);
-  font-size: 0.7rem;
+/* Animation Keyframes */
+@keyframes marquee-scroll {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0); /* Slides exactly one full copy of the ingredients list */
+  }
 }
 
 /* Responsive adjustments */
-@media (min-width: 1200px) {
-  .ingredients-row {
-    min-width: unset; /* Row fits perfectly without scroll on desktop */
-  }
-}
-
 @media (max-width: 768px) {
   .ingredients-section {
-    padding: 4rem 0 3rem 0;
+    padding: 6rem 0;
   }
   
   .ingredients-header {
-    margin-bottom: 2rem;
+    margin-bottom: 2.5rem;
   }
-  
-  .ingredients-separator-line {
-    margin-top: 2rem;
-    padding-top: 1.5rem;
-    gap: 0.75rem;
+
+  .ingredients-item {
+    padding: 0 2.25rem; /* Slightly tighter spacing on smaller screens */
   }
-  
-  .separator-text {
-    font-size: 0.65rem;
+
+  .ingredients-img-wrap {
+    width: 90px;
+  }
+
+  .ingredients-divider {
+    height: 70px;
+  }
+
+  .ingredients-track {
+    animation-duration: 18s; /* Slightly faster loop for smaller screen spans */
   }
 }

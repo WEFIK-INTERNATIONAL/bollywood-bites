@@ -27,38 +27,51 @@ export default function Ingredients() {
     const section = containerRef.current;
     if (!section) return;
 
-    const items = section.querySelectorAll(".ingredients-item");
-    const lines = section.querySelectorAll(".ingredients-divider");
+    const header = section.querySelector(".ingredients-header");
+    const marquee = section.querySelector(".ingredients-marquee");
 
-    gsap.set(items, { y: 30, autoAlpha: 0 });
-    gsap.set(lines, { scaleY: 0, autoAlpha: 0 });
+    gsap.set([header, marquee], { y: 30, autoAlpha: 0 });
 
     const scrollTrigger = ScrollTrigger.create({
       trigger: section,
       start: "top 80%",
       once: true,
       onEnter: () => {
-        gsap.to(items, {
+        gsap.to([header, marquee], {
           y: 0,
           autoAlpha: 1,
-          duration: 0.8,
-          stagger: 0.1,
+          duration: 1,
+          stagger: 0.15,
           ease: "power3.out"
-        });
-        
-        gsap.to(lines, {
-          scaleY: 1,
-          autoAlpha: 0.25,
-          duration: 0.8,
-          stagger: 0.1,
-          ease: "power3.out",
-          delay: 0.2
         });
       }
     });
 
     return () => scrollTrigger.kill();
   }, []);
+
+  const renderIngredientsGroup = () => (
+    <div className="ingredients-group">
+      {INGREDIENTS_DATA.map((item, index) => (
+        <React.Fragment key={index}>
+          <div className="ingredients-item">
+            <div className="ingredients-img-wrap">
+              <Image
+                src={item.image}
+                alt={item.name}
+                fill
+                sizes="120px"
+                className="ingredients-img"
+                draggable={false}
+              />
+            </div>
+            <h6 className="ingredients-label">{item.name}</h6>
+          </div>
+          <div className="ingredients-divider" aria-hidden="true" />
+        </React.Fragment>
+      ))}
+    </div>
+  );
 
   return (
     <section className="ingredients-section" ref={containerRef}>
@@ -78,34 +91,13 @@ export default function Ingredients() {
             <h2>Our Core Ingredients</h2>
           </Copy>
         </div>
+      </div>
 
-        {/* Row container */}
-        <div className="ingredients-row-wrapper">
-          <div className="ingredients-row">
-            {INGREDIENTS_DATA.map((item, index) => (
-              <React.Fragment key={index}>
-                {/* Ingredient item */}
-                <div className="ingredients-item">
-                  <div className="ingredients-img-wrap">
-                    <Image
-                      src={item.image}
-                      alt={item.name}
-                      fill
-                      sizes="150px"
-                      className="ingredients-img"
-                      draggable={false}
-                    />
-                  </div>
-                  <h6 className="ingredients-label">{item.name}</h6>
-                </div>
-
-                {/* Vertical Divider line (if not last item) */}
-                {index < INGREDIENTS_DATA.length - 1 && (
-                  <div className="ingredients-divider" aria-hidden="true" />
-                )}
-              </React.Fragment>
-            ))}
-          </div>
+      {/* Auto-sliding infinite marquee track */}
+      <div className="ingredients-marquee">
+        <div className="ingredients-track">
+          {renderIngredientsGroup()}
+          {renderIngredientsGroup()}
         </div>
       </div>
     </section>
