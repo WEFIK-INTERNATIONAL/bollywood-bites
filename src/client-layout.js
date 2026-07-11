@@ -72,6 +72,9 @@ export default function ClientLayout({ children }) {
       return;
     }
 
+    // Set transitioning flag immediately when route change begins
+    window.__viewTransitioning = true;
+
     // after a view transition completes, clear flag and dispatch event
     // so destination pages can (re)build ScrollTriggers with settled layout
     const transitionTimer = setTimeout(() => {

@@ -18,7 +18,7 @@ const SERVICES = [
     btnText: "Reserve a Table",
     link: "/reservation",
     image: "/home/resturent.webp",
-    description: "Experience our warm, luxurious hospitality firsthand in the heart of Los Angeles. Indulge in classic recipes refined for the modern palate.",
+    description: "Warm, luxurious hospitality in Los Angeles. Enjoy classic Indian recipes refined for the modern palate.",
   },
   {
     id: "catering",
@@ -26,7 +26,7 @@ const SERVICES = [
     btnText: "Explore Catering",
     link: "/services/catering",
     image: "/home/services-catering.png",
-    description: "From intimate gatherings to grand celebrations, we create exceptional culinary experiences that leave a lasting impression.",
+    description: "From intimate gatherings to grand celebrations, we design custom menus that leave a lasting impression.",
   },
   {
     id: "food-trucks",
@@ -34,7 +34,7 @@ const SERVICES = [
     btnText: "Book the Truck",
     link: "/services/food-trucks",
     image: "/home/foodtrack.jpeg",
-    description: "Catch us on the streets of Los Angeles or book us to bring hot, fresh street food directly to your private party or corporate event.",
+    description: "Book us to bring hot, fresh street food and vibrant food truck flavors directly to your event.",
   },
 ];
 
@@ -181,14 +181,14 @@ const Experience = () => {
 
           <Copy type="lines" animateOnScroll delay={0.1}>
             <h2 className="experience-title">
-              How would you like to <br />
-              <span className="highlight-text">experience Bollywood Bites?</span>
+              One Kitchen. <br />
+              <span className="highlight-text">Three Ways to Enjoy</span>
             </h2>
           </Copy>
 
           <Copy type="lines" animateOnScroll delay={0.25}>
             <p className="experience-subtitle">
-              From an exquisite dining experience to unforgettable celebrations on your special day or a vibrant food experience on the go – we bring India&rsquo;s finest flavors to you, your way.
+              Enjoy authentic Indian cuisine your way—whether dining in, catering a special event, or visiting our food truck.
             </p>
           </Copy>
         </div>

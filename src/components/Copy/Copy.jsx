@@ -154,12 +154,25 @@ export default function Copy({
         }
       };
 
-      buildAnimations();
-
-      return () => {
-        isActive = false;
-        cleanupInstances();
-      };
+      if (typeof window !== "undefined" && window.__viewTransitioning) {
+        const handleTransitionComplete = () => {
+          if (isActive) {
+            buildAnimations();
+          }
+        };
+        window.addEventListener("viewTransitionComplete", handleTransitionComplete);
+        return () => {
+          isActive = false;
+          window.removeEventListener("viewTransitionComplete", handleTransitionComplete);
+          cleanupInstances();
+        };
+      } else {
+        buildAnimations();
+        return () => {
+          isActive = false;
+          cleanupInstances();
+        };
+      }
     },
     {
       scope: containerRef,
