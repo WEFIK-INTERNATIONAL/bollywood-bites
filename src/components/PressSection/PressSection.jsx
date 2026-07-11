@@ -65,75 +65,77 @@ const PressSection = () => {
 
   /* Entrance animations on scroll */
   useEffect(() => {
-    const section = sectionRef.current;
-    if (!section) return;
+    const ctx = gsap.context(() => {
+      const section = sectionRef.current;
+      if (!section) return;
 
-    const cards = section.querySelectorAll(".press-card");
-    const headerElements = section.querySelectorAll(".press-header-animate");
-    const ctaWrapper = section.querySelector(".press-cta-wrapper");
-    const navButtons = section.querySelectorAll(".press-nav-button-wrapper");
+      const cards = section.querySelectorAll(".press-card");
+      const headerElements = section.querySelectorAll(".press-header-animate");
+      const ctaWrapper = section.querySelector(".press-cta-wrapper");
+      const navButtons = section.querySelectorAll(".press-nav-button-wrapper");
 
-    gsap.set(navButtons, { scale: 0 });
-    gsap.set(cards, { opacity: 0, y: 50 });
+      gsap.set(navButtons, { scale: 0 });
+      gsap.set(cards, { opacity: 0, y: 50 });
 
-    gsap.fromTo(
-      headerElements,
-      { opacity: 0, y: 30 },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 1,
-        stagger: 0.15,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: ".press-header",
-          start: "top 85%",
-          once: true,
+      gsap.fromTo(
+        headerElements,
+        { opacity: 0, y: 30 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1,
+          stagger: 0.15,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: ".press-header",
+            start: "top 85%",
+            once: true,
+          },
+        }
+      );
+
+      ScrollTrigger.create({
+        trigger: section,
+        start: "top 75%",
+        once: true,
+        onEnter: () => {
+          gsap.to(navButtons, {
+            scale: 1,
+            duration: 0.6,
+            ease: "back.out(1.7)",
+            stagger: 0.1,
+            delay: 0.4,
+          });
+
+          gsap.to(cards, {
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            ease: "power3.out",
+            stagger: 0.1,
+            delay: 0.3,
+          });
         },
-      }
-    );
+      });
 
-    const scrollTrigger = ScrollTrigger.create({
-      trigger: section,
-      start: "top 75%",
-      once: true,
-      onEnter: () => {
-        gsap.to(navButtons, {
-          scale: 1,
-          duration: 0.6,
-          ease: "back.out(1.7)",
-          stagger: 0.1,
-          delay: 0.4,
-        });
-
-        gsap.to(cards, {
+      gsap.fromTo(
+        ctaWrapper,
+        { opacity: 0, y: 20 },
+        {
           opacity: 1,
           y: 0,
           duration: 0.8,
-          ease: "power3.out",
-          stagger: 0.1,
-          delay: 0.3,
-        });
-      },
-    });
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: ".press-cta-wrapper",
+            start: "top 95%",
+            once: true,
+          },
+        }
+      );
+    }, sectionRef);
 
-    gsap.fromTo(
-      ctaWrapper,
-      { opacity: 0, y: 20 },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 0.8,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: ".press-cta-wrapper",
-          start: "top 95%",
-          once: true,
-        },
-      }
-    );
-
-    return () => scrollTrigger.kill();
+    return () => ctx.revert();
   }, []);
 
   /* GSAP Infinite Carousel Logic */

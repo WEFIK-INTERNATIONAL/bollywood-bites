@@ -90,45 +90,49 @@ const Experience = () => {
   const sectionRef = useRef(null);
 
   useEffect(() => {
-    const section = sectionRef.current;
-    if (!section) return;
+    const ctx = gsap.context(() => {
+      const section = sectionRef.current;
+      if (!section) return;
 
-    const cards = section.querySelectorAll(".experience-card");
-    const values = section.querySelectorAll(".value-item");
+      const cards = section.querySelectorAll(".experience-card");
+      const values = section.querySelectorAll(".value-item");
 
-    gsap.fromTo(
-      cards,
-      { opacity: 0, y: 50 },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 1,
-        stagger: 0.15,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: ".experience-cards",
-          start: "top 80%",
-          once: true,
-        },
-      }
-    );
+      gsap.fromTo(
+        cards,
+        { opacity: 0, y: 50 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1,
+          stagger: 0.15,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: ".experience-cards",
+            start: "top 80%",
+            once: true,
+          },
+        }
+      );
 
-    gsap.fromTo(
-      values,
-      { opacity: 0, y: 30 },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 0.8,
-        stagger: 0.1,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: ".experience-values-row",
-          start: "top 90%",
-          once: true,
-        },
-      }
-    );
+      gsap.fromTo(
+        values,
+        { opacity: 0, y: 30 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          stagger: 0.1,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: ".experience-values-row",
+            start: "top 90%",
+            once: true,
+          },
+        }
+      );
+    }, sectionRef);
+
+    return () => ctx.revert();
   }, []);
 
   return (

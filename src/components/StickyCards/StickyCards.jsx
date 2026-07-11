@@ -55,6 +55,7 @@ const StickyCards = () => {
 
   useEffect(() => {
     let ctx;
+    let isMounted = true;
     const section = sectionRef.current;
 
     const buildScrollAnimation = () => {
@@ -71,6 +72,7 @@ const StickyCards = () => {
       section.classList.remove("sticky-cards-mobile");
 
       requestAnimationFrame(() => {
+        if (!isMounted) return;
         ctx = gsap.context(() => {
           const cards = gsap.utils.toArray(".sticky-card");
           const totalCards = cards.length;
@@ -119,6 +121,7 @@ const StickyCards = () => {
     window.addEventListener("resize", handleResize);
 
     return () => {
+      isMounted = false;
       window.removeEventListener("resize", handleResize);
       if (ctx) ctx.revert();
     };

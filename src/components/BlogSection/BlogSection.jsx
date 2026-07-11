@@ -19,65 +19,69 @@ const BlogSection = () => {
   const sectionRef = useRef(null);
 
   useEffect(() => {
-    const section = sectionRef.current;
-    if (!section) return;
+    const ctx = gsap.context(() => {
+      const section = sectionRef.current;
+      if (!section) return;
 
-    const cards = section.querySelectorAll(".home-blog-card");
-    const headerElements = section.querySelectorAll(".blog-header-animate");
-    const ctaWrapper = section.querySelector(".blog-cta-wrapper");
+      const cards = section.querySelectorAll(".home-blog-card");
+      const headerElements = section.querySelectorAll(".blog-header-animate");
+      const ctaWrapper = section.querySelector(".blog-cta-wrapper");
 
-    // Fade-in header
-    gsap.fromTo(
-      headerElements,
-      { opacity: 0, y: 30 },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 1,
-        stagger: 0.15,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: ".home-blog-header",
-          start: "top 85%",
-          once: true,
-        },
-      }
-    );
+      // Fade-in header
+      gsap.fromTo(
+        headerElements,
+        { opacity: 0, y: 30 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1,
+          stagger: 0.15,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: ".home-blog-header",
+            start: "top 85%",
+            once: true,
+          },
+        }
+      );
 
-    // Fade-in cards
-    gsap.fromTo(
-      cards,
-      { opacity: 0, y: 50 },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 1,
-        stagger: 0.2,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: ".home-blog-grid",
-          start: "top 80%",
-          once: true,
-        },
-      }
-    );
+      // Fade-in cards
+      gsap.fromTo(
+        cards,
+        { opacity: 0, y: 50 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1,
+          stagger: 0.2,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: ".home-blog-grid",
+            start: "top 80%",
+            once: true,
+          },
+        }
+      );
 
-    // Fade-in bottom CTA button
-    gsap.fromTo(
-      ctaWrapper,
-      { opacity: 0, y: 20 },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 0.8,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: ".blog-cta-wrapper",
-          start: "top 95%",
-          once: true,
-        },
-      }
-    );
+      // Fade-in bottom CTA button
+      gsap.fromTo(
+        ctaWrapper,
+        { opacity: 0, y: 20 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: ".blog-cta-wrapper",
+            start: "top 95%",
+            once: true,
+          },
+        }
+      );
+    }, sectionRef);
+
+    return () => ctx.revert();
   }, []);
 
   // Display only the first 3 blogs

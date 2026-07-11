@@ -31,48 +31,50 @@ const DiningMenu = () => {
 
   /* entrance animations on scroll */
   useEffect(() => {
-    const section = sectionRef.current;
-    if (!section) return;
+    const ctx = gsap.context(() => {
+      const section = sectionRef.current;
+      if (!section) return;
 
-    const navButtons = section.querySelectorAll(".dining-nav-button-wrapper");
-    const previewCard = section.querySelector(".dining-preview-card");
-    const minimapItems = section.querySelectorAll(".dining-minimap-item");
+      const navButtons = section.querySelectorAll(".dining-nav-button-wrapper");
+      const previewCard = section.querySelector(".dining-preview-card");
+      const minimapItems = section.querySelectorAll(".dining-minimap-item");
 
-    gsap.set(navButtons, { scale: 0 });
-    gsap.set(previewCard, { autoAlpha: 0, y: 50 });
-    gsap.set(minimapItems, { autoAlpha: 0, y: 30 });
+      gsap.set(navButtons, { scale: 0 });
+      gsap.set(previewCard, { autoAlpha: 0, y: 50 });
+      gsap.set(minimapItems, { autoAlpha: 0, y: 30 });
 
-    const scrollTrigger = ScrollTrigger.create({
-      trigger: section,
-      start: "top 30%",
-      once: true,
-      onEnter: () => {
-        gsap.to(navButtons, {
-          scale: 1,
-          duration: 1,
-          ease: "power3.out",
-          stagger: 0.1,
-        });
+      ScrollTrigger.create({
+        trigger: section,
+        start: "top 30%",
+        once: true,
+        onEnter: () => {
+          gsap.to(navButtons, {
+            scale: 1,
+            duration: 1,
+            ease: "power3.out",
+            stagger: 0.1,
+          });
 
-        gsap.to(previewCard, {
-          autoAlpha: 1,
-          scale: 1,
-          y: 0,
-          duration: 1,
-          ease: "power3.out",
-        });
+          gsap.to(previewCard, {
+            autoAlpha: 1,
+            scale: 1,
+            y: 0,
+            duration: 1,
+            ease: "power3.out",
+          });
 
-        gsap.to(minimapItems, {
-          autoAlpha: 1,
-          y: 0,
-          duration: 1,
-          ease: "power3.out",
-          stagger: 0.1,
-        });
-      },
-    });
+          gsap.to(minimapItems, {
+            autoAlpha: 1,
+            y: 0,
+            duration: 1,
+            ease: "power3.out",
+            stagger: 0.1,
+          });
+        },
+      });
+    }, sectionRef);
 
-    return () => scrollTrigger.kill();
+    return () => ctx.revert();
   }, []);
   return (
     <section className="dining-menu" ref={sectionRef}>

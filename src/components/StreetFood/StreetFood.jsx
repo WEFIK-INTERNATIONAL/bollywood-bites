@@ -91,62 +91,66 @@ const StreetFood = () => {
   const [activeIdx, setActiveIdx] = useState(0);
 
   useEffect(() => {
-    const section = sectionRef.current;
-    if (!section) return;
+    const ctx = gsap.context(() => {
+      const section = sectionRef.current;
+      if (!section) return;
 
-    const cards = section.querySelectorAll(".street-card");
-    const headerElements = section.querySelectorAll(".street-header-animate");
-    const ctaWrapper = section.querySelector(".street-cta-wrapper");
+      const cards = section.querySelectorAll(".street-card");
+      const headerElements = section.querySelectorAll(".street-header-animate");
+      const ctaWrapper = section.querySelector(".street-cta-wrapper");
 
-    gsap.fromTo(
-      headerElements,
-      { opacity: 0, y: 30 },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 1,
-        stagger: 0.15,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: ".street-header",
-          start: "top 85%",
-          once: true,
-        },
-      }
-    );
+      gsap.fromTo(
+        headerElements,
+        { opacity: 0, y: 30 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1,
+          stagger: 0.15,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: ".street-header",
+            start: "top 85%",
+            once: true,
+          },
+        }
+      );
 
-    gsap.fromTo(
-      cards,
-      { opacity: 0, y: 50 },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 1,
-        stagger: 0.1,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: ".street-cards-row",
-          start: "top 80%",
-          once: true,
-        },
-      }
-    );
+      gsap.fromTo(
+        cards,
+        { opacity: 0, y: 50 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1,
+          stagger: 0.1,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: ".street-cards-row",
+            start: "top 80%",
+            once: true,
+          },
+        }
+      );
 
-    gsap.fromTo(
-      ctaWrapper,
-      { opacity: 0, y: 20 },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 0.8,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: ".street-cta-wrapper",
-          start: "top 95%",
-          once: true,
-        },
-      }
-    );
+      gsap.fromTo(
+        ctaWrapper,
+        { opacity: 0, y: 20 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: ".street-cta-wrapper",
+            start: "top 95%",
+            once: true,
+          },
+        }
+      );
+    }, sectionRef);
+
+    return () => ctx.revert();
   }, []);
 
   return (

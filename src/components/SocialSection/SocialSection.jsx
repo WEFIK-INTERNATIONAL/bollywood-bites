@@ -77,29 +77,31 @@ export default function SocialSection() {
   const containerRef = useRef(null);
 
   useEffect(() => {
-    const section = containerRef.current;
-    if (!section) return;
+    const ctx = gsap.context(() => {
+      const section = containerRef.current;
+      if (!section) return;
 
-    const cards = section.querySelectorAll(".social-card");
+      const cards = section.querySelectorAll(".social-card");
 
-    gsap.set(cards, { y: 40, autoAlpha: 0 });
+      gsap.set(cards, { y: 40, autoAlpha: 0 });
 
-    const scrollTrigger = ScrollTrigger.create({
-      trigger: section,
-      start: "top 78%",
-      once: true,
-      onEnter: () => {
-        gsap.to(cards, {
-          y: 0,
-          autoAlpha: 1,
-          duration: 0.9,
-          stagger: 0.15,
-          ease: "power3.out"
-        });
-      }
-    });
+      ScrollTrigger.create({
+        trigger: section,
+        start: "top 78%",
+        once: true,
+        onEnter: () => {
+          gsap.to(cards, {
+            y: 0,
+            autoAlpha: 1,
+            duration: 0.9,
+            stagger: 0.15,
+            ease: "power3.out"
+          });
+        }
+      });
+    }, containerRef);
 
-    return () => scrollTrigger.kill();
+    return () => ctx.revert();
   }, []);
 
   return (

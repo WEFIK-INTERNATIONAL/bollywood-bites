@@ -24,30 +24,32 @@ export default function Ingredients() {
   const containerRef = useRef(null);
 
   useEffect(() => {
-    const section = containerRef.current;
-    if (!section) return;
+    const ctx = gsap.context(() => {
+      const section = containerRef.current;
+      if (!section) return;
 
-    const header = section.querySelector(".ingredients-header");
-    const marquee = section.querySelector(".ingredients-marquee");
+      const header = section.querySelector(".ingredients-header");
+      const marquee = section.querySelector(".ingredients-marquee");
 
-    gsap.set([header, marquee], { y: 30, autoAlpha: 0 });
+      gsap.set([header, marquee], { y: 30, autoAlpha: 0 });
 
-    const scrollTrigger = ScrollTrigger.create({
-      trigger: section,
-      start: "top 80%",
-      once: true,
-      onEnter: () => {
-        gsap.to([header, marquee], {
-          y: 0,
-          autoAlpha: 1,
-          duration: 1,
-          stagger: 0.15,
-          ease: "power3.out"
-        });
-      }
-    });
+      ScrollTrigger.create({
+        trigger: section,
+        start: "top 80%",
+        once: true,
+        onEnter: () => {
+          gsap.to([header, marquee], {
+            y: 0,
+            autoAlpha: 1,
+            duration: 1,
+            stagger: 0.15,
+            ease: "power3.out"
+          });
+        }
+      });
+    }, containerRef);
 
-    return () => scrollTrigger.kill();
+    return () => ctx.revert();
   }, []);
 
   const renderIngredientsGroup = () => (

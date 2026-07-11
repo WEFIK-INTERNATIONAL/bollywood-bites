@@ -48,63 +48,67 @@ const Feast = () => {
 
   /* Entrance animations on scroll */
   useEffect(() => {
-    const section = sectionRef.current;
-    if (!section) return;
+    const ctx = gsap.context(() => {
+      const section = sectionRef.current;
+      if (!section) return;
 
-    const headerElements = section.querySelectorAll(".feast-header-animate");
-    const navButtons = section.querySelectorAll(".feast-frame-nav-button");
-    const frameWrapper = section.querySelector(".feast-stepped-frame-wrapper");
-    const buttonWrapper = section.querySelector(".feast-cta-wrapper");
+      const headerElements = section.querySelectorAll(".feast-header-animate");
+      const navButtons = section.querySelectorAll(".feast-frame-nav-button");
+      const frameWrapper = section.querySelector(".feast-stepped-frame-wrapper");
+      const buttonWrapper = section.querySelector(".feast-cta-wrapper");
 
-    gsap.fromTo(
-      headerElements,
-      { opacity: 0, y: 30 },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 1,
-        stagger: 0.15,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: ".feast-header",
-          start: "top 85%",
-          once: true,
-        },
-      }
-    );
+      gsap.fromTo(
+        headerElements,
+        { opacity: 0, y: 30 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1,
+          stagger: 0.15,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: ".feast-header",
+            start: "top 85%",
+            once: true,
+          },
+        }
+      );
 
-    gsap.fromTo(
-      [frameWrapper, navButtons],
-      { opacity: 0, y: 50, scale: 0.98 },
-      {
-        opacity: 1,
-        y: 0,
-        scale: 1,
-        duration: 1.2,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: frameWrapper,
-          start: "top 80%",
-          once: true,
-        },
-      }
-    );
+      gsap.fromTo(
+        [frameWrapper, navButtons],
+        { opacity: 0, y: 50, scale: 0.98 },
+        {
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          duration: 1.2,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: frameWrapper,
+            start: "top 80%",
+            once: true,
+          },
+        }
+      );
 
-    gsap.fromTo(
-      buttonWrapper,
-      { opacity: 0, y: 20 },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 0.8,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: ".feast-cta-wrapper",
-          start: "top 95%",
-          once: true,
-        },
-      }
-    );
+      gsap.fromTo(
+        buttonWrapper,
+        { opacity: 0, y: 20 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: ".feast-cta-wrapper",
+            start: "top 95%",
+            once: true,
+          },
+        }
+      );
+    }, sectionRef);
+
+    return () => ctx.revert();
   }, []);
 
   const handleNext = useCallback(() => {

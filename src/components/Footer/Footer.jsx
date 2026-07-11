@@ -66,41 +66,45 @@ const Footer = () => {
   };
 
   useEffect(() => {
-    const footer = footerRef.current;
-    if (!footer) return;
+    const ctx = gsap.context(() => {
+      const footer = footerRef.current;
+      if (!footer) return;
 
-    const columns = footer.querySelectorAll(".footer-column");
-    const bottomBar = footer.querySelector(".footer-bottom");
-    const wordmark = footer.querySelector(".footer-wordmark");
+      const columns = footer.querySelectorAll(".footer-column");
+      const bottomBar = footer.querySelector(".footer-bottom");
+      const wordmark = footer.querySelector(".footer-wordmark");
 
-    gsap.fromTo(
-      columns,
-      { opacity: 0, y: 30 },
-      {
-        opacity: 1, y: 0,
-        duration: 0.8, stagger: 0.08, ease: "power2.out",
-        scrollTrigger: { trigger: ".footer-grid", start: "top 90%", once: true },
-      }
-    );
+      gsap.fromTo(
+        columns,
+        { opacity: 0, y: 30 },
+        {
+          opacity: 1, y: 0,
+          duration: 0.8, stagger: 0.08, ease: "power2.out",
+          scrollTrigger: { trigger: ".footer-grid", start: "top 90%", once: true },
+        }
+      );
 
-    gsap.fromTo(
-      wordmark,
-      { opacity: 0, y: 20 },
-      {
-        opacity: 1, y: 0,
-        duration: 1.2, ease: "power3.out",
-        scrollTrigger: { trigger: ".footer-wordmark", start: "top 95%", once: true },
-      }
-    );
+      gsap.fromTo(
+        wordmark,
+        { opacity: 0, y: 20 },
+        {
+          opacity: 1, y: 0,
+          duration: 1.2, ease: "power3.out",
+          scrollTrigger: { trigger: ".footer-wordmark", start: "top 95%", once: true },
+        }
+      );
 
-    gsap.fromTo(
-      bottomBar,
-      { opacity: 0 },
-      {
-        opacity: 1, duration: 0.8, delay: 0.4, ease: "power2.out",
-        scrollTrigger: { trigger: ".footer-bottom", start: "top 95%", once: true },
-      }
-    );
+      gsap.fromTo(
+        bottomBar,
+        { opacity: 0 },
+        {
+          opacity: 1, duration: 0.8, delay: 0.4, ease: "power2.out",
+          scrollTrigger: { trigger: ".footer-bottom", start: "top 95%", once: true },
+        }
+      );
+    }, footerRef);
+
+    return () => ctx.revert();
   }, [pathname]);
 
   const handleSubscribe = async (e) => {

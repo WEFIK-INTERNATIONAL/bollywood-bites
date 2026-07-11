@@ -30,42 +30,44 @@ const Moments = () => {
 
   /* entrance animations on scroll */
   useEffect(() => {
-    const section = sectionRef.current;
-    if (!section) return;
+    const ctx = gsap.context(() => {
+      const section = sectionRef.current;
+      if (!section) return;
 
-    const navButtons = section.querySelectorAll(
-      ".moments-nav-button-wrapper",
-    );
-    const cards = section.querySelectorAll(".moment-card");
+      const navButtons = section.querySelectorAll(
+        ".moments-nav-button-wrapper",
+      );
+      const cards = section.querySelectorAll(".moment-card");
 
-    gsap.set(navButtons, { scale: 0 });
-    gsap.set(cards, { scale: 0.85, autoAlpha: 0 });
+      gsap.set(navButtons, { scale: 0 });
+      gsap.set(cards, { scale: 0.85, autoAlpha: 0 });
 
-    const scrollTrigger = ScrollTrigger.create({
-      trigger: section,
-      start: "top 75%",
-      once: true,
-      onEnter: () => {
-        gsap.to(navButtons, {
-          scale: 1,
-          duration: 0.6,
-          ease: "back.out(1.7)",
-          stagger: 0.1,
-          delay: 0.4,
-        });
+      ScrollTrigger.create({
+        trigger: section,
+        start: "top 75%",
+        once: true,
+        onEnter: () => {
+          gsap.to(navButtons, {
+            scale: 1,
+            duration: 0.6,
+            ease: "back.out(1.7)",
+            stagger: 0.1,
+            delay: 0.4,
+          });
 
-        gsap.to(cards, {
-          scale: 1,
-          autoAlpha: 1,
-          duration: 0.7,
-          ease: "power3.out",
-          stagger: 0.1,
-          delay: 0.3,
-        });
-      },
-    });
+          gsap.to(cards, {
+            scale: 1,
+            autoAlpha: 1,
+            duration: 0.7,
+            ease: "power3.out",
+            stagger: 0.1,
+            delay: 0.3,
+          });
+        },
+      });
+    }, sectionRef);
 
-    return () => scrollTrigger.kill();
+    return () => ctx.revert();
   }, []);
 
   /* infinite carousel with drag, momentum, and auto-scroll */

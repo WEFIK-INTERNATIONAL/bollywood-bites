@@ -4,10 +4,14 @@ import { useEffect, useState, useRef } from "react";
 import { usePathname } from "next/navigation";
 import { ReactLenis } from "lenis/react";
 import { ViewTransitions } from "next-view-transitions";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 import Nav from "@/components/Nav/Nav";
 import Footer from "@/components/Footer/Footer";
 import CookieConsent from "@/components/CookieConsent/CookieConsent";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const MOBILE_BREAKPOINT = 1000;
 const VIEW_TRANSITION_SETTLE_MS = 1600;
@@ -77,6 +81,20 @@ export default function ClientLayout({ children }) {
 
     return () => clearTimeout(transitionTimer);
   }, [pathname]);
+
+  /* Refresh GSAP ScrollTrigger after the page layout settles post-transition */
+  useEffect(() => {
+    const handleTransitionComplete = () => {
+      setTimeout(() => {
+        ScrollTrigger.refresh();
+      }, 100);
+    };
+
+    window.addEventListener("viewTransitionComplete", handleTransitionComplete);
+    return () => {
+      window.removeEventListener("viewTransitionComplete", handleTransitionComplete);
+    };
+  }, []);
 
   const lenisOptions = isMobile ? LENIS_MOBILE : LENIS_DESKTOP;
 

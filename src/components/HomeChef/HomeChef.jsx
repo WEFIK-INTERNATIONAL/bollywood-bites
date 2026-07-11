@@ -15,47 +15,51 @@ const HomeChef = () => {
   const sectionRef = useRef(null);
 
   useEffect(() => {
-    const section = sectionRef.current;
-    if (!section) return;
+    const ctx = gsap.context(() => {
+      const section = sectionRef.current;
+      if (!section) return;
 
-    const leftCol = section.querySelector(".home-chef-left");
-    const rightCol = section.querySelector(".home-chef-right");
+      const leftCol = section.querySelector(".home-chef-left");
+      const rightCol = section.querySelector(".home-chef-right");
 
-    // Fade and slide left col content
-    gsap.fromTo(
-      leftCol.children,
-      { opacity: 0, y: 30 },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 0.8,
-        stagger: 0.15,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: ".home-chef-top-row",
-          start: "top 75%",
-          once: true,
-        },
-      }
-    );
+      // Fade and slide left col content
+      gsap.fromTo(
+        leftCol.children,
+        { opacity: 0, y: 30 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          stagger: 0.15,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: ".home-chef-top-row",
+            start: "top 75%",
+            once: true,
+          },
+        }
+      );
 
-    // Fade and slide right col image
-    gsap.fromTo(
-      rightCol,
-      { opacity: 0, scale: 0.95, y: 40 },
-      {
-        opacity: 1,
-        scale: 1,
-        y: 0,
-        duration: 1,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: ".home-chef-top-row",
-          start: "top 75%",
-          once: true,
-        },
-      }
-    );
+      // Fade and slide right col image
+      gsap.fromTo(
+        rightCol,
+        { opacity: 0, scale: 0.95, y: 40 },
+        {
+          opacity: 1,
+          scale: 1,
+          y: 0,
+          duration: 1,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: ".home-chef-top-row",
+            start: "top 75%",
+            once: true,
+          },
+        }
+      );
+    }, sectionRef);
+
+    return () => ctx.revert();
   }, []);
 
   return (

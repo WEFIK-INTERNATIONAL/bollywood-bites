@@ -30,63 +30,67 @@ const GallerySection = () => {
   const sectionRef = useRef(null);
 
   useEffect(() => {
-    const section = sectionRef.current;
-    if (!section) return;
+    const ctx = gsap.context(() => {
+      const section = sectionRef.current;
+      if (!section) return;
 
-    const items = section.querySelectorAll(".gallery-item");
-    const headerElements = section.querySelectorAll(".gallery-header-animate");
-    const ctaWrapper = section.querySelector(".gallery-cta-wrapper");
+      const items = section.querySelectorAll(".gallery-item");
+      const headerElements = section.querySelectorAll(".gallery-header-animate");
+      const ctaWrapper = section.querySelector(".gallery-cta-wrapper");
 
-    gsap.fromTo(
-      headerElements,
-      { opacity: 0, y: 30 },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 1,
-        stagger: 0.15,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: ".gallery-header",
-          start: "top 85%",
-          once: true,
-        },
-      }
-    );
+      gsap.fromTo(
+        headerElements,
+        { opacity: 0, y: 30 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1,
+          stagger: 0.15,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: ".gallery-header",
+            start: "top 85%",
+            once: true,
+          },
+        }
+      );
 
-    gsap.fromTo(
-      items,
-      { opacity: 0, scale: 0.9, y: 30 },
-      {
-        opacity: 1,
-        scale: 1,
-        y: 0,
-        duration: 1,
-        stagger: 0.08,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: ".gallery-grid",
-          start: "top 80%",
-          once: true,
-        },
-      }
-    );
+      gsap.fromTo(
+        items,
+        { opacity: 0, scale: 0.9, y: 30 },
+        {
+          opacity: 1,
+          scale: 1,
+          y: 0,
+          duration: 1,
+          stagger: 0.08,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: ".gallery-grid",
+            start: "top 80%",
+            once: true,
+          },
+        }
+      );
 
-    gsap.fromTo(
-      ctaWrapper,
-      { opacity: 0, y: 20 },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 0.8,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: ".gallery-cta-wrapper",
-          start: "top 95%",
-          once: true,
-        },
-      }
-    );
+      gsap.fromTo(
+        ctaWrapper,
+        { opacity: 0, y: 20 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: ".gallery-cta-wrapper",
+            start: "top 95%",
+            once: true,
+          },
+        }
+      );
+    }, sectionRef);
+
+    return () => ctx.revert();
   }, []);
 
   return (
