@@ -1,10 +1,10 @@
-/* Restaurant Menu Page Styles */
+/* Catering Trays Menu Page Styles */
 
-.restaurant-menu-page {
+.catering-trays-page {
   background-color: var(--base-600);
 }
 
-.menu-hero {
+.catering-hero {
   position: relative;
   width: 100%;
   height: 100svh;
@@ -15,7 +15,7 @@
   justify-content: center;
 }
 
-.menu-hero .hero-img {
+.catering-hero .hero-img {
   position: absolute;
   top: 0;
   left: 0;
@@ -26,7 +26,7 @@
   will-change: clip-path;
 }
 
-.menu-hero .hero-img::after {
+.catering-hero .hero-img::after {
   content: "";
   position: absolute;
   inset: 0;
@@ -38,16 +38,16 @@
   z-index: 1;
 }
 
-.menu-hero .hero-img img {
+.catering-hero .hero-img img {
   position: absolute;
   width: 100%;
   height: 100%;
   object-fit: cover;
   z-index: 0;
-  filter: brightness(0.65) contrast(1.05) saturate(0.9) sepia(0.1);
+  filter: brightness(0.65) contrast(1.05) saturate(0.9);
 }
 
-.menu-hero .container {
+.catering-hero .container {
   position: relative;
   z-index: 2;
   display: flex;
@@ -57,14 +57,14 @@
   text-align: center;
 }
 
-.menu-hero h1 {
+.catering-hero h1 {
   font-size: clamp(2.5rem, 8vw, 7rem) !important;
   line-height: 1.0;
   text-shadow: 0 4px 25px rgba(0, 0, 0, 0.85);
   margin-bottom: 0.5rem;
 }
 
-.menu-hero-tagline {
+.catering-hero-tagline {
   font-family: var(--font-dm-mono), monospace;
   font-size: clamp(0.8rem, 1.5vw, 1.1rem);
   font-weight: 550;
@@ -75,7 +75,7 @@
   text-shadow: 0 2px 12px rgba(0, 0, 0, 0.85);
 }
 
-.menu-hero-desc {
+.catering-hero-desc {
   font-family: 'Outfit', sans-serif;
   font-size: clamp(0.9rem, 1.2vw, 1.1rem);
   color: var(--base-200);
@@ -87,7 +87,7 @@
 }
 
 /* CTAs Row */
-.menu-ctas-row {
+.catering-ctas-row {
   display: flex;
   flex-wrap: wrap;
   gap: 1.25rem;
@@ -98,7 +98,7 @@
   z-index: 5;
 }
 
-.menu-cta-btn {
+.catering-cta-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -112,108 +112,338 @@
 }
 
 /* Primary Button - Solid Gold, Inverts to Hollow on Hover */
-.menu-btn-primary {
+.catering-btn-primary {
   background-color: var(--base-300) !important;
   color: var(--base-600) !important;
 }
 
-.menu-btn-primary .slide-button-bg {
+.catering-btn-primary .slide-button-bg {
   background-color: var(--base-300) !important;
 }
 
-.menu-btn-primary:hover {
+.catering-btn-primary:hover {
   color: var(--base-100) !important;
 }
 
-.menu-btn-primary:hover .slide-button-bg {
+.catering-btn-primary:hover .slide-button-bg {
   background-color: var(--base-600) !important;
 }
 
 /* Secondary Button - Hollow, Inverts to Solid Gold on Hover */
-.menu-btn-secondary {
+.catering-btn-secondary {
   background-color: var(--base-300) !important;
   color: var(--base-100) !important;
 }
 
-.menu-btn-secondary .slide-button-bg {
+.catering-btn-secondary .slide-button-bg {
   background-color: var(--base-600) !important;
 }
 
-.menu-btn-secondary:hover {
+.catering-btn-secondary:hover {
   color: var(--base-600) !important;
 }
 
-.menu-btn-secondary:hover .slide-button-bg {
+.catering-btn-secondary:hover .slide-button-bg {
   background-color: var(--base-300) !important;
 }
 
 /* Tertiary Button - Hollow White/Gold outline */
-.menu-btn-tertiary {
+.catering-btn-tertiary {
   background-color: var(--base-100) !important;
   color: var(--base-100) !important;
 }
 
-.menu-btn-tertiary .slide-button-bg {
+.catering-btn-tertiary .slide-button-bg {
   background-color: var(--base-600) !important;
 }
 
-.menu-btn-tertiary:hover {
+.catering-btn-tertiary:hover {
   color: var(--base-600) !important;
   background-color: var(--base-100) !important;
 }
 
-.menu-btn-tertiary:hover .slide-button-bg {
+.catering-btn-tertiary:hover .slide-button-bg {
   background-color: var(--base-100) !important;
 }
 
-/* Menu Content Section */
-.menu-content {
+/* Main Content Layout - Two Column Editorial */
+.catering-content-section {
   position: relative;
-  padding: 6rem 2rem;
+  padding: 8rem 2rem;
   background-color: var(--base-600);
   overflow: hidden;
 }
 
-.menu-column-grid {
-  display: flex;
-  flex-direction: column;
-  gap: 8rem;
-  max-width: 900px;
+.catering-content-section .container {
+  max-width: 1200px;
   margin: 0 auto;
-  align-items: center;
 }
 
-.menu-card {
-  width: 100%;
+.catering-two-col-layout {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 5rem;
+  align-items: start;
+}
+
+/* Left Column: Menu Display */
+.catering-menu-display {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
-  text-align: center;
-  scroll-margin-top: 180px; /* Offset for sticky tabs */
+  gap: 3.5rem;
 }
 
-.menu-card-header {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
+.catering-menu-section-header {
+  border-bottom: 1px solid rgba(197, 168, 128, 0.15);
+  padding-bottom: 1.5rem;
+  margin-bottom: 1rem;
 }
 
-.menu-card-header span {
+.catering-menu-section-header h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.2rem, 4vw, 3.2rem);
+  color: var(--base-100);
+  line-height: 1.1;
+  text-transform: none;
+}
+
+.catering-menu-section-header .section-desc {
   font-family: 'Outfit', sans-serif;
-  font-size: 0.85rem;
-  text-transform: uppercase;
-  letter-spacing: 0.2em;
+  font-size: clamp(1rem, 1.3vw, 1.15rem);
+  color: var(--base-300);
+  margin-top: 1rem;
+  line-height: 1.6;
+}
+
+/* Tray Sizing Guide Info */
+.catering-sizes-banner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  background-color: rgba(197, 168, 128, 0.05);
+  border: 1px solid rgba(197, 168, 128, 0.15);
+  padding: 2rem;
+  border-radius: 4px;
+}
+
+.size-info-block h4 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.25rem;
+  color: var(--base-300);
+  margin-bottom: 0.35rem;
+  text-transform: none;
+}
+
+.size-info-block p {
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.95rem;
+  color: var(--base-200);
+}
+
+/* Accordion Component */
+.catering-accordions-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.catering-accordion-item {
+  border: 1px solid rgba(197, 168, 128, 0.2);
+  background-color: rgba(11, 21, 18, 0.3);
+  border-radius: 4px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.catering-accordion-item.active {
+  border-color: rgba(197, 168, 128, 0.55);
+  background-color: rgba(11, 21, 18, 0.6);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+}
+
+.catering-accordion-trigger {
+  width: 100%;
+  padding: 1.75rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+}
+
+.catering-accordion-trigger h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.4rem;
+  color: var(--base-100);
+  text-transform: none;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.catering-accordion-item.active .catering-accordion-trigger h3 {
+  color: var(--base-300);
+}
+
+.accordion-arrow {
+  color: var(--base-300);
+  font-size: 1.5rem;
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.catering-accordion-item.active .accordion-arrow {
+  transform: rotate(180deg);
+}
+
+.catering-accordion-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.catering-accordion-item.active .catering-accordion-content {
+  max-height: 1500px; /* Safe upper limit for content */
+}
+
+.accordion-inner-content {
+  padding: 0 2rem 2.5rem;
+}
+
+/* Category Grid list inside accordion */
+.catering-items-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+}
+
+.catering-tray-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px dashed rgba(255, 255, 255, 0.08);
+}
+
+.catering-tray-item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.tray-item-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+}
+
+.tray-item-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.25rem;
+  color: var(--base-100);
+  font-weight: 600;
+}
+
+.tray-item-pricing {
+  font-family: var(--font-dm-mono), monospace;
+  font-size: 0.95rem;
   color: var(--base-300);
   font-weight: 600;
 }
 
-.menu-card-header h4 {
-  font-size: clamp(1.5rem, 2.5vw, 2.2rem);
-  color: var(--base-100);
-  font-family: 'Playfair Display', serif;
+.tray-item-pricing span {
+  color: var(--base-200);
+  opacity: 0.7;
+  font-family: 'Outfit', sans-serif;
+  margin-left: 0.25rem;
 }
 
-.restaurant-menu-frame {
+.tray-item-description {
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.95rem;
+  color: var(--base-200);
+  opacity: 0.85;
+  line-height: 1.5;
+}
+
+/* Corporate details and pop-ups */
+.catering-corporate-blocks {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+  border-top: 1px solid rgba(197, 168, 128, 0.15);
+  padding-top: 3.5rem;
+  margin-top: 3.5rem;
+}
+
+.corporate-info-card {
+  background-color: rgba(197, 168, 128, 0.04);
+  border: 1px solid rgba(197, 168, 128, 0.12);
+  padding: 2.5rem;
+  border-radius: 4px;
+  position: relative;
+}
+
+.corporate-info-card h4 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  color: var(--base-300);
+  margin-bottom: 0.75rem;
+  text-transform: none;
+}
+
+.corporate-info-card p {
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--base-200);
+  margin-bottom: 1.25rem;
+}
+
+.corporate-contact-details {
+  font-family: var(--font-dm-mono), monospace;
+  font-size: 1rem;
+  color: var(--base-100);
+  background-color: rgba(0, 0, 0, 0.2);
+  padding: 1rem 1.5rem;
+  border-radius: 2px;
+  border-left: 3px solid var(--base-300);
+}
+
+.additional-bullet-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  list-style: none;
+  padding: 0;
+  margin: 1.5rem 0 0;
+}
+
+.additional-bullet-list li {
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.95rem;
+  color: var(--base-200);
+  position: relative;
+  padding-left: 1.5rem;
+  line-height: 1.5;
+}
+
+.additional-bullet-list li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: var(--base-300);
+  font-size: 1.2rem;
+  line-height: 1;
+}
+
+/* Right Column: Sticky Flyer Card */
+.catering-sticky-sidebar {
+  position: sticky;
+  top: 120px;
+}
+
+.catering-menu-frame {
   position: relative;
   width: 100%;
   border-radius: 4px;
@@ -225,12 +455,12 @@
   transition: transform 0.4s ease, border-color 0.4s ease;
 }
 
-.restaurant-menu-frame:hover {
+.catering-menu-frame:hover {
   transform: scale(1.015);
   border-color: rgba(197, 168, 128, 0.6);
 }
 
-.restaurant-menu-frame::before {
+.catering-menu-frame::before {
   content: "";
   position: absolute;
   top: 15px;
@@ -242,7 +472,7 @@
   z-index: 2;
 }
 
-.restaurant-menu-frame::after {
+.catering-menu-frame::after {
   content: "";
   position: absolute;
   top: 20px;
@@ -269,7 +499,7 @@
   transition: opacity 0.3s ease;
 }
 
-.restaurant-menu-frame:hover .frame-overlay {
+.catering-menu-frame:hover .frame-overlay {
   opacity: 1;
 }
 
@@ -294,7 +524,7 @@
 }
 
 /* Lightbox styles */
-.menu-lightbox {
+.catering-lightbox {
   position: fixed;
   top: 0;
   left: 0;
@@ -389,43 +619,6 @@
   transform: scale(1.1);
 }
 
-.lightbox-arrow {
-  position: relative;
-  z-index: 10;
-  background: none;
-  border: none;
-  color: var(--base-200);
-  font-size: 2.5rem;
-  cursor: pointer;
-  width: 60px;
-  height: 60px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  background-color: rgba(255, 255, 255, 0.03);
-  transition: all 0.3s ease;
-}
-
-.lightbox-arrow:hover {
-  color: var(--base-100);
-  background-color: rgba(255, 255, 255, 0.1);
-}
-
-.lightbox-arrow.prev {
-  position: fixed;
-  left: 2rem;
-  top: 50%;
-  transform: translateY(-50%);
-}
-
-.lightbox-arrow.next {
-  position: fixed;
-  right: 2rem;
-  top: 50%;
-  transform: translateY(-50%);
-}
-
 .lightbox-image-wrapper {
   position: relative;
   z-index: 5;
@@ -458,7 +651,7 @@
 }
 
 /* Footer CTAs Section */
-.menu-footer-ctas {
+.catering-footer-ctas {
   position: relative;
   padding: 8rem 2rem;
   text-align: center;
@@ -467,14 +660,14 @@
   overflow: hidden;
 }
 
-.menu-footer-ctas .section-title {
+.catering-footer-ctas .section-title {
   font-family: 'Playfair Display', serif;
   font-size: clamp(1.8rem, 3.5vw, 2.8rem);
   color: var(--base-100);
   margin-bottom: 1rem;
 }
 
-.menu-footer-ctas .section-subtitle {
+.catering-footer-ctas .section-subtitle {
   font-family: 'Outfit', sans-serif;
   font-size: clamp(0.95rem, 1.5vw, 1.15rem);
   color: var(--base-200);
@@ -486,8 +679,18 @@
 
 /* Responsive adjust */
 @media (max-width: 991px) {
-  .lightbox-arrow {
-    display: none !important; /* Hide fixed arrows on mobile to avoid overlapping content */
+  .catering-two-col-layout {
+    grid-template-columns: 1fr;
+    gap: 4rem;
+  }
+  
+  .catering-sticky-sidebar {
+    position: relative;
+    top: 0;
+    order: -1; /* Place flyer card first on mobile */
+  }
+
+  .catering-sizes-banner {
+    grid-template-columns: 1fr;
   }
 }
-

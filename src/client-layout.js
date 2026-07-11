@@ -99,6 +99,26 @@ export default function ClientLayout({ children }) {
     };
   }, []);
 
+  /* re-bind gloriafood widget on route changes */
+  useEffect(() => {
+    const handleTransitionComplete = () => {
+      const existing = document.querySelector('script[src*="ewm2.js"]');
+      if (existing) {
+        existing.remove();
+      }
+      const script = document.createElement("script");
+      script.src = "https://www.fbgcdn.com/embedder/js/ewm2.js";
+      script.async = true;
+      script.defer = true;
+      document.body.appendChild(script);
+    };
+
+    window.addEventListener("viewTransitionComplete", handleTransitionComplete);
+    return () => {
+      window.removeEventListener("viewTransitionComplete", handleTransitionComplete);
+    };
+  }, []);
+
   const lenisOptions = isMobile ? LENIS_MOBILE : LENIS_DESKTOP;
 
   return (

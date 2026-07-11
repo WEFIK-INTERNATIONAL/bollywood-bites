@@ -1,10 +1,10 @@
-/* Restaurant Menu Page Styles */
+/* Buffet Menu Page Styles */
 
-.restaurant-menu-page {
+.buffet-menu-page {
   background-color: var(--base-600);
 }
 
-.menu-hero {
+.buffet-hero {
   position: relative;
   width: 100%;
   height: 100svh;
@@ -15,7 +15,7 @@
   justify-content: center;
 }
 
-.menu-hero .hero-img {
+.buffet-hero .hero-img {
   position: absolute;
   top: 0;
   left: 0;
@@ -26,7 +26,7 @@
   will-change: clip-path;
 }
 
-.menu-hero .hero-img::after {
+.buffet-hero .hero-img::after {
   content: "";
   position: absolute;
   inset: 0;
@@ -38,16 +38,16 @@
   z-index: 1;
 }
 
-.menu-hero .hero-img img {
+.buffet-hero .hero-img img {
   position: absolute;
   width: 100%;
   height: 100%;
   object-fit: cover;
   z-index: 0;
-  filter: brightness(0.65) contrast(1.05) saturate(0.9) sepia(0.1);
+  filter: brightness(0.65) contrast(1.05) saturate(0.9);
 }
 
-.menu-hero .container {
+.buffet-hero .container {
   position: relative;
   z-index: 2;
   display: flex;
@@ -57,14 +57,14 @@
   text-align: center;
 }
 
-.menu-hero h1 {
+.buffet-hero h1 {
   font-size: clamp(2.5rem, 8vw, 7rem) !important;
   line-height: 1.0;
   text-shadow: 0 4px 25px rgba(0, 0, 0, 0.85);
   margin-bottom: 0.5rem;
 }
 
-.menu-hero-tagline {
+.buffet-hero-tagline {
   font-family: var(--font-dm-mono), monospace;
   font-size: clamp(0.8rem, 1.5vw, 1.1rem);
   font-weight: 550;
@@ -75,7 +75,7 @@
   text-shadow: 0 2px 12px rgba(0, 0, 0, 0.85);
 }
 
-.menu-hero-desc {
+.buffet-hero-desc {
   font-family: 'Outfit', sans-serif;
   font-size: clamp(0.9rem, 1.2vw, 1.1rem);
   color: var(--base-200);
@@ -87,7 +87,7 @@
 }
 
 /* CTAs Row */
-.menu-ctas-row {
+.buffet-ctas-row {
   display: flex;
   flex-wrap: wrap;
   gap: 1.25rem;
@@ -98,7 +98,7 @@
   z-index: 5;
 }
 
-.menu-cta-btn {
+.buffet-cta-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -112,108 +112,189 @@
 }
 
 /* Primary Button - Solid Gold, Inverts to Hollow on Hover */
-.menu-btn-primary {
+.buffet-btn-primary {
   background-color: var(--base-300) !important;
   color: var(--base-600) !important;
 }
 
-.menu-btn-primary .slide-button-bg {
+.buffet-btn-primary .slide-button-bg {
   background-color: var(--base-300) !important;
 }
 
-.menu-btn-primary:hover {
+.buffet-btn-primary:hover {
   color: var(--base-100) !important;
 }
 
-.menu-btn-primary:hover .slide-button-bg {
+.buffet-btn-primary:hover .slide-button-bg {
   background-color: var(--base-600) !important;
 }
 
 /* Secondary Button - Hollow, Inverts to Solid Gold on Hover */
-.menu-btn-secondary {
+.buffet-btn-secondary {
   background-color: var(--base-300) !important;
   color: var(--base-100) !important;
 }
 
-.menu-btn-secondary .slide-button-bg {
+.buffet-btn-secondary .slide-button-bg {
   background-color: var(--base-600) !important;
 }
 
-.menu-btn-secondary:hover {
+.buffet-btn-secondary:hover {
   color: var(--base-600) !important;
 }
 
-.menu-btn-secondary:hover .slide-button-bg {
+.buffet-btn-secondary:hover .slide-button-bg {
   background-color: var(--base-300) !important;
 }
 
 /* Tertiary Button - Hollow White/Gold outline */
-.menu-btn-tertiary {
+.buffet-btn-tertiary {
   background-color: var(--base-100) !important;
   color: var(--base-100) !important;
 }
 
-.menu-btn-tertiary .slide-button-bg {
+.buffet-btn-tertiary .slide-button-bg {
   background-color: var(--base-600) !important;
 }
 
-.menu-btn-tertiary:hover {
+.buffet-btn-tertiary:hover {
   color: var(--base-600) !important;
   background-color: var(--base-100) !important;
 }
 
-.menu-btn-tertiary:hover .slide-button-bg {
+.buffet-btn-tertiary:hover .slide-button-bg {
   background-color: var(--base-100) !important;
 }
 
-/* Menu Content Section */
-.menu-content {
+/* Main Content Layout - Two Column Editorial */
+.buffet-content-section {
   position: relative;
-  padding: 6rem 2rem;
+  padding: 8rem 2rem;
   background-color: var(--base-600);
   overflow: hidden;
 }
 
-.menu-column-grid {
-  display: flex;
-  flex-direction: column;
-  gap: 8rem;
-  max-width: 900px;
+.buffet-content-section .container {
+  max-width: 1200px;
   margin: 0 auto;
-  align-items: center;
 }
 
-.menu-card {
-  width: 100%;
+.buffet-two-col-layout {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 5rem;
+  align-items: start;
+}
+
+/* Left Column: Editorial Copy */
+.buffet-editorial-content {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
-  text-align: center;
-  scroll-margin-top: 180px; /* Offset for sticky tabs */
+  gap: 3.5rem;
 }
 
-.menu-card-header {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
-.menu-card-header span {
-  font-family: 'Outfit', sans-serif;
-  font-size: 0.85rem;
-  text-transform: uppercase;
-  letter-spacing: 0.2em;
-  color: var(--base-300);
-  font-weight: 600;
-}
-
-.menu-card-header h4 {
-  font-size: clamp(1.5rem, 2.5vw, 2.2rem);
-  color: var(--base-100);
+.buffet-article-header h2 {
   font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  color: var(--base-100);
+  line-height: 1.15;
+  margin-bottom: 1.25rem;
+  text-transform: none;
 }
 
-.restaurant-menu-frame {
+.buffet-article-header .lead-p {
+  font-family: 'Outfit', sans-serif;
+  font-size: clamp(1rem, 1.3vw, 1.2rem);
+  line-height: 1.6;
+  color: var(--base-300);
+  font-weight: 550;
+}
+
+/* Banner Highlights */
+.buffet-highlight-banners {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin: 1rem 0;
+}
+
+.buffet-banner-card {
+  background-color: rgba(197, 168, 128, 0.08);
+  border: 1px solid rgba(197, 168, 128, 0.25);
+  padding: 2.5rem;
+  border-radius: 4px;
+  position: relative;
+  overflow: hidden;
+}
+
+.buffet-banner-card::before {
+  content: "";
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  right: 8px;
+  bottom: 8px;
+  border: 1px solid rgba(197, 168, 128, 0.04);
+  pointer-events: none;
+}
+
+.buffet-banner-card h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.2rem, 2vw, 1.6rem);
+  color: var(--base-300);
+  margin-bottom: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  line-height: 1.2;
+}
+
+.buffet-banner-card p {
+  font-family: 'Outfit', sans-serif;
+  font-size: clamp(0.95rem, 1.1vw, 1.1rem);
+  line-height: 1.6;
+  color: var(--base-200);
+}
+
+.buffet-banner-card p strong {
+  color: var(--base-100);
+}
+
+.buffet-editorial-blocks {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+.buffet-info-block {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.buffet-info-block h4 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.2rem, 1.8vw, 1.5rem);
+  color: var(--base-300);
+  text-transform: none;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.buffet-info-block p {
+  font-family: 'Outfit', sans-serif;
+  font-size: clamp(0.95rem, 1.1vw, 1.05rem);
+  line-height: 1.65;
+  color: var(--base-200);
+  opacity: 0.9;
+}
+
+/* Right Column: Sticky Flyer Card */
+.buffet-sticky-sidebar {
+  position: sticky;
+  top: 120px;
+}
+
+.buffet-menu-frame {
   position: relative;
   width: 100%;
   border-radius: 4px;
@@ -225,12 +306,12 @@
   transition: transform 0.4s ease, border-color 0.4s ease;
 }
 
-.restaurant-menu-frame:hover {
+.buffet-menu-frame:hover {
   transform: scale(1.015);
   border-color: rgba(197, 168, 128, 0.6);
 }
 
-.restaurant-menu-frame::before {
+.buffet-menu-frame::before {
   content: "";
   position: absolute;
   top: 15px;
@@ -242,7 +323,7 @@
   z-index: 2;
 }
 
-.restaurant-menu-frame::after {
+.buffet-menu-frame::after {
   content: "";
   position: absolute;
   top: 20px;
@@ -269,7 +350,7 @@
   transition: opacity 0.3s ease;
 }
 
-.restaurant-menu-frame:hover .frame-overlay {
+.buffet-menu-frame:hover .frame-overlay {
   opacity: 1;
 }
 
@@ -294,7 +375,7 @@
 }
 
 /* Lightbox styles */
-.menu-lightbox {
+.buffet-lightbox {
   position: fixed;
   top: 0;
   left: 0;
@@ -389,43 +470,6 @@
   transform: scale(1.1);
 }
 
-.lightbox-arrow {
-  position: relative;
-  z-index: 10;
-  background: none;
-  border: none;
-  color: var(--base-200);
-  font-size: 2.5rem;
-  cursor: pointer;
-  width: 60px;
-  height: 60px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  background-color: rgba(255, 255, 255, 0.03);
-  transition: all 0.3s ease;
-}
-
-.lightbox-arrow:hover {
-  color: var(--base-100);
-  background-color: rgba(255, 255, 255, 0.1);
-}
-
-.lightbox-arrow.prev {
-  position: fixed;
-  left: 2rem;
-  top: 50%;
-  transform: translateY(-50%);
-}
-
-.lightbox-arrow.next {
-  position: fixed;
-  right: 2rem;
-  top: 50%;
-  transform: translateY(-50%);
-}
-
 .lightbox-image-wrapper {
   position: relative;
   z-index: 5;
@@ -458,7 +502,7 @@
 }
 
 /* Footer CTAs Section */
-.menu-footer-ctas {
+.buffet-footer-ctas {
   position: relative;
   padding: 8rem 2rem;
   text-align: center;
@@ -467,14 +511,14 @@
   overflow: hidden;
 }
 
-.menu-footer-ctas .section-title {
+.buffet-footer-ctas .section-title {
   font-family: 'Playfair Display', serif;
   font-size: clamp(1.8rem, 3.5vw, 2.8rem);
   color: var(--base-100);
   margin-bottom: 1rem;
 }
 
-.menu-footer-ctas .section-subtitle {
+.buffet-footer-ctas .section-subtitle {
   font-family: 'Outfit', sans-serif;
   font-size: clamp(0.95rem, 1.5vw, 1.15rem);
   color: var(--base-200);
@@ -486,8 +530,14 @@
 
 /* Responsive adjust */
 @media (max-width: 991px) {
-  .lightbox-arrow {
-    display: none !important; /* Hide fixed arrows on mobile to avoid overlapping content */
+  .buffet-two-col-layout {
+    grid-template-columns: 1fr;
+    gap: 4rem;
+  }
+  
+  .buffet-sticky-sidebar {
+    position: relative;
+    top: 0;
+    order: -1; /* Place flyer card first on mobile */
   }
 }
-

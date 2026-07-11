@@ -1,10 +1,10 @@
-/* Restaurant Menu Page Styles */
+/* Food Truck Menu Page Styles */
 
-.restaurant-menu-page {
+.foodtruck-menu-page {
   background-color: var(--base-600);
 }
 
-.menu-hero {
+.foodtruck-hero {
   position: relative;
   width: 100%;
   height: 100svh;
@@ -15,7 +15,7 @@
   justify-content: center;
 }
 
-.menu-hero .hero-img {
+.foodtruck-hero .hero-img {
   position: absolute;
   top: 0;
   left: 0;
@@ -26,7 +26,7 @@
   will-change: clip-path;
 }
 
-.menu-hero .hero-img::after {
+.foodtruck-hero .hero-img::after {
   content: "";
   position: absolute;
   inset: 0;
@@ -38,16 +38,16 @@
   z-index: 1;
 }
 
-.menu-hero .hero-img img {
+.foodtruck-hero .hero-img img {
   position: absolute;
   width: 100%;
   height: 100%;
   object-fit: cover;
   z-index: 0;
-  filter: brightness(0.65) contrast(1.05) saturate(0.9) sepia(0.1);
+  filter: brightness(0.65) contrast(1.05) saturate(0.9);
 }
 
-.menu-hero .container {
+.foodtruck-hero .container {
   position: relative;
   z-index: 2;
   display: flex;
@@ -57,14 +57,14 @@
   text-align: center;
 }
 
-.menu-hero h1 {
+.foodtruck-hero h1 {
   font-size: clamp(2.5rem, 8vw, 7rem) !important;
   line-height: 1.0;
   text-shadow: 0 4px 25px rgba(0, 0, 0, 0.85);
   margin-bottom: 0.5rem;
 }
 
-.menu-hero-tagline {
+.foodtruck-hero-tagline {
   font-family: var(--font-dm-mono), monospace;
   font-size: clamp(0.8rem, 1.5vw, 1.1rem);
   font-weight: 550;
@@ -75,7 +75,7 @@
   text-shadow: 0 2px 12px rgba(0, 0, 0, 0.85);
 }
 
-.menu-hero-desc {
+.foodtruck-hero-desc {
   font-family: 'Outfit', sans-serif;
   font-size: clamp(0.9rem, 1.2vw, 1.1rem);
   color: var(--base-200);
@@ -87,7 +87,7 @@
 }
 
 /* CTAs Row */
-.menu-ctas-row {
+.foodtruck-ctas-row {
   display: flex;
   flex-wrap: wrap;
   gap: 1.25rem;
@@ -98,7 +98,7 @@
   z-index: 5;
 }
 
-.menu-cta-btn {
+.foodtruck-cta-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -112,108 +112,277 @@
 }
 
 /* Primary Button - Solid Gold, Inverts to Hollow on Hover */
-.menu-btn-primary {
+.foodtruck-btn-primary {
   background-color: var(--base-300) !important;
   color: var(--base-600) !important;
 }
 
-.menu-btn-primary .slide-button-bg {
+.foodtruck-btn-primary .slide-button-bg {
   background-color: var(--base-300) !important;
 }
 
-.menu-btn-primary:hover {
+.foodtruck-btn-primary:hover {
   color: var(--base-100) !important;
 }
 
-.menu-btn-primary:hover .slide-button-bg {
+.foodtruck-btn-primary:hover .slide-button-bg {
   background-color: var(--base-600) !important;
 }
 
 /* Secondary Button - Hollow, Inverts to Solid Gold on Hover */
-.menu-btn-secondary {
+.foodtruck-btn-secondary {
   background-color: var(--base-300) !important;
   color: var(--base-100) !important;
 }
 
-.menu-btn-secondary .slide-button-bg {
+.foodtruck-btn-secondary .slide-button-bg {
   background-color: var(--base-600) !important;
 }
 
-.menu-btn-secondary:hover {
+.foodtruck-btn-secondary:hover {
   color: var(--base-600) !important;
 }
 
-.menu-btn-secondary:hover .slide-button-bg {
+.foodtruck-btn-secondary:hover .slide-button-bg {
   background-color: var(--base-300) !important;
 }
 
 /* Tertiary Button - Hollow White/Gold outline */
-.menu-btn-tertiary {
+.foodtruck-btn-tertiary {
   background-color: var(--base-100) !important;
   color: var(--base-100) !important;
 }
 
-.menu-btn-tertiary .slide-button-bg {
+.foodtruck-btn-tertiary .slide-button-bg {
   background-color: var(--base-600) !important;
 }
 
-.menu-btn-tertiary:hover {
+.foodtruck-btn-tertiary:hover {
   color: var(--base-600) !important;
   background-color: var(--base-100) !important;
 }
 
-.menu-btn-tertiary:hover .slide-button-bg {
+.foodtruck-btn-tertiary:hover .slide-button-bg {
   background-color: var(--base-100) !important;
 }
 
-/* Menu Content Section */
-.menu-content {
+/* Main Content Layout - Two Column Editorial */
+.foodtruck-content-section {
   position: relative;
-  padding: 6rem 2rem;
+  padding: 8rem 2rem;
   background-color: var(--base-600);
   overflow: hidden;
 }
 
-.menu-column-grid {
-  display: flex;
-  flex-direction: column;
-  gap: 8rem;
-  max-width: 900px;
+.foodtruck-content-section .container {
+  max-width: 1200px;
   margin: 0 auto;
-  align-items: center;
 }
 
-.menu-card {
-  width: 100%;
+.foodtruck-two-col-layout {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 5rem;
+  align-items: start;
+}
+
+/* Left Column: Menu Display */
+.foodtruck-menu-display {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
-  text-align: center;
-  scroll-margin-top: 180px; /* Offset for sticky tabs */
+  gap: 4rem;
 }
 
-.menu-card-header {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
+.foodtruck-menu-section-header {
+  border-bottom: 1px solid rgba(197, 168, 128, 0.15);
+  padding-bottom: 1.5rem;
+  margin-bottom: 2rem;
 }
 
-.menu-card-header span {
+.foodtruck-menu-section-header h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.2rem, 4vw, 3.2rem);
+  color: var(--base-100);
+  line-height: 1.1;
+  text-transform: none;
+}
+
+.foodtruck-menu-section-header .section-desc {
   font-family: 'Outfit', sans-serif;
-  font-size: 0.85rem;
-  text-transform: uppercase;
-  letter-spacing: 0.2em;
+  font-size: clamp(1rem, 1.3vw, 1.15rem);
   color: var(--base-300);
+  margin-top: 1rem;
+  line-height: 1.6;
+}
+
+/* Tier Pricing Highlights */
+.foodtruck-pricing-highlights {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.pricing-tier-card {
+  background-color: rgba(197, 168, 128, 0.08);
+  border: 1px solid rgba(197, 168, 128, 0.25);
+  padding: 2rem;
+  border-radius: 4px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.pricing-tier-card::before {
+  content: "";
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  right: 8px;
+  bottom: 8px;
+  border: 1px solid rgba(197, 168, 128, 0.05);
+  pointer-events: none;
+}
+
+.pricing-tier-card h4 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  color: var(--base-300);
+  margin-bottom: 0.5rem;
+  text-transform: none;
+}
+
+.pricing-tier-card .price-tag {
+  font-family: var(--font-dm-mono), monospace;
+  font-size: 1.75rem;
+  color: var(--base-100);
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+  display: block;
+}
+
+.pricing-tier-card p {
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.95rem;
+  color: var(--base-200);
+  line-height: 1.5;
+}
+
+/* Category Grid & Cards */
+.foodtruck-categories-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+.foodtruck-category-block {
+  background-color: rgba(11, 21, 18, 0.4);
+  border: 1px solid rgba(197, 168, 128, 0.15);
+  padding: 2.5rem 2rem;
+  border-radius: 4px;
+  position: relative;
+}
+
+.foodtruck-category-block::before {
+  content: "";
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  right: 8px;
+  bottom: 8px;
+  border: 1px solid rgba(197, 168, 128, 0.05);
+  pointer-events: none;
+}
+
+.foodtruck-category-title-wrap {
+  margin-bottom: 1.75rem;
+  border-bottom: 1px solid rgba(197, 168, 128, 0.1);
+  padding-bottom: 0.75rem;
+}
+
+.foodtruck-category-title-wrap h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  color: var(--base-300);
+  text-transform: none;
   font-weight: 600;
 }
 
-.menu-card-header h4 {
-  font-size: clamp(1.5rem, 2.5vw, 2.2rem);
-  color: var(--base-100);
-  font-family: 'Playfair Display', serif;
+.foodtruck-items-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
 }
 
-.restaurant-menu-frame {
+.foodtruck-menu-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+  border-bottom: 1px dashed rgba(255, 255, 255, 0.08);
+  padding-bottom: 0.75rem;
+}
+
+.foodtruck-menu-item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.foodtruck-item-name {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.05rem;
+  color: var(--base-100);
+  font-weight: 500;
+}
+
+.foodtruck-item-price {
+  font-family: var(--font-dm-mono), monospace;
+  font-size: 0.95rem;
+  color: var(--base-300);
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+/* Editorial Blocks */
+.foodtruck-editorial-blocks {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+  margin-top: 4rem;
+  border-top: 1px solid rgba(197, 168, 128, 0.15);
+  padding-top: 4rem;
+}
+
+.foodtruck-info-block {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.foodtruck-info-block h4 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.2rem, 1.8vw, 1.5rem);
+  color: var(--base-300);
+  text-transform: none;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.foodtruck-info-block p {
+  font-family: 'Outfit', sans-serif;
+  font-size: clamp(0.95rem, 1.1vw, 1.05rem);
+  line-height: 1.65;
+  color: var(--base-200);
+  opacity: 0.9;
+}
+
+/* Right Column: Sticky Flyer Card */
+.foodtruck-sticky-sidebar {
+  position: sticky;
+  top: 120px;
+}
+
+.foodtruck-menu-frame {
   position: relative;
   width: 100%;
   border-radius: 4px;
@@ -225,12 +394,12 @@
   transition: transform 0.4s ease, border-color 0.4s ease;
 }
 
-.restaurant-menu-frame:hover {
+.foodtruck-menu-frame:hover {
   transform: scale(1.015);
   border-color: rgba(197, 168, 128, 0.6);
 }
 
-.restaurant-menu-frame::before {
+.foodtruck-menu-frame::before {
   content: "";
   position: absolute;
   top: 15px;
@@ -242,7 +411,7 @@
   z-index: 2;
 }
 
-.restaurant-menu-frame::after {
+.foodtruck-menu-frame::after {
   content: "";
   position: absolute;
   top: 20px;
@@ -269,7 +438,7 @@
   transition: opacity 0.3s ease;
 }
 
-.restaurant-menu-frame:hover .frame-overlay {
+.foodtruck-menu-frame:hover .frame-overlay {
   opacity: 1;
 }
 
@@ -294,7 +463,7 @@
 }
 
 /* Lightbox styles */
-.menu-lightbox {
+.foodtruck-lightbox {
   position: fixed;
   top: 0;
   left: 0;
@@ -389,43 +558,6 @@
   transform: scale(1.1);
 }
 
-.lightbox-arrow {
-  position: relative;
-  z-index: 10;
-  background: none;
-  border: none;
-  color: var(--base-200);
-  font-size: 2.5rem;
-  cursor: pointer;
-  width: 60px;
-  height: 60px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  background-color: rgba(255, 255, 255, 0.03);
-  transition: all 0.3s ease;
-}
-
-.lightbox-arrow:hover {
-  color: var(--base-100);
-  background-color: rgba(255, 255, 255, 0.1);
-}
-
-.lightbox-arrow.prev {
-  position: fixed;
-  left: 2rem;
-  top: 50%;
-  transform: translateY(-50%);
-}
-
-.lightbox-arrow.next {
-  position: fixed;
-  right: 2rem;
-  top: 50%;
-  transform: translateY(-50%);
-}
-
 .lightbox-image-wrapper {
   position: relative;
   z-index: 5;
@@ -458,7 +590,7 @@
 }
 
 /* Footer CTAs Section */
-.menu-footer-ctas {
+.foodtruck-footer-ctas {
   position: relative;
   padding: 8rem 2rem;
   text-align: center;
@@ -467,14 +599,14 @@
   overflow: hidden;
 }
 
-.menu-footer-ctas .section-title {
+.foodtruck-footer-ctas .section-title {
   font-family: 'Playfair Display', serif;
   font-size: clamp(1.8rem, 3.5vw, 2.8rem);
   color: var(--base-100);
   margin-bottom: 1rem;
 }
 
-.menu-footer-ctas .section-subtitle {
+.foodtruck-footer-ctas .section-subtitle {
   font-family: 'Outfit', sans-serif;
   font-size: clamp(0.95rem, 1.5vw, 1.15rem);
   color: var(--base-200);
@@ -486,8 +618,18 @@
 
 /* Responsive adjust */
 @media (max-width: 991px) {
-  .lightbox-arrow {
-    display: none !important; /* Hide fixed arrows on mobile to avoid overlapping content */
+  .foodtruck-two-col-layout {
+    grid-template-columns: 1fr;
+    gap: 4rem;
+  }
+  
+  .foodtruck-sticky-sidebar {
+    position: relative;
+    top: 0;
+    order: -1; /* Place flyer card first on mobile */
+  }
+
+  .foodtruck-categories-grid {
+    grid-template-columns: 1fr;
   }
 }
-
