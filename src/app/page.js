@@ -1,11 +1,11 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
 
-import Preloader, { isInitialLoad } from "@/components/Preloader/Preloader";
+import Preloader from "@/components/Preloader/Preloader";
 import Copy from "@/components/Copy/Copy";
 import DiningMenu from "@/components/DiningMenu/DiningMenu";
 import Testimonials from "@/components/Testimonials/Testimonials";
@@ -21,24 +21,53 @@ import GallerySection from "@/components/GallerySection/GallerySection";
 import Ingredients from "@/components/Ingredients/Ingredients";
 import PressSection from "@/components/PressSection/PressSection";
 import SocialSection from "@/components/SocialSection/SocialSection";
+import BlogSection from "@/components/BlogSection/BlogSection";
 
 import "./home.css";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Home() {
-  const [isInitialPageLoad] = useState(() => isInitialLoad);
-  const [preloaderDelay, setPreloaderDelay] = useState(
-    isInitialPageLoad ? 9999 : 0,
-  );
+  /**
+   * heroReady — gates ALL hero entry animations.
+   *
+   * Always starts as false so server and client render the same initial HTML
+   * (avoids hydration mismatch). A useEffect immediately flips it to true for
+   * return visitors before the browser finishes painting.
+   *
+   *   - Return visitors  → true  after first effect (animate in right away)
+   *   - First-time visitors → stays false until onAnimationComplete fires
+   */
+  const [heroReady, setHeroReady] = useState(false);
 
-  const handlePreloaderEnter = () => {
-    if (isInitialPageLoad) setPreloaderDelay(0.2);
+  /* Synchronise heroReady with stored consent/visit status after hydration */
+  useEffect(() => {
+    const cookieConsent = document.cookie
+      .split("; ")
+      .find((row) => row.startsWith("cookie_consent="));
+    const hasVisited =
+      document.cookie.includes("has_visited=true") ||
+      cookieConsent != null;
+    if (hasVisited) {
+      setTimeout(() => {
+        setHeroReady(true);
+      }, 0);
+    }
+  }, []);
+
+  /**
+   * Called by Preloader after its exit slide animation fully finishes.
+   * This is the moment the page becomes fully visible for first-time visitors.
+   */
+  const handlePreloaderAnimationComplete = () => {
+    setHeroReady(true);
   };
 
+  /* Animate hero buttons once heroReady flips true */
   useEffect(() => {
-    if (isInitialPageLoad && preloaderDelay === 9999) return;
+    if (!heroReady) return;
 
+    // Slight delay so the headline Copy animation has a head-start
     gsap.fromTo(
       ".hero-buttons-container",
       { y: 40, opacity: 0 },
@@ -47,17 +76,20 @@ export default function Home() {
         opacity: 1,
         duration: 1,
         ease: "power3.out",
-        delay: isInitialPageLoad ? 0.7 : 1.35,
+        delay: 0.6,
       }
     );
-  }, [preloaderDelay, isInitialPageLoad]);
+  }, [heroReady]);
+
 
   return (
     <>
-      <Preloader onEnter={handlePreloaderEnter} />
+      {!heroReady && (
+        <Preloader onAnimationComplete={handlePreloaderAnimationComplete} />
+      )}
 
       <section className="hero">
-        <Image src="/mandana/rounded_mandala/Group 9.svg" className="bg-mandala-centered" style={{ opacity: 0.08 }} width={800} height={800} priority loading="eager" alt="" />
+        <Image src="/mandana/rounded_mandala/Group 9.svg" className="bg-mandala-centered" style={{ opacity: 0.08 }} width={800} height={800} loading="eager" alt="" />
         <div className="hero-img" style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%" }}>
           <Image src="/home/hero.jpg" fill priority sizes="100vw" style={{ objectFit: "cover" }} alt="" />
         </div>
@@ -66,7 +98,8 @@ export default function Home() {
           <Copy
             type="words"
             animateOnScroll={false}
-            delay={isInitialPageLoad ? preloaderDelay : 0.85}
+            delay={0}
+            play={heroReady}
           >
             <h1>
               Bollywood <br /> Bites
@@ -76,10 +109,11 @@ export default function Home() {
           <Copy
             type="lines"
             animateOnScroll={false}
-            delay={isInitialPageLoad ? preloaderDelay + 0.15 : 1.05}
+            delay={0.15}
+            play={heroReady}
           >
             <p className="hero-tagline-subtitle">
-              The finest flavors of India by Chef Sanjay Patel
+              Finest Indian Taste by Chef Sanjay Patel
             </p>
           </Copy>
 
@@ -107,16 +141,18 @@ export default function Home() {
             <Copy
               type="lines"
               animateOnScroll={false}
-              delay={isInitialPageLoad ? preloaderDelay + 0.15 : 1.1}
+              delay={0.2}
+              play={heroReady}
             >
-              <p className="sm">Est. 2012</p>
+              <p className="sm">Est. 2009</p>
             </Copy>
             <Copy
               type="lines"
               animateOnScroll={false}
-              delay={isInitialPageLoad ? preloaderDelay + 0.25 : 1.2}
+              delay={0.3}
+              play={heroReady}
             >
-              <p className="sm">Los Angeles</p>
+              <p className="sm">Los Angeles, California, USA</p>
             </Copy>
           </div>
         </div>
@@ -134,6 +170,7 @@ export default function Home() {
       <Testimonials />
       <PressSection />
       <SocialSection />
+      <BlogSection />
       <CTA />
     </>
   );

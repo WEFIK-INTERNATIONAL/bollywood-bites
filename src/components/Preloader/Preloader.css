@@ -109,3 +109,13 @@
     gap: 2.5rem;
   }
 }
+
+/* Make preloader button background transparent inside and fill with gold on hover */
+.preloader-enter-button .slide-button-bg {
+  background-color: var(--base-600);
+}
+
+.preloader-enter-button:hover .slide-button-bg {
+  background-color: var(--base-300);
+}
+

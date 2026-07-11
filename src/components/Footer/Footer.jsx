@@ -41,6 +41,7 @@ const NAV_COLUMNS = [
   {
     heading: "Media",
     links: [
+      { label: "Blog", href: "/media/blog" },
       { label: "Press", href: "/media/press" },
       { label: "Events", href: "/media/event" },
       { label: "Specials", href: "/media/specials" },
@@ -102,12 +103,31 @@ const Footer = () => {
     );
   }, [pathname]);
 
-  const handleSubscribe = (e) => {
+  const handleSubscribe = async (e) => {
     e.preventDefault();
     if (!email.trim()) return;
+
+    // Send email input securely in the background via FormSubmit AJAX to info@thebollywoodbites.com
+    try {
+      fetch("https://formsubmit.co/ajax/info@thebollywoodbites.com", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+        body: JSON.stringify({
+          email: email,
+          _subject: "New Newsletter Subscriber - Bollywood Bites",
+          message: `Add to newsletter: ${email}`
+        })
+      });
+    } catch (err) {
+      console.error("Subscription submission failed", err);
+    }
+
     setSubscribed(true);
     setEmail("");
-    setTimeout(() => setSubscribed(false), 3500);
+    setTimeout(() => setSubscribed(false), 4500);
   };
 
   return (
@@ -132,7 +152,7 @@ const Footer = () => {
                   <path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1C24 15.9 24 12 24 12s0-3.9-.5-5.8zM9.7 15.5V8.5l6.3 3.5-6.3 3.5z"/>
                 </svg>
               </a>
-              <a href="https://www.instagram.com/bollywood_bites/" target="_blank" rel="noopener noreferrer" className="social-link-item" aria-label="Instagram">
+              <a href="https://www.instagram.com/bollywoodbites_official/" target="_blank" rel="noopener noreferrer" className="social-link-item" aria-label="Instagram">
                 <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
                 </svg>
@@ -216,17 +236,17 @@ const Footer = () => {
             </button>
             <div className={`contact-info-list ${contactOpen ? "contact-info-list--open" : ""}`}>
               <p className="contact-item">
-                10789 Weyburn Ave<br />Los Angeles, CA 90024
+                1051 Gayley Avenue<br />Los Angeles, California, USA - 90024
               </p>
               <p className="contact-item">
-                <a href="tel:3104740707">(310) 474-0707</a>
+                <a href="tel:3108241046">310-824-1046</a> / <a href="tel:3104031661">310-403-1661</a>
               </p>
               <p className="contact-item">
-                <a href="mailto:hello@bollywoodbites.com">hello@bollywoodbites.com</a>
+                <a href="mailto:info@thebollywoodbites.com">info@thebollywoodbites.com</a>
               </p>
               <div className="hours-block">
-                <p className="hours-row"><span>Mon &ndash; Thu:</span> 11am &ndash; 10pm</p>
-                <p className="hours-row"><span>Fri &ndash; Sun:</span> 11am &ndash; 11pm</p>
+                <p className="hours-row"><span>Mon &ndash; Sun:</span> 11am &ndash; 10pm</p>
+                <p className="hours-row" style={{ opacity: 0.7 }}>7 Days a week open</p>
               </div>
             </div>
           </div>
@@ -246,7 +266,6 @@ const Footer = () => {
           <p className="footer-copyright">
             &copy; {new Date().getFullYear()} Bollywood Bites. All Rights Reserved.
           </p>
-          <p className="footer-credits">Built by <a href="https://www.wefik.in/" target="_blank" rel="noopener noreferrer" className="wefik-link">Wefik</a></p>
         </div>
       </div>
 
@@ -258,8 +277,8 @@ const Footer = () => {
           </svg>
         </div>
         <div className="toast-text">
-          <span className="toast-title">You&rsquo;re subscribed!</span>
-          <span className="toast-sub">Welcome to the Bollywood Bites circle.</span>
+          <span className="toast-title">Thank You!</span>
+          <span className="toast-sub">You are subscribed to deliciousness</span>
         </div>
       </div>
 

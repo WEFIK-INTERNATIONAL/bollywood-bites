@@ -1,7 +1,7 @@
 .social-section {
   position: relative;
   width: 100%;
-  padding: 8rem 0;
+  padding: 5rem 0; /* smaller padding for smaller section */
   background-color: var(--base-600);
   overflow: hidden;
   border-top: 1px solid rgba(197, 168, 128, 0.12);
@@ -9,17 +9,17 @@
 }
 
 .social-section .container {
-  max-width: 1200px;
+  max-width: 1300px; /* slightly wider to fit 5 boxes */
   padding: 0 1.5rem;
 }
 
 .social-section .mandala-corner {
-  opacity: 0.08;
+  opacity: 0.2;
   z-index: 1;
 }
 
 .social-section-header {
-  margin-bottom: 4rem;
+  margin-bottom: 3rem; /* smaller header margin */
   text-align: center;
   position: relative;
   z-index: 2;
@@ -27,18 +27,18 @@
 
 .social-section-header p {
   color: var(--base-300) !important;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.25rem;
 }
 
 .social-section-header h2 {
   color: var(--base-100) !important;
-  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  font-size: clamp(2rem, 4vw, 3.5rem); /* slightly smaller title */
 }
 
 .social-cards-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2rem;
+  grid-template-columns: repeat(5, 1fr); /* 5 columns for 5 channels */
+  gap: 1.25rem; /* smaller gap */
   position: relative;
   z-index: 2;
   width: 100%;
@@ -52,9 +52,9 @@
   border: 1px solid rgba(197, 168, 128, 0.1);
   border-radius: 6px;
   overflow: hidden;
-  padding: 2.5rem;
+  padding: 1.5rem 1.25rem; /* smaller card padding */
   transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
 }
 
 /* Background glow transition */
@@ -69,26 +69,26 @@
 }
 
 .social-card:hover {
-  transform: translateY(-8px);
+  transform: translateY(-6px);
   border-color: var(--brand-color);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 15px rgba(255, 255, 255, 0.05);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.35), 0 0 12px rgba(255, 255, 255, 0.04);
 }
 
 .social-card:hover .social-card-bg-glow {
-  opacity: 0.06;
+  opacity: 0.07;
 }
 
 .social-card-inner {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 1.25rem; /* smaller inner gap */
   position: relative;
   z-index: 3;
 }
 
 .social-card-icon-wrap {
-  width: 70px;
-  height: 70px;
+  width: 48px; /* smaller icon wrap */
+  height: 48px;
   border-radius: 50%;
   background-color: rgba(255, 255, 255, 0.03);
   border: 1px solid rgba(197, 168, 128, 0.15);
@@ -97,6 +97,11 @@
   justify-content: center;
   color: var(--base-100);
   transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.social-card-icon-wrap svg {
+  width: 22px; /* smaller icon */
+  height: 22px;
 }
 
 .social-card:hover .social-card-icon-wrap {
@@ -109,11 +114,11 @@
 .social-card-meta {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 0.35rem;
 }
 
 .social-card-platform {
-  font-size: 0.75rem;
+  font-size: 0.65rem; /* smaller platform text */
   letter-spacing: 0.1em;
   color: var(--base-300);
   text-transform: uppercase;
@@ -121,21 +126,22 @@
 
 .social-card-handle {
   font-family: "Roslindale Variable", sans-serif;
-  font-size: clamp(1.4rem, 2.2vw, 2rem);
-  font-weight: 900;
+  font-size: clamp(1rem, 1.2vw, 1.25rem); /* smaller handle font size to prevent wrap */
+  font-weight: 800;
   color: var(--base-100);
-  line-height: 1.1;
+  line-height: 1.2;
   text-transform: none;
+  word-break: break-all; /* prevent long handles from breaking layout */
 }
 
 .social-card-action {
-  font-size: 0.75rem;
+  font-size: 0.7rem; /* smaller action text */
   color: var(--base-200);
-  margin-top: 1rem;
+  margin-top: 0.5rem;
   letter-spacing: 0.05em;
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.35rem;
   transition: color 0.3s ease;
 }
 
@@ -148,32 +154,39 @@
 }
 
 .social-card:hover .social-card-action .arrow {
-  transform: translateX(5px);
+  transform: translateX(3px);
 }
 
 /* Responsive grid rules */
-@media (max-width: 1000px) {
+@media (max-width: 1200px) {
+  .social-cards-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+  }
+}
+
+@media (max-width: 800px) {
   .social-section {
-    padding: 6rem 0;
+    padding: 4rem 0;
   }
   
   .social-cards-grid {
     grid-template-columns: repeat(2, 1fr);
-    gap: 1.5rem;
-  }
-}
-
-@media (max-width: 600px) {
-  .social-cards-grid {
-    grid-template-columns: 1fr;
-    gap: 1.25rem;
+    gap: 1rem;
   }
   
   .social-card {
-    padding: 2rem;
+    padding: 1.25rem 1rem;
+  }
+}
+
+@media (max-width: 500px) {
+  .social-cards-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
   }
   
-  .social-card-inner {
-    gap: 1.5rem;
+  .social-card {
+    padding: 1.5rem 1.25rem;
   }
 }

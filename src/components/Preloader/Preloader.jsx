@@ -12,8 +12,6 @@ const clamp = (value, min, max) => Math.min(Math.max(value, min), max);
 
 const EXIT_ANIMATION_MS = 700;
 
-let isInitialLoad = true;
-
 export default function Preloader({
   title = "Bollywood Bites",
   duration = 2600,
@@ -23,11 +21,12 @@ export default function Preloader({
   onAnimationComplete,
 }) {
   const lenis = useLenis();
-  const [isVisible, setIsVisible] = useState(isInitialLoad);
-  const [isScrollLocked, setIsScrollLocked] = useState(isInitialLoad);
+  // Preloader is always visible when rendered — page.js controls mount
+  const [isScrollLocked, setIsScrollLocked] = useState(true);
   const [progress, setProgress] = useState(0);
   const [hasFinishedLoading, setHasFinishedLoading] = useState(false);
   const [isExiting, setIsExiting] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
 
   /* lock/unlock scroll while preloader is active */
   useEffect(() => {
@@ -87,7 +86,6 @@ export default function Preloader({
     setIsScrollLocked(false);
 
     window.setTimeout(() => {
-      isInitialLoad = false;
       setIsVisible(false);
       if (onAnimationComplete) onAnimationComplete();
     }, EXIT_ANIMATION_MS);
@@ -100,7 +98,7 @@ export default function Preloader({
       className={`preloader ${isExiting ? "is-exiting" : ""}`}
       aria-label="Website preloader"
     >
-      <Image src="/mandana/rounded_mandala/Group 9.svg" className="bg-mandala-centered" style={{ opacity: 0.08 }} width={800} height={800} priority loading="eager" alt="" />
+      <Image src="/mandana/rounded_mandala/Group 9.svg" className="bg-mandala-centered" style={{ opacity: 0.08 }} width={800} height={800} loading="eager" alt="" />
       <div className="preloader-inner">
         <div className="preloader-title-wrap">
           <h2 className="preloader-title preloader-title-base">{title}</h2>
@@ -136,5 +134,3 @@ export default function Preloader({
     </section>
   );
 }
-
-export { isInitialLoad };

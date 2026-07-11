@@ -1,0 +1,405 @@
+.single-blog-page {
+  background-color: var(--base-500); /* Dark Forest Green */
+  color: var(--base-100);
+  min-height: 100vh;
+  padding-bottom: 8rem;
+}
+
+/* Floating Back Bar */
+.blog-back-bar {
+  position: relative;
+  width: 100%;
+  padding: 8rem 0 2rem;
+  z-index: 2;
+}
+
+.blog-back-bar .container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--base-300); /* Gold */
+  font-family: var(--font-dm-mono), monospace;
+  font-size: 0.85rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  text-decoration: none;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.back-link:hover {
+  color: var(--base-100);
+  transform: translateX(-5px);
+}
+
+/* Article Header */
+.blog-article-header {
+  position: relative;
+  padding: 1rem 0 3rem;
+  text-align: center;
+  z-index: 1;
+}
+
+.blog-article-header .container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.blog-article-tags {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.blog-tag {
+  background-color: rgba(197, 168, 128, 0.1);
+  border: 1px solid rgba(197, 168, 128, 0.25);
+  color: var(--base-300); /* Gold */
+  font-family: var(--font-dm-mono), monospace;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  padding: 0.35rem 0.85rem;
+  border-radius: 4px;
+}
+
+.blog-article-title {
+  font-family: "Roslindale Variable", sans-serif;
+  font-size: clamp(2rem, 4.5vw, 3.5rem);
+  font-weight: 500;
+  line-height: 1.2;
+  color: var(--base-100);
+  margin: 0 0 1.5rem;
+  max-width: 800px;
+}
+
+.blog-article-meta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
+  font-family: var(--font-dm-mono), monospace;
+  font-size: 0.85rem;
+  color: var(--base-200);
+}
+
+.meta-author {
+  color: var(--base-300); /* Gold */
+  font-weight: 500;
+}
+
+.meta-sep {
+  margin: 0 0.75rem;
+  color: rgba(255, 255, 255, 0.15);
+}
+
+/* Article Hero Image */
+.blog-article-hero-img {
+  width: 100%;
+  margin-bottom: 4rem;
+}
+
+.blog-article-hero-img .container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.hero-img-wrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+.article-hero-image {
+  object-fit: cover;
+}
+
+/* Article Content Body */
+.blog-article-content {
+  position: relative;
+  width: 100%;
+  margin-bottom: 6rem;
+  overflow: hidden;
+}
+
+.article-bg-mandala {
+  position: absolute;
+  top: 15%;
+  left: -15%;
+  opacity: 0.03;
+  pointer-events: none;
+  z-index: 0;
+  animation: spinMandala 160s linear infinite;
+}
+
+.blog-article-content .container {
+  position: relative;
+  z-index: 1;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+/* Typography styles for article body content */
+.rich-text-body {
+  font-family: var(--font-host-grotesk), sans-serif;
+  font-size: 1.15rem;
+  line-height: 1.8;
+  color: var(--base-200);
+}
+
+.rich-text-body p {
+  margin-bottom: 2rem;
+}
+
+.rich-text-body h3 {
+  font-family: "Roslindale Variable", sans-serif;
+  font-size: 1.85rem;
+  font-weight: 500;
+  line-height: 1.3;
+  color: var(--base-100);
+  margin: 3.5rem 0 1.5rem;
+}
+
+.rich-text-body h4 {
+  font-family: "Roslindale Variable", sans-serif;
+  font-size: 1.4rem;
+  font-weight: 500;
+  color: var(--base-100);
+  margin: 2.5rem 0 1rem;
+}
+
+.rich-text-body em {
+  font-style: italic;
+}
+
+.rich-text-body strong {
+  font-weight: 600;
+  color: var(--base-100);
+}
+
+.rich-text-body ul, 
+.rich-text-body ol {
+  margin-bottom: 2.5rem;
+  padding-left: 1.5rem;
+}
+
+.rich-text-body li {
+  margin-bottom: 0.75rem;
+  list-style-type: square;
+}
+
+.rich-text-body li::marker {
+  color: var(--base-300); /* Gold bullet points */
+}
+
+.rich-text-body blockquote {
+  position: relative;
+  margin: 3.5rem 0;
+  padding: 2rem 2.5rem;
+  background-color: #080d09;
+  border-left: 3px solid var(--base-300);
+  border-radius: 0 8px 8px 0;
+  font-family: "Roslindale Variable", sans-serif;
+  font-size: 1.45rem;
+  line-height: 1.5;
+  color: var(--base-100);
+  font-style: italic;
+}
+
+.rich-text-body blockquote .quote-author {
+  display: block;
+  margin-top: 1rem;
+  font-family: var(--font-dm-mono), monospace;
+  font-size: 0.85rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--base-300);
+  font-style: normal;
+}
+
+/* Footer Section of Article */
+.blog-article-footer {
+  width: 100%;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 2.5rem 0;
+  margin-bottom: 6rem;
+}
+
+.blog-article-footer .container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.footer-line {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+.footer-tagline {
+  font-family: "Roslindale Variable", sans-serif;
+  font-size: 1.25rem;
+  color: var(--base-200);
+}
+
+.explore-more-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-dm-mono), monospace;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--base-300);
+  text-decoration: none;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.explore-more-link:hover {
+  color: var(--base-100);
+}
+
+.explore-more-link svg {
+  transition: transform 0.3s ease;
+}
+
+.explore-more-link:hover svg {
+  transform: translateX(5px);
+}
+
+/* Related Articles Grid */
+.related-articles-section {
+  width: 100%;
+}
+
+.related-articles-section .container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.related-title {
+  font-family: "Roslindale Variable", sans-serif;
+  font-size: 1.85rem;
+  color: var(--base-100);
+  margin: 0 0 2.5rem;
+  text-align: center;
+  font-weight: 500;
+}
+
+.related-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2.5rem;
+}
+
+.related-post-card {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.related-img-wrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  margin-bottom: 1.25rem;
+}
+
+.related-img {
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.25, 1, 0.3, 1);
+}
+
+.related-post-card:hover .related-img {
+  transform: scale(1.05);
+}
+
+.related-meta {
+  font-family: var(--font-dm-mono), monospace;
+  font-size: 0.75rem;
+  color: var(--base-300);
+  margin-bottom: 0.5rem;
+}
+
+.related-meta-dot {
+  margin: 0 0.5rem;
+  color: rgba(255, 255, 255, 0.15);
+}
+
+.related-card-title {
+  font-family: "Roslindale Variable", sans-serif;
+  font-size: 1.25rem;
+  font-weight: 500;
+  line-height: 1.35;
+  color: var(--base-100);
+  margin: 0;
+  transition: color 0.3s ease;
+}
+
+.related-post-card:hover .related-card-title {
+  color: var(--base-300);
+}
+
+/* Empty State / 404 */
+.blog-not-found {
+  min-height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background-color: var(--base-500);
+}
+
+.blog-not-found h2 {
+  font-family: "Roslindale Variable", sans-serif;
+  font-size: 2.5rem;
+  color: var(--base-100);
+  margin-bottom: 1rem;
+}
+
+.blog-not-found p {
+  color: var(--base-200);
+  margin-bottom: 2rem;
+  font-size: 1.1rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .blog-back-bar {
+    padding: 7rem 0 1rem;
+  }
+  
+  .blog-article-title {
+    font-size: 2.25rem;
+  }
+  
+  .related-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}

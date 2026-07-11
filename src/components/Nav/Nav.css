@@ -12,10 +12,12 @@
 }
 
 .nav-logo a img {
-  width: 5rem;
+  width: 8.5rem;
   height: auto;
   object-fit: contain;
+  mix-blend-mode: screen;
 }
+
 
 .nav-toggle {
   position: relative;
@@ -298,5 +300,9 @@
   .nav-link-flat::after,
   .nav-social a::after {
     display: none;
+  }
+
+  .nav-logo a img {
+    width: 5rem;
   }
 }

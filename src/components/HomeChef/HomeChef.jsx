@@ -87,7 +87,7 @@ const HomeChef = () => {
             </p>
 
             <div className="chef-action">
-              <Button href="/about/chef-sanjay-patel" className="chef-explore-btn">
+              <Button href="/media/press" className="chef-explore-btn">
                 Learn More
               </Button>
             </div>

@@ -1,26 +1,47 @@
 export const moments = [
   {
     image: "/moments/img1.jpg",
-    alt: "Moment 1",
+    alt: "Michael Jackson",
+    name: "Michael Jackson",
   },
   {
     image: "/moments/img2.jpg",
-    alt: "Moment 2",
+    alt: "Aamir Khan",
+    name: "Aamir Khan",
   },
   {
     image: "/moments/img3.jpg",
-    alt: "Moment 3",
+    alt: "Aishwarya Rai",
+    name: "Aishwarya Rai",
   },
   {
     image: "/moments/img4.jpg",
-    alt: "Moment 4",
+    alt: "Preity Zinta",
+    name: "Preity Zinta",
   },
   {
     image: "/moments/img5.jpg",
-    alt: "Moment 5",
+    alt: "Amitabh Bachchan",
+    name: "Amitabh Bachchan",
   },
   {
     image: "/moments/img6.jpg",
-    alt: "Moment 6",
+    alt: "Shah Rukh Khan",
+    name: "Shah Rukh Khan",
+  },
+  {
+    image: "/moments/img7.jpg",
+    alt: "Saif Ali Khan",
+    name: "Saif Ali Khan",
+  },
+  {
+    image: "/moments/img8.jpg",
+    alt: "Sanjay Dutt",
+    name: "Sanjay Dutt",
+  },
+  {
+    image: "/moments/img9.jpg",
+    alt: "Salman Khan",
+    name: "Salman Khan",
   },
 ];

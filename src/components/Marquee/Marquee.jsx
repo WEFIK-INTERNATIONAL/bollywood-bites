@@ -50,7 +50,7 @@ const Marquee = () => {
     <section className="marquee">
       <div className="container">
         <div className="marquee-content">
-          <h1>Est. 2026</h1>
+          <h1>Est. 2009</h1>
           <h3>Indian Culinary Art</h3>
         </div>
 

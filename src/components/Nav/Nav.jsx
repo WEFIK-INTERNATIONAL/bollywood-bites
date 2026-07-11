@@ -48,6 +48,7 @@ const MENU_STRUCTURE = [
     label: "Media",
     img: "/menu/menu-essence.jpg",
     submenus: [
+      { label: "Blog", href: "/media/blog", img: "/home/street-bhel-puri.png" },
       { label: "Press", href: "/media/press", img: "/menu/menu-essence.jpg" },
       { label: "Event", href: "/media/event", img: "/home/about-1.jpg" },
       { label: "Specials", href: "/media/specials", img: "/home/about-2.jpg" },
@@ -58,7 +59,7 @@ const MENU_STRUCTURE = [
 
 const SOCIAL_LINKS = [
   { label: "Youtube", href: "https://www.youtube.com/channel/UCtAqDJgfhTo6UrIt9VrQaXg" },
-  { label: "Instagram", href: "https://www.instagram.com/bollywood_bites/" },
+  { label: "Instagram", href: "https://www.instagram.com/bollywoodbites_official/" },
   { label: "Facebook", href: "https://www.facebook.com/thebollywoodbites.inc/" },
 ];
 
@@ -443,7 +444,7 @@ export default function Nav({ pageRef }) {
             }}
           >
             <Image
-              src="/logo.png"
+              src="/screenshot.png"
               alt="Bollywood Bites Logo"
               width={160}
               height={70}
@@ -543,10 +544,10 @@ export default function Nav({ pageRef }) {
 
           <div className="nav-menu-footer">
             <p className="sm">
-              <span>Est. 2026</span>
+              <span>Est. 2009</span>
             </p>
             <p className="sm">
-              <span>London, UK</span>
+              <span>Los Angeles, California, USA</span>
             </p>
           </div>
         </div>

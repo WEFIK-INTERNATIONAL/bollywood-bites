@@ -1,0 +1,252 @@
+.home-blog-section {
+  position: relative;
+  width: 100%;
+  padding: 8rem 0;
+  background-color: var(--base-500); /* Brand Dark Forest Green */
+  color: var(--base-100);
+  overflow: hidden;
+}
+
+.home-blog-section::before{
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("/backgrounds/background2.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.05; /* Subtle background pattern */
+  pointer-events: none;
+  z-index: 0;
+}
+
+.home-blog-section .container {
+  position: relative;
+  z-index: 1;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+/* Header Styling */
+.home-blog-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 5rem;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.blog-tagline {
+  font-family: var(--font-dm-mono), monospace;
+  font-size: 0.8rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--base-300); /* Accent Gold */
+  display: inline-block;
+  margin-bottom: 1rem;
+}
+
+.blog-title {
+  font-family: "Roslindale Variable", sans-serif;
+  font-size: clamp(2.5rem, 5vw, 4.25rem);
+  font-weight: 500;
+  line-height: 1.15;
+  color: var(--base-100);
+  margin-bottom: 1.5rem;
+}
+
+.blog-title .highlight-text {
+  color: var(--base-300);
+}
+
+.blog-subtitle {
+  font-family: var(--font-host-grotesk), sans-serif;
+  font-size: clamp(1rem, 1.8vw, 1.15rem);
+  line-height: 1.5;
+  color: var(--base-200);
+}
+
+/* Editorial Grid Layout */
+.home-blog-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2.5rem;
+  margin-bottom: 5rem;
+  width: 100%;
+}
+
+/* Card Styling */
+.home-blog-card {
+  display: flex;
+  flex-direction: column;
+  background-color: #080d09; /* Deep charcoal dark green */
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: transform 0.5s cubic-bezier(0.25, 1, 0.3, 1),
+              border-color 0.4s ease,
+              box-shadow 0.5s cubic-bezier(0.25, 1, 0.3, 1);
+  text-decoration: none;
+  cursor: pointer;
+  height: 100%;
+}
+
+.home-blog-card:hover {
+  transform: translateY(-10px);
+  border-color: rgba(197, 168, 128, 0.4); /* Gold Accent */
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+}
+
+/* Card Image */
+.home-blog-img-container {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+}
+
+.home-blog-img {
+  object-fit: cover;
+  transition: transform 0.8s cubic-bezier(0.25, 1, 0.3, 1);
+}
+
+.home-blog-card:hover .home-blog-img {
+  transform: scale(1.08);
+}
+
+.home-blog-card-tag {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  background-color: var(--base-300); /* Gold */
+  color: var(--base-500); /* Deep Green */
+  font-family: var(--font-dm-mono), monospace;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 0.35rem 0.75rem;
+  border-radius: 4px;
+  z-index: 1;
+}
+
+/* Metadata */
+.home-blog-card-meta {
+  display: flex;
+  align-items: center;
+  padding: 1.5rem 1.75rem 0.5rem;
+  font-family: var(--font-dm-mono), monospace;
+  font-size: 0.8rem;
+  color: var(--base-300);
+}
+
+.blog-meta-divider {
+  margin: 0 0.5rem;
+  color: rgba(255, 255, 255, 0.2);
+}
+
+.blog-read-time {
+  color: var(--base-200);
+}
+
+/* Content */
+.home-blog-card-content {
+  padding: 0.5rem 1.75rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.home-blog-card-title {
+  font-family: "Roslindale Variable", sans-serif;
+  font-size: 1.35rem;
+  font-weight: 500;
+  line-height: 1.3;
+  color: var(--base-100);
+  margin: 0 0 0.75rem;
+  transition: color 0.3s ease;
+}
+
+.home-blog-card:hover .home-blog-card-title {
+  color: var(--base-300);
+}
+
+.home-blog-card-excerpt {
+  font-family: var(--font-host-grotesk), sans-serif;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: var(--base-200);
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Footer & Read More Link */
+.home-blog-card-footer {
+  padding: 0 1.75rem 1.75rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.03);
+  margin-top: auto;
+}
+
+.read-more-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-dm-mono), monospace;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--base-100);
+  transition: color 0.3s ease;
+  margin-top: 1rem;
+}
+
+.arrow-icon {
+  font-size: 0.95rem;
+  transition: transform 0.3s cubic-bezier(0.25, 1, 0.3, 1);
+}
+
+.home-blog-card:hover .read-more-btn {
+  color: var(--base-300);
+}
+
+.home-blog-card:hover .arrow-icon {
+  transform: translateX(5px);
+}
+
+/* Bottom CTA wrapper */
+.blog-cta-wrapper {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+/* Responsive Breakpoints */
+@media (max-width: 1024px) {
+  .home-blog-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .home-blog-section {
+    padding: 6rem 0;
+  }
+  
+  .home-blog-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  
+  .home-blog-card-title {
+    font-size: 1.25rem;
+  }
+}

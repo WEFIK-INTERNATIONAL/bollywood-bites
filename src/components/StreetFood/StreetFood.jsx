@@ -29,7 +29,7 @@ const STREET_FOODS = [
     id: "bhel-puri",
     title: "Bhel Puri",
     desc: "A crunchy, savory medley of puffed rice, peanuts, onions, tomatoes, and spicy-sweet chutneys.",
-    image: "/home/about-3.jpg",
+    image: "/home/street-bhel-puri.png",
     icon: (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
         <path d="M3 20h18L12 4z" />
@@ -41,7 +41,7 @@ const STREET_FOODS = [
     id: "kati-roll",
     title: "Kati Roll",
     desc: "Skewer-roasted kebabs and fresh veggies wrapped in a warm, flaky paratha flatbread.",
-    image: "/about/sticky-card-3.jpg",
+    image: "/home/street-kati-roll.png",
     icon: (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
         <rect x="6" y="2" width="12" height="20" rx="3" />
@@ -53,7 +53,7 @@ const STREET_FOODS = [
     id: "naan-wrap",
     title: "Naan Wrap",
     desc: "Soft, freshly baked tandoori naan rolled with spiced meats, paneer, and mint yogurt dressing.",
-    image: "/about/sticky-card-2.jpg",
+    image: "/home/street-naan-wrap.png",
     icon: (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
         <ellipse cx="12" cy="12" rx="5" ry="9" />
@@ -65,7 +65,7 @@ const STREET_FOODS = [
     id: "pav-bhaji",
     title: "Pav Bhaji",
     desc: "A thick, spicy vegetable mash simmered in butter, served hot with toasted, butter-soaked pav buns.",
-    image: "/dining-menu/dining-menu.jpg",
+    image: "/home/street-pav-bhaji.png",
     icon: (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
         <rect x="3" y="3" width="18" height="18" rx="2" />
@@ -77,7 +77,7 @@ const STREET_FOODS = [
     id: "samosa-chaat",
     title: "Samosa Chaat",
     desc: "Crushed golden samosas layered with warm chickpea curry, cool yogurt, and dynamic sweet-tangy chutneys.",
-    image: "/about/sticky-card-4.jpg",
+    image: "/home/street-samosa-chaat.png",
     icon: (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
         <path d="M12 3l9 16H3L12 3z" />

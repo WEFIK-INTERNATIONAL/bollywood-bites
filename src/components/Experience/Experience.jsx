@@ -17,8 +17,8 @@ const SERVICES = [
     title: "Restaurant",
     btnText: "Reserve a Table",
     link: "/reservation",
-    image: "/home/services-restaurant.png",
-    description: "Experience our warm, luxurious hospitality firsthand in the heart of London. Indulge in classic recipes refined for the modern palate.",
+    image: "/home/resturent.webp",
+    description: "Experience our warm, luxurious hospitality firsthand in the heart of Los Angeles. Indulge in classic recipes refined for the modern palate.",
   },
   {
     id: "catering",
@@ -33,8 +33,8 @@ const SERVICES = [
     title: "Food Trucks",
     btnText: "Book the Truck",
     link: "/services/food-trucks",
-    image: "/home/services-food-truck.png",
-    description: "Catch us on the streets of London or book us to bring hot, fresh street food directly to your private party or corporate event.",
+    image: "/home/foodtrack.jpeg",
+    description: "Catch us on the streets of Los Angeles or book us to bring hot, fresh street food directly to your private party or corporate event.",
   },
 ];
 

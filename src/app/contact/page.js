@@ -47,18 +47,18 @@ export default function ContactUs() {
             <div className="contact-block">
               <h4>Phone & Email</h4>
               <p>
-                Telephone: <a href="tel:+442079460958">+44 (0) 20 7946 0958</a>
+                Telephone: <a href="tel:+13108241046">+1 (310) 824-1046</a>
                 <br />
-                Email: <a href="mailto:info@bollywoodbites.co.uk">info@bollywoodbites.co.uk</a>
+                Email: <a href="mailto:info@thebollywoodbites.com">info@thebollywoodbites.com</a>
               </p>
             </div>
 
             <div className="contact-block">
               <h4>Our Location</h4>
               <p>
-                12 Westwood Village High St
+                1051 Gayley Avenue
                 <br />
-                London, WC2N 5DU, United Kingdom
+                Los Angeles, CA 90024, United States
               </p>
             </div>
 

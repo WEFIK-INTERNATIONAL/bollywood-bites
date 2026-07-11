@@ -25,6 +25,9 @@ const Moments = () => {
   const trackRef = useRef(null);
   const slideByRef = useRef(null);
 
+  // Duplicate moments to ensure a long infinite scrolling row
+  const doubleMoments = [...moments, ...moments];
+
   /* entrance animations on scroll */
   useEffect(() => {
     const section = sectionRef.current;
@@ -65,7 +68,7 @@ const Moments = () => {
     return () => scrollTrigger.kill();
   }, []);
 
-  /* infinite carousel with drag and momentum */
+  /* infinite carousel with drag, momentum, and auto-scroll */
   useEffect(() => {
     const track = trackRef.current;
     const cards = gsap.utils.toArray(
@@ -100,13 +103,24 @@ const Moments = () => {
     let lastPointerX = 0;
     let lastPointerTime = 0;
 
+    let lastInteractionTime = 0;
+
     slideByRef.current = (direction) => {
       velocityX = 0;
       targetX += direction * itemWidth;
+      lastInteractionTime = Date.now();
     };
 
     const updateCardPositions = () => {
+      const now = Date.now();
+      const isInteractionCooldown = now - lastInteractionTime < 2500;
+
       if (!isDragging) {
+        if (!isInteractionCooldown) {
+          // Slow, continuous smooth scroll when not interacting
+          targetX -= 0.75;
+        }
+        
         targetX += velocityX;
         velocityX *= VELOCITY_DAMPING;
         if (Math.abs(velocityX) < VELOCITY_THRESHOLD) velocityX = 0;
@@ -123,17 +137,20 @@ const Moments = () => {
 
     const handlePointerDown = (e) => {
       isDragging = true;
+      lastInteractionTime = Date.now();
       dragStartPointerX = e.clientX;
       dragStartTargetX = targetX;
       velocityX = 0;
       lastPointerX = e.clientX;
       lastPointerTime = Date.now();
+
       track.setPointerCapture(e.pointerId);
       track.style.cursor = "grabbing";
     };
 
     const handlePointerMove = (e) => {
       if (!isDragging) return;
+      lastInteractionTime = Date.now();
       const dragDelta = e.clientX - dragStartPointerX;
       targetX = dragStartTargetX + dragDelta;
 
@@ -148,6 +165,7 @@ const Moments = () => {
 
     const handlePointerUp = () => {
       isDragging = false;
+      lastInteractionTime = Date.now();
       track.style.cursor = "grab";
     };
 
@@ -205,18 +223,23 @@ const Moments = () => {
       <div className="leaf-border-bottom" aria-hidden="true" />
       <div className="container">
         <div className="moments-header">
-          <Copy type="lines" animateOnScroll>
-            <h3>Timeless Moments</h3>
-          </Copy>
+          <div className="moments-header-left">
+            <Copy type="lines" animateOnScroll>
+              <h3 className="moments-title">Timeless Moments</h3>
+            </Copy>
+            <Copy type="lines" animateOnScroll delay={0.15}>
+              <p className="moments-subtitle">Hollywood & Bollywood Celebrities</p>
+            </Copy>
+          </div>
 
           <div className="moments-nav">
             <div className="moments-nav-button-wrapper">
-              <button className="moments-nav-button" onClick={handlePrev}>
+              <button className="moments-nav-button" onClick={handlePrev} aria-label="Previous slide">
                 <HiOutlineArrowLeft />
               </button>
             </div>
             <div className="moments-nav-button-wrapper">
-              <button className="moments-nav-button" onClick={handleNext}>
+              <button className="moments-nav-button" onClick={handleNext} aria-label="Next slide">
                 <HiOutlineArrowRight />
               </button>
             </div>
@@ -226,7 +249,7 @@ const Moments = () => {
 
       <div className="moments-carousel">
         <div className="moments-track" ref={trackRef}>
-          {moments.map((moment, index) => (
+          {doubleMoments.map((moment, index) => (
             <div className="moment-card" key={index}>
               <SteppedFrame stepSize="sm" borderColor="cream" innerRing={true} className="moment-stepped-frame">
                 <div className="moment-image-wrapper">
@@ -234,10 +257,13 @@ const Moments = () => {
                     src={moment.image}
                     alt={moment.alt}
                     fill
-                    sizes="520px"
+                    sizes="260px"
                     style={{ objectFit: "cover" }}
-                    priority={index < 3}
+                    priority={index < 4}
                   />
+                  <div className="moment-overlay">
+                    <h4 className="moment-celebrity-name">{moment.name}</h4>
+                  </div>
                 </div>
               </SteppedFrame>
             </div>

@@ -41,7 +41,7 @@ const ACTION_LINKS = [
   {
     id: "catering",
     title: "Plan Catering",
-    link: "/services/catering",
+    link: "/contact",
     icon: (
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
         <path d="M3 11l19-9-9 19-2-8-8-2z" />
@@ -51,7 +51,7 @@ const ACTION_LINKS = [
   {
     id: "food-truck",
     title: "Book The Food Truck",
-    link: "/services/food-trucks",
+    link: "/contact",
     icon: (
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
         <rect x="2" y="4" width="16" height="12" rx="2" /><path d="M18 8h4l2 3v5h-6V8z" />
@@ -155,7 +155,7 @@ const CTA = () => {
               <HiOutlineLocationMarker className="cta-detail-icon" />
               <div>
                 <span className="cta-detail-title">Location</span>
-                <p>10789 Weyburn Ave<br />Los Angeles, CA 90024<br /><span className="cta-detail-sub">Westwood Village</span></p>
+                <p>1051 Gayley Avenue<br />Los Angeles, California, USA - 90024<br /><span className="cta-detail-sub">Westwood Village</span></p>
               </div>
             </div>
 
@@ -172,15 +172,22 @@ const CTA = () => {
               <HiOutlinePhone className="cta-detail-icon" />
               <div>
                 <span className="cta-detail-title">Phone</span>
-                <p>(310) 474-0707</p>
+                <p>
+                  <a href="tel:3108241046" style={{ color: "inherit", textDecoration: "none" }}>310-824-1046</a>
+                  {" / "}
+                  <a href="tel:3104031661" style={{ color: "inherit", textDecoration: "none" }}>310-403-1661</a>
+                </p>
               </div>
             </div>
 
             <div className="cta-detail-row">
-              <HiOutlineMap className="cta-detail-icon" />
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" className="cta-detail-icon">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                <polyline points="22,6 12,13 2,6" />
+              </svg>
               <div>
-                <span className="cta-detail-title">Parking</span>
-                <p>Valet &amp; street parking available</p>
+                <span className="cta-detail-title">Email</span>
+                <p><a href="mailto:info@thebollywoodbites.com" style={{ color: "inherit", textDecoration: "none" }}>info@thebollywoodbites.com</a></p>
               </div>
             </div>
           </div>
@@ -251,7 +258,7 @@ const CTA = () => {
         {/* ─────────────────────────────── */}
         <div className="cta-map-wrapper">
           <iframe
-            src="https://maps.google.com/maps?q=Bollywood+Bites+10789+Weyburn+Ave+Los+Angeles+CA+90024&z=16&output=embed"
+            src="https://maps.google.com/maps?q=Bollywood+Bites+1051+Gayley+Avenue+Los+Angeles+CA+90024&z=16&output=embed"
             width="100%"
             height="100%"
             style={{ border: 0 }}

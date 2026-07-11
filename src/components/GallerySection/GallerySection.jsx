@@ -12,7 +12,13 @@ import "./GallerySection.css";
 gsap.registerPlugin(ScrollTrigger);
 
 const GALLERY_IMAGES = [
-  { src: "/restaurant/homegallery1.jpg", alt: "Dinning Area" },
+  { 
+    src: "/restaurant/homegallery1.jpg", 
+    alt: "Dinning Area", 
+    isVideo: true,
+    videoUrl: "https://youtu.be/_mrbCif-oJM?is=cYKG61kco-8iewr2",
+    embedId: "_mrbCif-oJM"
+  },
   { src: "/restaurant/homegallery2.jpg", alt: "Customer Serving" },
   { src: "/restaurant/homegallery3.jpeg", alt: "Food Track" },
   { src: "/restaurant/homegallery4.jpg", alt: "Food Buffet" },
@@ -98,25 +104,53 @@ const GallerySection = () => {
 
         {/* 4x2 Photo Collage Grid */}
         <div className="gallery-grid">
-          {GALLERY_IMAGES.map((img, idx) => (
-            <div key={idx} className="gallery-item">
-              <Image
-                src={img.src}
-                alt={img.alt}
-                fill
-                sizes="(max-width: 768px) 50vw, 25vw"
-                className="gallery-image"
-              />
-              <div className="gallery-item-overlay">
-                <span className="gallery-hover-text">{img.alt}</span>
+          {GALLERY_IMAGES.map((img, idx) => {
+            const isVideo = img.isVideo;
+            return (
+              <div 
+                key={idx} 
+                className="gallery-item"
+                onClick={isVideo ? () => window.open(img.videoUrl, "_blank") : undefined}
+                style={isVideo ? { cursor: "pointer" } : undefined}
+              >
+                {isVideo ? (
+                  <div className="gallery-video-wrapper" style={{ position: "relative", width: "100%", height: "100%", overflow: "hidden" }}>
+                    <iframe
+                      src={`https://www.youtube.com/embed/${img.embedId}?autoplay=1&mute=1&loop=1&playlist=${img.embedId}&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1`}
+                      style={{
+                        position: "absolute",
+                        top: "50%",
+                        left: "50%",
+                        width: "180%",
+                        height: "180%",
+                        transform: "translate(-50%, -50%)",
+                        pointerEvents: "none",
+                        border: 0
+                      }}
+                      allow="autoplay; encrypted-media"
+                      title="Dinning Area Video"
+                    />
+                  </div>
+                ) : (
+                  <Image
+                    src={img.src}
+                    alt={img.alt}
+                    fill
+                    sizes="(max-width: 768px) 50vw, 25vw"
+                    className="gallery-image"
+                  />
+                )}
+                <div className="gallery-item-overlay">
+                  <span className="gallery-hover-text">{isVideo ? "Play Video" : img.alt}</span>
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
 
         {/* Bottom CTA Button */}
         <div className="gallery-cta-wrapper">
-          <Button href="/media" className="gallery-explore-btn">
+          <Button href="/media/press" className="gallery-explore-btn">
             View Our Gallery
           </Button>
         </div>

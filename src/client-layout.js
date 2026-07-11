@@ -7,6 +7,7 @@ import { ViewTransitions } from "next-view-transitions";
 
 import Nav from "@/components/Nav/Nav";
 import Footer from "@/components/Footer/Footer";
+import CookieConsent from "@/components/CookieConsent/CookieConsent";
 
 const MOBILE_BREAKPOINT = 1000;
 const VIEW_TRANSITION_SETTLE_MS = 1600;
@@ -89,6 +90,7 @@ export default function ClientLayout({ children }) {
             <Footer />
           </div>
         </div>
+        <CookieConsent />
       </ReactLenis>
     </ViewTransitions>
   );

@@ -348,3 +348,10 @@ a[href^="mailto"] {
     letter-spacing: -0.045rem;
   }
 }
+
+/* Bypass preloader for return visitors */
+.no-preloader .preloader {
+  display: none !important;
+  pointer-events: none !important;
+  visibility: hidden !important;
+}

@@ -15,10 +15,15 @@ const REQUIRED_FONTS = ["Host Grotesk", "DM Mono", "Roslindale Variable"];
 async function waitForFonts() {
   try {
     await document.fonts.ready;
-    REQUIRED_FONTS.forEach((font) => document.fonts.check(`16px "${font}"`));
-    await new Promise((resolve) => setTimeout(resolve, 100));
+    // Bypasses the setTimeout delay if the required fonts are already loaded.
+    const allLoaded = REQUIRED_FONTS.every((font) =>
+      document.fonts.check(`16px "${font}"`)
+    );
+    if (!allLoaded) {
+      await new Promise((resolve) => setTimeout(resolve, 100));
+    }
   } catch {
-    await new Promise((resolve) => setTimeout(resolve, 200));
+    await new Promise((resolve) => setTimeout(resolve, 100));
   }
 }
 
@@ -39,6 +44,7 @@ export default function Copy({
   trigger = null,
   triggerPoint = null,
   start = null,
+  play = true,
 }) {
   const containerRef = useRef(null);
   const splitInstanceRefs = useRef([]);
@@ -59,6 +65,18 @@ export default function Copy({
       };
 
       const buildAnimations = async () => {
+        // If play is false, keep the container hidden and do not run animations
+        if (!play) {
+          if (containerRef.current) {
+            containerRef.current.classList.add("copy-pending");
+          }
+          return;
+        }
+
+        // Hide container while waiting for fonts and splitting
+        if (containerRef.current) {
+          containerRef.current.classList.add("copy-pending");
+        }
         await waitForFonts();
         if (!isActive || !containerRef.current) return;
 
@@ -109,6 +127,12 @@ export default function Copy({
 
         gsap.set(splitUnits, { y: "110%" });
 
+        // Show container now that units are off-screen and ready to animate
+        if (containerRef.current) {
+          containerRef.current.classList.remove("copy-pending");
+          gsap.set(containerRef.current, { clearProps: "opacity,visibility" });
+        }
+
         const revealAnimation = gsap.to(splitUnits, {
           y: "0%",
           duration: 1,
@@ -146,16 +170,22 @@ export default function Copy({
         trigger,
         triggerPoint,
         start,
+        play,
       ],
     },
   );
 
   if (React.Children.count(children) === 1 && React.isValidElement(children)) {
-    return React.cloneElement(children, { ref: containerRef });
+    const child = React.Children.only(children);
+    const newClassName = `${child.props.className || ""} copy-pending`.trim();
+    return React.cloneElement(child, {
+      ref: containerRef,
+      className: newClassName,
+    });
   }
 
   return (
-    <div ref={containerRef} data-copy-wrapper="true">
+    <div ref={containerRef} data-copy-wrapper="true" className="copy-pending">
       {children}
     </div>
   );

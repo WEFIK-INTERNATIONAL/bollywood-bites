@@ -25,7 +25,18 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              if (document.cookie.includes('has_visited=true')) {
+                document.documentElement.classList.add('no-preloader');
+              }
+            `,
+          }}
+        />
+      </head>
       <body className={`${hostGrotesk.variable} ${dmMono.variable}`}>
         <Script
           src="https://www.fbgcdn.com/embedder/js/ewm2.js"

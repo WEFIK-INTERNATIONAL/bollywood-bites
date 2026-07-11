@@ -3,3 +3,9 @@
   display: inline-block;
   will-change: transform;
 }
+
+/* Prevent flash of unstyled/unsplit text before GSAP runs */
+.copy-pending {
+  opacity: 0 !important;
+  visibility: hidden !important;
+}
