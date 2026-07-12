@@ -40,8 +40,8 @@ const MENU_STRUCTURE = [
     img: "/menu/services/services.jpg",
     submenus: [
       { label: "West Wood village", href: "/services/west-wood-village", img: "/menu/services/westwood.jpg" },
-      { label: "Catering", href: "/services/catering", img: "/menu/services/catering.jpg" },
-      { label: "Food Trucks", href: "/services/food-trucks", img: "/menu/services/foodtruck.jpeg" },
+      { label: "Catering", href: "/menu/catering-trays", img: "/menu/services/catering.jpg" },
+      { label: "Food Trucks", href: "/menu/food-truck", img: "/menu/services/foodtruck.jpeg" },
     ],
   },
   {

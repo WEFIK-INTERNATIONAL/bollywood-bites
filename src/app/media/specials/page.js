@@ -59,12 +59,36 @@ export default function SpecialsPage() {
     <div ref={pageRef}>
       {/* Hero Section */}
       <section className="specials-hero">
-        <div className="bg-mandala-centered" style={{ opacity: 0.03 }} />
-        <div className="container">
-          <Copy type="words" animateOnScroll={false} delay={0.35}>
-            <h1>Seasonal Specials</h1>
+        {/* Parallax Background Image */}
+        <div className="hero-bg-image-wrapper">
+          <Image
+            src="/backgrounds/background2.jpg"
+            alt="Bollywood Bites Specials Background"
+            fill
+            priority
+            sizes="100vw"
+            style={{ objectFit: "cover" }}
+          />
+        </div>
+        <div className="hero-bg-overlay" />
+
+        {/* Traditional Mandana Borders */}
+        <div className="leaf-border-top" />
+
+        {/* Central Content */}
+        <div className="hero-content-wrapper">
+          <Copy type="words" animateOnScroll={false} delay={0.8}>
+            <span className="specials-hero-tagline" style={{ display: "block" }}>Limited Time Offers & Exclusive Promotions</span>
           </Copy>
-          <p className="specials-hero-tagline">Limited Time Offers & Exclusive Promotions</p>
+          <Copy type="words" animateOnScroll={false} delay={1.0}>
+            <h1 className="hero-title">Seasonal Specials</h1>
+          </Copy>
+          <Copy type="lines" animateOnScroll={false} delay={1.2}>
+            <p className="hero-desc">
+              Discover our exclusive dining promotions, street food discounts, 
+              and seasonal menus crafted with passion.
+            </p>
+          </Copy>
         </div>
       </section>
 

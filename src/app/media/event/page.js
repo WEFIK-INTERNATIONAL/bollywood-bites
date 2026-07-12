@@ -74,12 +74,36 @@ export default function EventPage() {
     <div ref={pageRef}>
       {/* Hero Section */}
       <section className="events-hero">
-        <div className="bg-mandala-centered" style={{ opacity: 0.03 }} />
-        <div className="container">
-          <Copy type="words" animateOnScroll={false} delay={0.35}>
-            <h1>Events & Music</h1>
+        {/* Parallax Background Image */}
+        <div className="hero-bg-image-wrapper">
+          <Image
+            src="/backgrounds/background2.jpg"
+            alt="Bollywood Bites Events Background"
+            fill
+            priority
+            sizes="100vw"
+            style={{ objectFit: "cover" }}
+          />
+        </div>
+        <div className="hero-bg-overlay" />
+
+        {/* Traditional Mandana Borders */}
+        <div className="leaf-border-top" />
+
+        {/* Central Content */}
+        <div className="hero-content-wrapper">
+          <Copy type="words" animateOnScroll={false} delay={0.8}>
+            <span className="events-hero-tagline" style={{ display: "block" }}>Live Experiences & Celebrations</span>
           </Copy>
-          <p className="events-hero-tagline">Live Experiences & Celebrations</p>
+          <Copy type="words" animateOnScroll={false} delay={1.0}>
+            <h1 className="hero-title">Events & Music</h1>
+          </Copy>
+          <Copy type="lines" animateOnScroll={false} delay={1.2}>
+            <p className="hero-desc">
+              Join us for live stand-up comedy, karaoke nights, special buffets, and 
+              celebrations that bring community and flavor together.
+            </p>
+          </Copy>
         </div>
       </section>
 

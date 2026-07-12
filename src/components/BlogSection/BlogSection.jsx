@@ -10,6 +10,7 @@ import { HiOutlineArrowRight } from "react-icons/hi";
 import { blogs } from "@/data/blogs-data";
 import Copy from "@/components/Copy/Copy";
 import Button from "@/components/Button/Button";
+import { useViewTransition } from "@/hooks/useViewTransition";
 
 import "./BlogSection.css";
 
@@ -17,6 +18,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 const BlogSection = () => {
   const sectionRef = useRef(null);
+  const { navigateWithTransition } = useViewTransition();
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -109,6 +111,10 @@ const BlogSection = () => {
               key={blog.id} 
               href={`/media/blog/${blog.slug}`} 
               className="home-blog-card"
+              onClick={(e) => {
+                e.preventDefault();
+                navigateWithTransition(`/media/blog/${blog.slug}`);
+              }}
             >
               {/* Image Container */}
               <div className="home-blog-img-container">

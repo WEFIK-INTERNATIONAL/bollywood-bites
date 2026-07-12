@@ -1,0 +1,672 @@
+/* ── Star Gallery Hero Section Styling ── */
+.star-gallery-hero {
+  position: relative;
+  width: 100%;
+  height: 75svh;
+  min-height: 550px;
+  background-color: var(--base-600);
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Background image wrapper with subtle zoom/depth */
+.hero-bg-image-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  opacity: 0.18;
+}
+
+.hero-bg-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg, rgba(9, 30, 23, 0.4) 0%, rgba(9, 30, 23, 0.98) 100%);
+  z-index: 2;
+}
+
+/* Spinning Mandala Background Watermark */
+.hero-spinning-mandala {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: clamp(380px, 55vw, 680px);
+  height: clamp(380px, 55vw, 680px);
+  pointer-events: none;
+  z-index: 2;
+  opacity: 0.05;
+  animation: spin-slow 160s linear infinite;
+  filter: invert(80%) sepia(15%) saturate(700%) hue-rotate(330deg) brightness(90%) contrast(85%); /* Gold Filter */
+  will-change: transform;
+}
+
+/* Center Content */
+.hero-content-wrapper {
+  position: relative;
+  z-index: 3;
+  text-align: center;
+  max-width: 850px;
+  padding: 0 2rem;
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.hero-tagline {
+  font-family: var(--font-dm-mono), monospace;
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.25em;
+  color: var(--base-300);
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.hero-title {
+  font-family: "Roslindale Variable", sans-serif;
+  font-size: clamp(3rem, 7.5vw, 6.25rem);
+  font-weight: 900;
+  color: var(--base-100);
+  text-transform: uppercase;
+  line-height: 0.9;
+  margin: 0;
+}
+
+.hero-desc {
+  font-family: var(--font-host-grotesk), sans-serif;
+  font-size: clamp(1rem, 1.8vw, 1.25rem);
+  color: var(--base-200);
+  line-height: 1.45;
+  max-width: 580px;
+  margin: 0 auto;
+  font-weight: 400;
+}
+
+/* Mouse Scroll Down Indicator */
+.hero-scroll-indicator {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--base-300);
+  opacity: 0.65;
+  transition: opacity 0.3s ease;
+}
+
+.hero-scroll-indicator:hover {
+  opacity: 1;
+}
+
+.scroll-mouse {
+  width: 24px;
+  height: 38px;
+  border: 2px solid var(--base-300);
+  border-radius: 12px;
+  position: relative;
+}
+
+.scroll-wheel {
+  width: 4px;
+  height: 8px;
+  background-color: var(--base-300);
+  border-radius: 2px;
+  position: absolute;
+  top: 6px;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: scroll-wheel-anim 1.8s ease infinite;
+}
+
+@keyframes scroll-wheel-anim {
+  0% {
+    top: 6px;
+    opacity: 1;
+  }
+  50% {
+    top: 16px;
+    opacity: 0;
+  }
+  100% {
+    top: 6px;
+    opacity: 1;
+  }
+}
+
+/* ── Star Gallery Clean Grid & Layout Overrides ── */
+.gallery-section {
+  padding: 4rem 0 8rem 0 !important;
+  background-color: var(--base-600) !important;
+  position: relative;
+}
+
+.gallery-section .container {
+  max-width: 1200px !important;
+}
+
+.gallery-grid {
+  display: block !important;
+  column-count: 3 !important;
+  column-gap: 1.5rem !important;
+  width: 100%;
+  padding-bottom: 2rem !important;
+}
+
+@media (max-width: 1024px) {
+  .gallery-grid {
+    column-count: 2 !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .gallery-grid {
+    column-count: 1 !important;
+  }
+}
+
+/* Force clean, natural masonry aspect ratio and soft card styling */
+.gallery-item,
+.gallery-item:nth-child(3n),
+.gallery-item:nth-child(4n) {
+  display: inline-block !important;
+  width: 100% !important;
+  margin-bottom: 1.5rem !important;
+  break-inside: avoid !important;
+  aspect-ratio: auto !important;
+  border: none !important;
+  border-radius: 12px !important;
+  background-color: rgba(15, 43, 34, 0.25) !important;
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.35) !important;
+  overflow: hidden !important;
+  position: relative !important;
+  transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.5s cubic-bezier(0.25, 1, 0.5, 1) !important;
+}
+
+/* Premium card hover: subtle lift and a soft golden shadow glow */
+.gallery-item:hover {
+  transform: translateY(-8px) !important;
+  box-shadow: 0 15px 35px rgba(197, 168, 128, 0.25) !important;
+}
+
+/* Radial Vignette lighting gradient sweep */
+.gallery-item::before {
+  content: '' !important;
+  position: absolute !important;
+  inset: 0 !important;
+  background: radial-gradient(circle at center, rgba(9, 30, 23, 0) 30%, rgba(9, 30, 23, 0.45) 100%) !important;
+  z-index: 2 !important;
+  opacity: 0.8 !important;
+  pointer-events: none !important;
+  transition: opacity 0.5s ease !important;
+}
+
+.gallery-item:hover::before {
+  opacity: 1 !important;
+}
+
+/* Luxury hairline inner gold frame overlay */
+.gallery-item::after {
+  content: '' !important;
+  position: absolute !important;
+  inset: 16px !important;
+  border: 1px solid rgba(197, 168, 128, 0.2) !important;
+  border-radius: 8px !important;
+  z-index: 3 !important;
+  pointer-events: none !important;
+  transition: inset 0.4s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.4s cubic-bezier(0.25, 1, 0.5, 1) !important;
+}
+
+.gallery-item:hover::after {
+  inset: 10px !important;
+  border-color: rgba(197, 168, 128, 0.65) !important;
+}
+
+/* Smooth zoom-in on image hover without overlay texts */
+.gallery-item img {
+  transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1) !important;
+}
+
+.gallery-item:hover img {
+  transform: scale(1.05) !important;
+}
+
+/* Hide the slide-up caption overlays on the grid */
+.gallery-caption {
+  display: none !important;
+}
+
+/* ── Star Gallery Filter Navigation ── */
+.gallery-filters-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 650px;
+  margin: -1.5rem auto 4rem auto;
+  padding: 0 3.5rem;
+  position: relative;
+  z-index: 10;
+}
+
+.gallery-filters {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  background: rgba(15, 43, 34, 0.4);
+  border: 1px solid rgba(197, 168, 128, 0.15);
+  padding: 0.5rem;
+  border-radius: 50px;
+  backdrop-filter: blur(10px);
+  overflow-x: auto;
+  scrollbar-width: none; /* Hide scrollbar for Firefox */
+  -webkit-overflow-scrolling: touch;
+  width: 100%;
+  cursor: grab;
+  user-select: none;
+}
+
+.gallery-filters:active {
+  cursor: grabbing;
+}
+
+.gallery-filters::-webkit-scrollbar {
+  display: none; /* Hide scrollbar for Chrome/Safari */
+}
+
+/* Scroll Arrows for Filters */
+.filter-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(15, 43, 34, 0.75);
+  border: 1px solid rgba(197, 168, 128, 0.2);
+  color: var(--base-300);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 12;
+  transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.filter-arrow:hover {
+  background: var(--base-300);
+  color: var(--base-600);
+  border-color: var(--base-300);
+  transform: translateY(-50%) scale(1.1);
+}
+
+.filter-arrow:active {
+  transform: translateY(-50%) scale(0.95);
+}
+
+.filter-arrow.prev {
+  left: 0.5rem;
+}
+
+.filter-arrow.next {
+  right: 0.5rem;
+}
+
+.filter-tab {
+  background: transparent;
+  border: none;
+  color: var(--base-200);
+  font-family: var(--font-dm-mono), monospace;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.75rem 1.75rem;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: color 0.4s ease, background-color 0.4s ease, border-color 0.4s ease;
+  position: relative;
+}
+
+.filter-tab:hover {
+  color: var(--base-100);
+}
+
+.filter-tab.active {
+  color: var(--base-600);
+  background-color: var(--base-300);
+  font-weight: 600;
+}
+
+/* ── Lightbox Overlay Styling ── */
+.lightbox-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(9, 30, 23, 0.96);
+  backdrop-filter: blur(12px);
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+  user-select: none;
+}
+
+.lightbox-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Lightbox Content Area */
+.lightbox-main {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 90%;
+  height: 70%;
+  max-width: 1200px;
+}
+
+.lightbox-img-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+  transform: scale(0.95);
+}
+
+.lightbox-overlay.active .lightbox-img-wrapper {
+  transform: scale(1);
+}
+
+.lightbox-img-container {
+  position: relative;
+  max-width: 100%;
+  max-height: 100%;
+  border: 1px solid rgba(197, 168, 128, 0.25);
+  border-radius: 4px;
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.6);
+  overflow: hidden;
+  background-color: #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  aspect-ratio: auto;
+}
+
+/* Slide animation classes for image switching */
+.lightbox-slide-left {
+  animation: slideLeft 0.35s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+.lightbox-slide-right {
+  animation: slideRight 0.35s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+@keyframes slideLeft {
+  0% { opacity: 0; transform: translateX(50px) scale(0.98); }
+  100% { opacity: 1; transform: translateX(0) scale(1); }
+}
+
+@keyframes slideRight {
+  0% { opacity: 0; transform: translateX(-50px) scale(0.98); }
+  100% { opacity: 1; transform: translateX(0) scale(1); }
+}
+
+/* ── Lightbox Buttons ── */
+.lightbox-close-btn {
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  background: transparent;
+  border: none;
+  color: var(--base-100);
+  cursor: pointer;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10001;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.lightbox-close-btn:hover {
+  color: var(--base-300);
+  transform: rotate(90deg);
+}
+
+.lightbox-nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(15, 43, 34, 0.6);
+  border: 1px solid rgba(197, 168, 128, 0.2);
+  color: var(--base-100);
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10000;
+  transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.lightbox-nav-btn:hover {
+  background: var(--base-500);
+  border-color: var(--base-300);
+  color: var(--base-300);
+  transform: translateY(-50%) scale(1.1);
+}
+
+.lightbox-nav-btn:active {
+  transform: translateY(-50%) scale(0.95);
+}
+
+.lightbox-nav-btn.prev {
+  left: 2rem;
+}
+
+.lightbox-nav-btn.next {
+  right: 2rem;
+}
+
+/* ── Lightbox Details / Captions ── */
+.lightbox-info {
+  margin-top: 2rem;
+  text-align: center;
+  width: 85%;
+  max-width: 700px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  z-index: 10000;
+}
+
+.lightbox-title {
+  font-family: "Roslindale Variable", sans-serif;
+  font-size: clamp(1.25rem, 2.5vw, 2.25rem);
+  font-weight: 900;
+  color: var(--base-300);
+  text-transform: uppercase;
+  margin: 0;
+  line-height: 1.1;
+  letter-spacing: 0.02em;
+}
+
+.lightbox-desc {
+  font-family: var(--font-host-grotesk), sans-serif;
+  font-size: clamp(0.9rem, 1.5vw, 1.1rem);
+  color: var(--base-200);
+  margin: 0;
+  line-height: 1.3;
+}
+
+.lightbox-counter {
+  font-family: var(--font-dm-mono), monospace;
+  font-size: 0.75rem;
+  color: var(--base-400);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-top: 0.25rem;
+}
+
+/* ── Responsive Refinements ── */
+@media (max-width: 1024px) {
+  .lightbox-main {
+    height: 60%;
+    width: 85%;
+  }
+  
+  .lightbox-nav-btn {
+    width: 48px;
+    height: 48px;
+  }
+  
+  .lightbox-nav-btn.prev {
+    left: 1rem;
+  }
+  
+  .lightbox-nav-btn.next {
+    right: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  /* Mobile Hero Section */
+  .star-gallery-hero {
+    height: 55svh !important;
+    min-height: 380px !important;
+  }
+
+  .hero-content-wrapper {
+    margin-top: 1rem !important;
+    gap: 0.75rem !important;
+    padding: 0 1.25rem !important;
+  }
+
+  .hero-title {
+    font-size: clamp(2rem, 9vw, 3.25rem) !important;
+  }
+
+  .hero-desc {
+    font-size: 0.95rem !important;
+    max-width: 320px !important;
+    line-height: 1.35 !important;
+  }
+
+  /* Horizontal Scrolling Filters on Mobile */
+  .gallery-filters-container {
+    max-width: 100% !important;
+    margin-bottom: 2rem !important;
+    padding: 0 3rem !important;
+    display: flex !important;
+    justify-content: center !important;
+  }
+
+  .gallery-filters {
+    flex-wrap: nowrap !important;
+    justify-content: flex-start !important;
+    border-radius: 30px !important;
+    padding: 0.25rem !important;
+    gap: 0.25rem !important;
+    background: rgba(15, 43, 34, 0.6) !important;
+  }
+
+  .filter-tab {
+    white-space: nowrap !important;
+    padding: 0.6rem 1.2rem !important;
+    font-size: 0.7rem !important;
+  }
+
+  /* 2-Column Mobile Masonry */
+  .gallery-grid {
+    column-count: 2 !important;
+    column-gap: 0.75rem !important;
+    padding-bottom: 1rem !important;
+  }
+
+  .gallery-item,
+  .gallery-item:nth-child(3n),
+  .gallery-item:nth-child(4n) {
+    margin-bottom: 0.75rem !important;
+    border-radius: 8px !important;
+  }
+
+  .gallery-item::after {
+    inset: 10px !important;
+    border-radius: 6px !important;
+  }
+
+  .gallery-item:hover::after {
+    inset: 7px !important;
+  }
+
+  /* Lightbox Mobile Adjustments */
+  .lightbox-main {
+    height: 55%;
+    width: 90%;
+  }
+
+  .lightbox-nav-btn {
+    position: fixed;
+    top: auto;
+    bottom: 2rem;
+    transform: none;
+    width: 48px;
+    height: 48px;
+  }
+
+  .lightbox-nav-btn:hover {
+    transform: scale(1.1);
+  }
+
+  .lightbox-nav-btn:active {
+    transform: scale(0.95);
+  }
+
+  .lightbox-nav-btn.prev {
+    left: 3rem;
+  }
+
+  .lightbox-nav-btn.next {
+    right: 3rem;
+  }
+  
+  .lightbox-info {
+    margin-top: 1rem;
+    margin-bottom: 7rem; /* Make room for bottom nav buttons */
+  }
+
+  .lightbox-close-btn {
+    top: 1rem;
+    right: 1rem;
+  }
+}

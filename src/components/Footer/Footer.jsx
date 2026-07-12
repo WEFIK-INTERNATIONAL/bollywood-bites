@@ -34,8 +34,8 @@ const NAV_COLUMNS = [
     heading: "Services",
     links: [
       { label: "Westwood Village", href: "/services/west-wood-village" },
-      { label: "Catering", href: "/services/catering" },
-      { label: "Food Trucks", href: "/services/food-trucks" },
+      { label: "Catering", href: "/menu/catering-trays" },
+      { label: "Food Trucks", href: "/menu/food-truck" },
     ],
   },
   {

@@ -8,11 +8,13 @@ import { HiOutlineArrowLeft, HiOutlineArrowRight } from "react-icons/hi";
 
 import { blogs } from "@/data/blogs-data";
 import Button from "@/components/Button/Button";
+import { useViewTransition } from "@/hooks/useViewTransition";
 
 import "./blog-single.css";
 
 export default function SingleBlogPage({ params }) {
   const router = useRouter();
+  const { navigateWithTransition } = useViewTransition();
   
   // Unwrap params using React.use() as required in React 19/Next.js 15+
   const resolvedParams = use(params);
@@ -46,7 +48,14 @@ export default function SingleBlogPage({ params }) {
       {/* Back Button floating bar */}
       <div className="blog-back-bar">
         <div className="container">
-          <Link href="/media/blog" className="back-link">
+          <Link 
+            href="/media/blog" 
+            className="back-link"
+            onClick={(e) => {
+              e.preventDefault();
+              navigateWithTransition("/media/blog");
+            }}
+          >
             <HiOutlineArrowLeft /> Back to Articles
           </Link>
         </div>
@@ -92,17 +101,7 @@ export default function SingleBlogPage({ params }) {
       </div>
 
       {/* Article Body */}
-      <article className="blog-article-content">
-        {/* Background watermark */}
-        <Image 
-          src="/mandana/rounded_mandala/Group 9.svg" 
-          className="article-bg-mandala" 
-          width={600} 
-          height={600} 
-          alt="" 
-          aria-hidden="true"
-        />
-        
+      <article className="blog-article-content">  
         <div className="container">
           <div 
             className="rich-text-body"
