@@ -110,6 +110,16 @@
   }
 }
 
+/* On narrow phones "Bollywood Bites" overflows with white-space: nowrap.
+   Allow wrapping and scale font down slightly. */
+@media (max-width: 480px) {
+  .preloader-title {
+    white-space: normal;
+    font-size: clamp(2.75rem, 14vw, 6rem);
+    line-height: 0.9;
+  }
+}
+
 /* Make preloader button background transparent inside and fill with gold on hover */
 .preloader-enter-button .slide-button-bg {
   background-color: var(--base-600);

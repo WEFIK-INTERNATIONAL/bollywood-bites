@@ -461,3 +461,114 @@
     display: none;
   }
 }
+
+/* Tablet — bring cards down to a comfortable height */
+@media (max-width: 768px) {
+  .experience-section {
+    padding: 5rem 0 3.5rem;
+  }
+
+  .experience-header {
+    margin-bottom: 3rem;
+    padding: 0 0.5rem;
+  }
+
+  .experience-tagline {
+    font-size: 0.8rem;
+    letter-spacing: 0.12em; /* Tight letter-spacing on narrow screens */
+  }
+
+  .experience-title {
+    font-size: clamp(2rem, 8vw, 2.75rem);
+    line-height: 1.15;
+  }
+
+  .experience-subtitle {
+    font-size: 0.95rem;
+    line-height: 1.55;
+    margin-top: 0.75rem;
+  }
+
+  .experience-cards {
+    gap: 1.25rem;
+    margin-bottom: 3.5rem;
+  }
+
+  .experience-card {
+    height: 420px;
+  }
+}
+
+/* Phone — compact card height so all 3 don't dominate the scroll */
+@media (max-width: 480px) {
+  .experience-section {
+    padding: 4rem 0 3rem;
+  }
+
+  .experience-header {
+    margin-bottom: 2.5rem;
+  }
+
+  .experience-tagline {
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+  }
+
+  .experience-title {
+    font-size: clamp(1.75rem, 7.5vw, 2.25rem);
+    margin-bottom: 0.5rem;
+  }
+
+  .experience-subtitle {
+    font-size: 0.9rem;
+  }
+
+  .experience-cards {
+    gap: 1rem;
+    margin-bottom: 3rem;
+  }
+
+  .experience-card {
+    height: 360px;
+  }
+
+  /* Scale the default card title down slightly to match the smaller card */
+  .card-title-main {
+    font-size: 1.6rem;
+  }
+}
+
+/* ── Mobile: Tap-to-Reveal + Performance Fixes ── */
+@media (max-width: 768px) {
+  /* is-touch-active mirrors :hover behavior for tap interactions on mobile */
+  .experience-card.is-touch-active .experience-card-hover-panel {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+    pointer-events: auto;
+  }
+
+  .experience-card.is-touch-active .experience-card-default {
+    opacity: 0;
+    transform: translateY(15px);
+    pointer-events: none;
+  }
+
+  .experience-card.is-touch-active .experience-card-bg {
+    transform: scale(1.06);
+  }
+
+  /* Remove GPU-expensive backdrop-filter on mobile.
+     backdrop-filter: blur() forces entire sections to repaint on scroll. */
+  .experience-card-hover-panel {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    background: rgba(9, 30, 23, 0.95);
+  }
+
+  .experience-btn .slide-button-bg,
+  .experience-btn-hover .slide-button-bg {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    background: rgba(9, 30, 23, 0.75) !important;
+  }
+}

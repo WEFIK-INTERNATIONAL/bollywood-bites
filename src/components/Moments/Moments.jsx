@@ -146,6 +146,8 @@ const Moments = () => {
       lastPointerX = e.clientX;
       lastPointerTime = Date.now();
 
+      // Lock touch-action during drag so vertical scroll doesn't compete
+      track.style.touchAction = "none";
       track.setPointerCapture(e.pointerId);
       track.style.cursor = "grabbing";
     };
@@ -168,6 +170,8 @@ const Moments = () => {
     const handlePointerUp = () => {
       isDragging = false;
       lastInteractionTime = Date.now();
+      // Restore pan-y so page scroll works again after releasing
+      track.style.touchAction = "pan-y";
       track.style.cursor = "grab";
     };
 
@@ -180,7 +184,8 @@ const Moments = () => {
       track.addEventListener("pointerup", handlePointerUp);
       track.addEventListener("pointercancel", handlePointerUp);
       track.style.cursor = "grab";
-      track.style.touchAction = "none";
+      // pan-y: allows normal page scroll; switches to 'none' during active drag
+      track.style.touchAction = "pan-y";
       isDragEnabled = true;
     };
 
@@ -196,8 +201,9 @@ const Moments = () => {
       isDragEnabled = false;
     };
 
+    // Enable drag on ALL screen sizes — mobile uses pan-y to avoid blocking page scroll
     const handleResize = () => {
-      window.innerWidth < MOBILE_BREAKPOINT ? disableDrag() : enableDrag();
+      enableDrag();
     };
 
     handleResize();

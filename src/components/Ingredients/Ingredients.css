@@ -124,7 +124,7 @@
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .ingredients-section {
-    padding: 6rem 0;
+    padding: 5rem 0;
   }
   
   .ingredients-header {
@@ -145,5 +145,19 @@
 
   .ingredients-track {
     animation-duration: 18s; /* Slightly faster loop for smaller screen spans */
+  }
+}
+
+@media (max-width: 480px) {
+  .ingredients-section {
+    padding: 4rem 0;
+  }
+
+  .ingredients-header h2 {
+    font-size: clamp(2rem, 8vw, 2.5rem);
+  }
+
+  .ingredients-header {
+    margin-bottom: 2rem;
   }
 }

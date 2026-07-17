@@ -176,6 +176,7 @@ const StreetFood = () => {
               key={food.id}
               className={`street-card ${activeIdx === idx ? "is-active" : ""}`}
               onMouseEnter={() => setActiveIdx(idx)}
+              onClick={() => setActiveIdx(idx)}
             >
               {/* Background Image */}
               <div className="street-card-bg">

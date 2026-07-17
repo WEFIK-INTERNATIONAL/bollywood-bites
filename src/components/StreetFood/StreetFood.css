@@ -317,18 +317,69 @@
 }
 
 @media (max-width: 768px) {
+  .street-section {
+    padding: 5rem 0 3.5rem;
+  }
+
+  .street-header {
+    margin-bottom: 3rem;
+    padding: 0 0.5rem;
+  }
+
+  .street-tagline {
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    margin: 0.5rem 0 0.75rem;
+  }
+
+  .street-title {
+    font-size: clamp(2rem, 8vw, 2.75rem);
+    margin-bottom: 1rem;
+  }
+
+  .street-subtitle {
+    font-size: 0.95rem;
+    line-height: 1.55;
+    margin-top: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .street-section {
+    padding: 4rem 0 3rem;
+  }
+
+  .street-header {
+    margin-bottom: 2.5rem;
+  }
+
+  .street-title {
+    font-size: clamp(1.75rem, 7.5vw, 2.25rem);
+  }
+
+  .street-subtitle {
+    font-size: 0.9rem;
+    margin-top: 0.75rem;
+  }
+}
+
+@media (max-width: 768px) {
   /* Transformed into vertical interactive accordion on tablet and mobile */
   .street-cards-row {
     flex-direction: column;
     height: auto;
     gap: 0.75rem;
     overflow: visible;
+    /* Isolate height-transition reflows within this container.
+       Prevents the browser from recalculating layout outside the accordion
+       on every animation frame — major jank reduction. */
+    contain: layout;
   }
 
   .street-card {
     flex: none;
     width: 100%;
-    height: 64px; /* Collapsed height */
+    height: 68px; /* Slightly taller collapsed height for better tap target */
     transition: height 0.6s cubic-bezier(0.25, 1, 0.3, 1), border-color 0.4s ease, box-shadow 0.4s ease;
   }
 
@@ -372,6 +423,10 @@
     left: auto;
     bottom: 50%;
     transform: translateY(50%);
+    /* Remove blur on mobile — too expensive, causes repaints */
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    background: rgba(9, 30, 23, 0.8);
   }
 
   .street-card.is-active .street-card-collapsed-icon {

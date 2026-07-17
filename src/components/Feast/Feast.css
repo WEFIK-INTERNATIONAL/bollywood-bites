@@ -19,6 +19,7 @@
   z-index: 0;
   opacity: 0.05;
   animation: spin-slow 200s linear infinite;
+  transform-origin: center center;
   filter: invert(80%) sepia(15%) saturate(700%) hue-rotate(330deg) brightness(90%) contrast(85%);
   will-change: transform;
   backface-visibility: hidden;
@@ -94,7 +95,7 @@
   inset: 0;
   width: 100%;
   height: 100%;
-  will-change: transform, opacity;
+  /* will-change managed by GSAP during active animation — not needed statically */
 }
 
 .feast-slide-image {
@@ -283,9 +284,33 @@
   }
 }
 
+@media (max-width: 768px) {
+  .feast-section {
+    padding: 5rem 0 4rem;
+  }
+
+  .feast-header {
+    margin-bottom: 3rem;
+    padding: 0 0.5rem;
+  }
+
+  .feast-title {
+    font-size: clamp(1.85rem, 8vw, 2.5rem);
+    letter-spacing: 0;
+  }
+}
+
 @media (max-width: 480px) {
+  .feast-section {
+    padding: 4rem 0 3rem;
+  }
+
   .feast-header {
     margin-bottom: 2.5rem;
+  }
+
+  .feast-title {
+    font-size: clamp(1.6rem, 7.5vw, 2rem);
   }
 
   .feast-frame-nav-button {
@@ -303,5 +328,19 @@
   .feast-slide-counter {
     bottom: 2rem;
     right: 1.5rem;
+  }
+}
+
+/* Remove GPU-expensive backdrop-filter on mobile buttons */
+@media (max-width: 768px) {
+  .feast-explore-btn .slide-button-bg {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    background: rgba(9, 30, 23, 0.75) !important;
+  }
+
+  /* Slow down halo animation on mobile to reduce GPU load */
+  .feast-mandala-halo {
+    animation-duration: 400s;
   }
 }

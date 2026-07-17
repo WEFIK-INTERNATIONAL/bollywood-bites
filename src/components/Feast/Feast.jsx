@@ -129,6 +129,49 @@ const Feast = () => {
     return () => clearInterval(timer);
   }, [handleNext]);
 
+  /* Native swipe / drag gesture for the carousel
+     Works on both touch (mobile) and mouse (desktop).
+     A horizontal move > 50px triggers prev/next. */
+  useEffect(() => {
+    const container = slideContainerRef.current;
+    if (!container) return;
+
+    let startX = 0;
+    let isDragging = false;
+
+    const handlePointerDown = (e) => {
+      startX = e.clientX;
+      isDragging = true;
+      container.style.touchAction = "none";
+    };
+
+    const handlePointerUp = (e) => {
+      if (!isDragging) return;
+      isDragging = false;
+      container.style.touchAction = "";
+      const diff = startX - e.clientX;
+      if (Math.abs(diff) > 50) {
+        if (diff > 0) handleNext(); // swiped left → next
+        else handlePrev();          // swiped right → prev
+      }
+    };
+
+    const handlePointerCancel = () => {
+      isDragging = false;
+      container.style.touchAction = "";
+    };
+
+    container.addEventListener("pointerdown", handlePointerDown);
+    container.addEventListener("pointerup", handlePointerUp);
+    container.addEventListener("pointercancel", handlePointerCancel);
+
+    return () => {
+      container.removeEventListener("pointerdown", handlePointerDown);
+      container.removeEventListener("pointerup", handlePointerUp);
+      container.removeEventListener("pointercancel", handlePointerCancel);
+    };
+  }, [handleNext, handlePrev]);
+
   /* Physical image-pushing sliding animations via GSAP */
   useEffect(() => {
     const container = slideContainerRef.current;
@@ -143,7 +186,10 @@ const Feast = () => {
       const incomingStart = isNext ? 100 : -100;
       const outgoingEnd = isNext ? -100 : 100;
 
-      // Animate outgoing slide pushing out (no opacity fade during slide)
+      // Ensure incoming slide is visible before animating
+      gsap.set(incomingSlide, { visibility: "visible", opacity: 1 });
+
+      // Animate outgoing slide pushing out
       gsap.killTweensOf(outgoingSlide);
       gsap.fromTo(outgoingSlide,
         { xPercent: 0, opacity: 1 },
@@ -152,8 +198,9 @@ const Feast = () => {
           duration: 1.2, 
           ease: "power2.inOut",
           onComplete: () => {
-            // Hide after the animation finishes
-            gsap.set(outgoingSlide, { opacity: 0 });
+            // visibility:hidden removes the slide from GPU compositing entirely
+            // (opacity:0 still creates a compositor layer — visibility does not)
+            gsap.set(outgoingSlide, { opacity: 0, visibility: "hidden" });
           }
         }
       );
@@ -173,12 +220,12 @@ const Feast = () => {
         { opacity: 1, y: 0, duration: 0.6, stagger: 0.1, ease: "power2.out", delay: 0.4 }
       );
     } else {
-      // Set initial layout
+      // Set initial layout — hide all non-active slides from compositor
       slides.forEach((slide, idx) => {
         if (idx === currentIndex) {
-          gsap.set(slide, { xPercent: 0, opacity: 1 });
+          gsap.set(slide, { xPercent: 0, opacity: 1, visibility: "visible" });
         } else {
-          gsap.set(slide, { xPercent: 100, opacity: 0 });
+          gsap.set(slide, { xPercent: 100, opacity: 0, visibility: "hidden" });
         }
       });
     }

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
@@ -88,6 +88,11 @@ const VALUES = [
 
 const Experience = () => {
   const sectionRef = useRef(null);
+  const [activeCard, setActiveCard] = useState(null);
+
+  const handleCardClick = (id) => {
+    setActiveCard((prev) => (prev === id ? null : id));
+  };
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -195,7 +200,11 @@ const Experience = () => {
 
         <div className="experience-cards">
           {SERVICES.map((service, index) => (
-            <div key={service.id} className="experience-card">
+            <div
+              key={service.id}
+              className={`experience-card${activeCard === service.id ? " is-touch-active" : ""}`}
+              onClick={() => handleCardClick(service.id)}
+            >
               <div className="experience-card-bg">
                 <Image
                   src={service.image}

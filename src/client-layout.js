@@ -30,12 +30,18 @@ const LENIS_SHARED = {
   syncTouch: true,
 };
 
+/**
+ * LENIS_MOBILE — effectively disables smooth scroll on mobile.
+ * lerp:1 = instant (no interpolation), smooth:false disables the engine.
+ * The instance is kept alive so Preloader can still call lenis.stop()/start().
+ * Native iOS/Android momentum scroll is the smoothest experience on real devices.
+ */
 const LENIS_MOBILE = {
-  ...LENIS_SHARED,
-  duration: 0.8,
-  smoothTouch: true,
-  touchMultiplier: 1.5,
-  lerp: 0.09,
+  smooth: false,
+  lerp: 1,
+  smoothTouch: false,
+  syncTouch: false,
+  touchMultiplier: 0,
 };
 
 const LENIS_DESKTOP = {
